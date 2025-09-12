@@ -8,7 +8,10 @@
     input what is the first number
     out objecxtibe is take two numbers and add trhem together
 """
-
+numsix = input("enter your number ")
+lorkeez = input("enter your second number ")
+sum = numsix + lorkeez
+print(f"The sum is {sum}")
 
 """
 the user is going to type in
