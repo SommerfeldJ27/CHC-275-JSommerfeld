@@ -16,3 +16,7 @@ ONE EQUALS (=) for variable assignment TWO EQUALS (==) for equality checking
 x = 10
 if x % 2 == 0:
     print(f"{x} is divisible by 2")
+"""
+elif <= checks 2nd condition in if-else chain
+elif has to be on the same tab level as the if its related to because they're bound to each other
+"""
