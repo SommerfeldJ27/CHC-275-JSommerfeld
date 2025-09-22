@@ -13,7 +13,7 @@ Make a four function calculator tyhat takes in two numbers PER operation
 
 Do this for all four math functions that we have
 
-Use f-styrings, variables, input() and typecasting
+Use f-strings, variables, input() and typecasting
 """
 num1 = input("Enter num1 ")
 num2 = input("Enter num2 ")
