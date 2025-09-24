@@ -7,4 +7,5 @@ while x != 1:
         x = x/2
     elif x % 2 == 1:
         x = x * 3 + 1
-print(1)
+if x == 1:
+    print(x)
