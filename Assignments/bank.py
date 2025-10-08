@@ -35,40 +35,40 @@ while check == False:
                 index = accounts.index(name) #Refrences back to Accounts list
                 money = input("How much would you like to withdraw: ") #Follow up question
                 money = int(money) #Money holds value
-                balances[index] = balances[index] - money #Formula to add money to balance
+                balances[index] = balances[index] - money #Formula to subtract money from balance
                 for i in range(len(accounts)):
                     print(f"Account {accounts[i]} Balance {balances[i]}") #Prints results
         
-    elif (option == "2"):
-        name = input("Which account are you transfering from: ")
-        index = accounts.index(name)
-        money = input("How much would you like to transfer: ")
-        money = int(money)
-        balances[index] = balances[index] - money
-        name = input("Which account are you transfering to: ")
-        index = accounts.index(name)
-        balances[index] = balances[index] + money
+    elif (option == "2"): #User input
+        name = input("Which account are you transfering from: ") #Question based on input
+        index = accounts.index(name) #Refrences back to Accoutns list
+        money = input("How much would you like to transfer: ") #Question based on responce
+        money = int(money) #Money holds value
+        balances[index] = balances[index] - money #Formula to subtract money from balance
+        name = input("Which account are you transfering to: ") #Follow up question
+        index = accounts.index(name) #Refrences back to Accoutns list
+        balances[index] = balances[index] + money #Formula to add money to balance
         for i in range(len(accounts)):
-            print(f"Account {accounts[i]} Balance {balances[i]}")
+            print(f"Account {accounts[i]} Balance {balances[i]}") #Prints results
         
-    elif (option == "3"):
+    elif (option == "3"): #User input
         for i in range(len(accounts)):
-            print(f"Account {accounts[i]} Balance {balances[i]}")
+            print(f"Account {accounts[i]} Balance {balances[i]}") #Prints current accounts and balances
         
-    elif (option == "4"):
-        print("Will you be adding or removing an account?")
-        option = input("")
-        if (option == "Adding" or "adding"):
-                name = input("Enter Account Name:")
-                accounts.append(name)
-                balance = input("Current Funds: ")
-                balance = int(balance)
-        if (option == "Removing" or "remove"):
-                name = input("Enter Account Name:")
-                index = accounts.append(name)
-                accounts.pop(index)
-                balances.pop(index)
+    elif (option == "4"): #User input
+        print("Will you be adding or removing an account?") #Question based on input
+        option = input("") #User response
+        if (option == "Adding" or "adding"):#User input
+                name = input("Enter Account Name:") #Name of new account
+                accounts.append(name) #Creates account name and adds to list
+                balance = input("Current Funds: ") #Current balance of new account
+                balance = int(balance) #Creates balance and adds to list
+        if (option == "Removing" or "remove"): #User input
+                name = input("Enter Account Name:") #Account name being removed
+                index = accounts.append(name) #References back to Accounts list
+                accounts.pop(index) #Removes account
+                balances.pop(index) #Removes account
                 
-    elif (option == "Quit" or "quit"):
-        check = True
-        print("Thank you come again!")
+    elif (option == "Quit" or "quit"): #User input
+        check = True #Kills the code
+        print("Thank you come again!") #Friendly exit to command line
