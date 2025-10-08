@@ -4,10 +4,7 @@ check = False
 
 while check == False:
     for i in range(len(accounts)):
-        print(accounts[i])
-    for i in range(len(balances)):
-        print(balances[i])
-    print(f"Account {accounts[i]} Balance {balances[i]}")
+        print(f"Account {accounts[i]} Balance {balances[i]}")
     
     print("Welcome to FFCU! How can I help you today? ")
     print("1. Deposit or Withdraw")
@@ -26,8 +23,8 @@ while check == False:
                 money = input("How much would you like to deposit: ")
                 money = int(money)
                 balances[index] = balances[index] + money
-                print(accounts)
-                print(balances)
+                for i in range(len(accounts)):
+                    print(f"Account {accounts[i]} Balance {balances[i]}")
         option = input("")
         if (option == "Withdrawing" or "withdrawing"):
                 name = input("Which account are you withdrawing from: ")
@@ -35,15 +32,15 @@ while check == False:
                 money = input("How much would you like to withdraw: ")
                 money = int(money)
                 balances[index] = balances[index] - money
-                print(accounts)
-                print(balances)
+                for i in range(len(accounts)):
+                    print(f"Account {accounts[i]} Balance {balances[i]}")
         
     elif (option == "2"):
-        print("To who?") #This is a place holder f holor later
+        print("To who?") #This is a place holder f or later
         
     elif (option == "3"):
-        print(accounts)
-        print(balances)
+        for i in range(len(accounts)):
+            print(f"Account {accounts[i]} Balance {balances[i]}")
         
     elif (option == "4"):
         print("Will you be adding or removing an account?")
@@ -51,8 +48,8 @@ while check == False:
         if (option == "Adding" or "adding"):
                 name = input("Enter Account Name:")
                 accounts.append(name)
-                bal = input("Current Funds: ")
-                bal = int(bal)
+                balance = input("Current Funds: ")
+                balance = int(balance)
         if (option == "Removing" or "remove"):
                 name = input("Enter Account Name:")
                 index = accounts.append(name)
