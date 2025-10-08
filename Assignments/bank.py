@@ -9,7 +9,7 @@ balances = [1000, 2000, 3000, 4000, 5000]
 check = False
 
 while check == False:
-    
+    #Print general layout of welcome and options for the user
     print("Welcome to FFCU! How can I help you today? ") #Prints prompt to welcome user
     print("1. Deposit or Withdraw") #Lists options
     print("2. Transfer Money") #Lists options
@@ -17,7 +17,7 @@ while check == False:
     print("4. Add or Remove Accounts") #Lists options
     
     option = input("Select option or type quit to exit: ") #Allows user response
-    
+    #Commands of what will happen if the user wishes to deposit or withdraw
     if (option == "1"): #User input
         print("Will you be depositing or withdrawing funds?") #Question based on input
         option = input("") #Allows user response
@@ -38,7 +38,7 @@ while check == False:
                 balances[index] = balances[index] - money #Formula to subtract money from balance
                 for i in range(len(accounts)):
                     print(f"Account {accounts[i]} Balance {balances[i]}") #Prints results
-        
+    #Commands of what will happen if the user wishes to tranfer funds   
     elif (option == "2"): #User input
         name = input("Which account are you transfering from: ") #Question based on input
         index = accounts.index(name) #Refrences back to Accoutns list
@@ -50,11 +50,11 @@ while check == False:
         balances[index] = balances[index] + money #Formula to add money to balance
         for i in range(len(accounts)):
             print(f"Account {accounts[i]} Balance {balances[i]}") #Prints results
-        
+    #Commands of what will happen if the user wishes to view all current accounts and balances    
     elif (option == "3"): #User input
         for i in range(len(accounts)):
             print(f"Account {accounts[i]} Balance {balances[i]}") #Prints current accounts and balances
-        
+    #Commands of what will happen if the user wishes to add or remove accounts  
     elif (option == "4"): #User input
         print("Will you be adding or removing an account?") #Question based on input
         option = input("") #User response
@@ -68,7 +68,7 @@ while check == False:
                 index = accounts.append(name) #References back to Accounts list
                 accounts.pop(index) #Removes account
                 balances.pop(index) #Removes account
-                
+    #Commands of what will happen if the user wishes to quit the session         
     elif (option == "Quit" or "quit"): #User input
         check = True #Kills the code
         print("Thank you come again!") #Friendly exit to command line
