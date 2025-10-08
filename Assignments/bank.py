@@ -1,4 +1,4 @@
-accounts = ["Smasher" , "Silverhand", "Rogue", "Jackie", "V"]
+accounts = ["Jackie", "Silverhand" , "Smasher", "Rogue", "V"]
 balances = [1000, 2000, 3000, 4000, 5000]
 check = False
 
