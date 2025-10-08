@@ -3,8 +3,6 @@ balances = [1000, 2000, 3000, 4000, 5000]
 check = False
 
 while check == False:
-    for i in range(len(accounts)):
-        print(f"Account {accounts[i]} Balance {balances[i]}")
     
     print("Welcome to FFCU! How can I help you today? ")
     print("1. Deposit or Withdraw")
@@ -36,7 +34,16 @@ while check == False:
                     print(f"Account {accounts[i]} Balance {balances[i]}")
         
     elif (option == "2"):
-        print("To who?") #This is a place holder f or later
+        name = input("Which account are you transfering from: ")
+        index = accounts.index(name)
+        money = input("How much would you like to transfer: ")
+        money = int(money)
+        balances[index] = balances[index] - money
+        name = input("Which account are you transfering to: ")
+        index = accounts.index(name)
+        balances[index] = balances[index] + money
+        for i in range(len(accounts)):
+            print(f"Account {accounts[i]} Balance {balances[i]}")
         
     elif (option == "3"):
         for i in range(len(accounts)):
@@ -58,3 +65,4 @@ while check == False:
                 
     elif (option == "Quit" or "quit"):
         check = True
+        print("Thank you come again!")
