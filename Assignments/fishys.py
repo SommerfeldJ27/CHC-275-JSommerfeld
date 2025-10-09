@@ -14,9 +14,9 @@ while check == False:
     if (option == "No"):
             print("OOPS")
     elif (option == "Salt Water"):
-        print("PP")
-    elif (option == "Community"):
         print("0!")
+    elif (option == "Community"):
+        print("PP")
     else:
         check = True
         print("I don't think thats a kind of fish")
