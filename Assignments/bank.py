@@ -58,11 +58,15 @@ while check == False:
             accounts.append(name) #Creates account name and adds to list
             balance = input("Current Funds: ") #Current balance of new account
             balance = int(balance) #Creates balance and adds to list
+            for i in range(len(accounts)):
+                print(f"Account {accounts[i]} Balance {balances[i]}") #Prints results
     elif (option == "6"): #User input
             name = input("Enter Account Name:") #Account name being removed
             index = accounts.append(name) #References back to Accounts list
             accounts.pop(index) #Removes account
             balances.pop(index) #Removes account
+            for i in range(len(accounts)):
+                print(f"Account {accounts[i]} Balance {balances[i]}") #Prints results
     #Commands of what will happen if the user wishes to quit the session         
     elif (option == "Quit" or "quit"): #User input
         check = True #Kills the code
