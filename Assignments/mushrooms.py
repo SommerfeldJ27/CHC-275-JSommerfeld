@@ -7,34 +7,32 @@ Large mushrooms are mushrooms greater than or equal to 200 in size.
 Print out the lists of each sized mushroom.
 """
 # Initialize empty lists for each mushroom size category
-small_mushrooms = []
-medium_mushrooms = []
-large_mushrooms = []
-
-while True:
+smallmushrooms = []
+mediummushrooms = []
+largemushrooms = []
+check = False
+while check == False:
     # Ask for mushroom size
-    user_input = input("Enter mushroom size (or type 'stop' to finish): ").strip().lower()
-
-    # Stop condition
-    if user_input == "stop":
-        break
-
+    userinput = input("Enter mushroom size or type stop to finish: ").strip().lower()
     # Try to safely convert input to a number
     try:
-        size = float(user_input)
+        size = input()
     except ValueError:
         print("Invalid input! Please enter a number or type 'stop' to finish.")
         continue  # Skip to next iteration
 
     # Sort into correct list
     if size < 100:
-        small_mushrooms.append(size)
-    elif size < 200:
-        medium_mushrooms.append(size)
-    else:
-        large_mushrooms.append(size)
+        smallmushrooms.append(size)
+    elif size > 100 and size < 200:
+        mediummushrooms.append(size)
+    elif size > 200:
+        largemushrooms.append(size)
+# Stop condition
+    if userinput == "stop":
+        check = True
 
 # Print results
-print("\nSmall mushrooms (< 100):", small_mushrooms)
-print("Medium mushrooms (100–199):", medium_mushrooms)
-print("Large mushrooms (≥ 200):", large_mushrooms)
+print("Small mushrooms", smallmushrooms)
+print("Medium mushrooms", mediummushrooms)
+print("Large mushrooms", largemushrooms)
