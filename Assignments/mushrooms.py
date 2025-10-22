@@ -14,7 +14,7 @@ large_mushrooms = []
 check = False
 while check == False:
     # Ask for mushroom size
-    size = input("Enter mushroom size (or type 'stop' to finish): ").strip().lower()
+    size = input("Enter mushroom size or type 'stop' to exit: ").strip().lower()
 
     # Stop condition
     if size == "stop":
