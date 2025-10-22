@@ -8,6 +8,8 @@ b = 0
 print(Str)
 for char in Str:
     if char == "a":
-        pass
+       a = a + 1
     if char == "b":
-        pass
+        b = b + 1
+print (a)
+print (b)
