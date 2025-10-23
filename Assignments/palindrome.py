@@ -5,10 +5,6 @@ def palindrome(option):
 
     while left < right:
 
-        if option[left] == " ":
-            left += 1
-        if option[right] == " ":
-            right -= 1
 
         if option[left] != option[right]:
             return False
