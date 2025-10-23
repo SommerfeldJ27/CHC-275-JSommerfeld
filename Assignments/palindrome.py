@@ -1,17 +1,15 @@
 def is_palindrome(option):
 
-    palindrome = option
-
-    left, right = 0, len(palindrome) - 1
+    left, right = 0, len(option) - 1
 
     while left < right:
 
-        if palindrome[left] == " ":
+        if option[left] == " ":
             left += 1
-        if palindrome[right] == " ":
+        if option[right] == " ":
             right -= 1
 
-        if palindrome[left] != palindrome[right]:
+        if option[left] != option[right]:
             return False
 
         left += 1
@@ -21,6 +19,6 @@ def is_palindrome(option):
 
 option = input("Enter a word: ")
 if is_palindrome(option):
-    print("It's a palindrome")
+    print("It's a Palindrome")
 else:
-    print("It's not a palindrome")
+    print("It's not a Palindrome")
