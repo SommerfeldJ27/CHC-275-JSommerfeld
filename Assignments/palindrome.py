@@ -11,13 +11,13 @@ def is_palindrome(option):
 
         if option[left] != option[right]:
             return False
-
+        
         left += 1
         right -= 1
 
     return True
 
-option = input("Enter a word: ")
+option = input("Enter a word: ").strip().lower()
 if is_palindrome(option):
     print("Palindrome")
 else:
