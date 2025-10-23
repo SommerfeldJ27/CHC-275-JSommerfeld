@@ -1,4 +1,5 @@
-def is_palindrome(option):
+option = input("Enter a word: ").strip().lower()
+def palindrome(option):
 
     left, right = 0, len(option) - 1
 
@@ -17,8 +18,7 @@ def is_palindrome(option):
 
     return True
 
-option = input("Enter a word: ").strip().lower()
-if is_palindrome(option):
+if palindrome(option):
     print("Palindrome")
 else:
     print("Not a Palindrome")
