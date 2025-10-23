@@ -1,7 +1,8 @@
 option = input("Enter a word: ").strip().lower()
 def palindrome(option):
 
-    left, right = 0, len(option) - 1
+    left = 0
+    right = len(option) - 1
 
     while left < right:
 
