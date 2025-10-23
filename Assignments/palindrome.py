@@ -19,6 +19,6 @@ def is_palindrome(option):
 
 option = input("Enter a word: ")
 if is_palindrome(option):
-    print("It's a Palindrome")
+    print("Palindrome")
 else:
-    print("It's not a Palindrome")
+    print("Not a Palindrome")
