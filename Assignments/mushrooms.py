@@ -17,7 +17,7 @@ while check == False:
     size = input("Enter mushroom size or type 'stop' to exit: ").strip().lower()
 
     # Stop condition
-    if size == "stop":
+    if size == "stop".strip().lower():
         check = True
         
     if size.isnumeric():
