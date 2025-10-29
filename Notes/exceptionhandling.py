@@ -5,3 +5,13 @@ if (x == 0 and y != 0) or (x and y != 0):
     print(quotient)
 if x != 0 and y == 0:
     print("You Cannot Divide by 0")
+    
+    """
+    try
+        code block
+    except
+        if runtime error happens run this
+    finally
+        regardless of if try and except work run this
+    
+    """
