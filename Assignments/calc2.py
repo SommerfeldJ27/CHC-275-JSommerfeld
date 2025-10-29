@@ -39,4 +39,4 @@ while check == False:
         except ValueError:
             print("Not a proper value")
     elif option == ("Quit").strip().lower():
-        check == True         
+        check == True
