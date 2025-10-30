@@ -38,5 +38,7 @@ while check == False:
             print(f"The quotient of {num7} and {num8} is {quotient}")
         except ValueError:
             print("Not a proper value")
+        except ZeroDivisionError:
+            print("Can't divide by 0")
     elif option == ("Quit").strip().lower():
         check == True
