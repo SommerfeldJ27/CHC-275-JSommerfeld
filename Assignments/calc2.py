@@ -40,4 +40,4 @@ while check == False:
         except ZeroDivisionError:
             print("Can't divide by 0")
     elif option == "quit":
-        check == True
+        check = True
