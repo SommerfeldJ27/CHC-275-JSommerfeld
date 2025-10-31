@@ -1,4 +1,6 @@
-Quagmire, 92
-Joe, 40
-Peter, 67
-Cleveland, 80
+John,90
+Frank,92
+Preston,100
+Teague,98
+Aidan,97
+Lettuce,40
