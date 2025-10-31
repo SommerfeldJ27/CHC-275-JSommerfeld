@@ -1,4 +1,4 @@
-Quagmire
-Joe
-Peter
-Cleveland
+Quagmire, 92
+Joe, 40
+Peter, 67
+Cleveland, 80
