@@ -74,3 +74,6 @@ What if we want two separate lists of related information?
 what if we wanted to have names,grade in the class? We could run two parallel
 lists that are joined together by their specific indices. 
 """
+
+file.write("some string")
+file.close()
