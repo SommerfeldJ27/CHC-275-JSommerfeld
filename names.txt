@@ -3,4 +3,7 @@ Frank,92
 Preston,100
 Teague,98
 Aidan,97
-Lettuce,40
+Lettuce,2
+Trevis,95
+David,42
+james,-4
