@@ -1,13 +1,13 @@
 file = open("food.txt","r") #open("<filename>","<mode>") 
 buffer = file.readlines() #this will take in our list of items and make each line an item inside our list 
-items = [] #This would be account items
+items = [] #This would be Item items
 prices = [] #this would be total 
 file.close() #flush the buffered memory being used for the contents of the files 
 for line in buffer: #for each makes more sense here because we don't want to introduce
 #index based technical overhead that is irrelevant to our program
     line = line.strip() #This removes white space
     line = line.split(",") #line is a list of two elements
-                            #line[0] is the name
+                            #line[0] is the cart
                             #line[1] is the grade value
     items.append(line[0])
     prices.append(line[1])
@@ -25,17 +25,19 @@ while check == False:
     print("3. Checkout")
 
     option = input("Enter your selection: ").strip().lower()
-    if (option == "1"):
-        item = input("Enter Item:") #Name of new account
-        cart.append(item) #Creates account name and adds to list
-        for i in range(len(cart)):
-            print(f"Cart {cart[i]}") #Prints results
+    if (option == "1"):#User input
+            cart = input("Enter Items Name:") #Name of new Item
+            items.append(cart) #Creates Item cart and adds to list
+            total = int(total) #Creates total and adds to list
+            for i in range(len(items)):
+                print(f"Items {items[i]} Prices {prices[i]}") #Prints results
     elif (option == "2"): #User input
-        item = input("Enter Item:") #Account name being removed
-        index = cart(item) #References back to Accounts list
-        cart.pop(cart) #Removes account
-        for i in range(len(cart)):
-            print(f"Account {cart[i]}") #Prints results
+            cart = input("Enter Items Name:") #Items cart being removed
+            index = items.append(cart) #References back to Accounts list
+            items.pop(index) #Removes Item
+            prices.pop(index) #Removes Item
+            for i in range(len(items)):
+                print(f"Items {items[i]} Prices {prices[i]}") #Prints results
     elif (option == "3"):
         check = True
         print("Thank You Come Again!")
