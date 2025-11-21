@@ -32,8 +32,8 @@ while check == False:
             print(f"Cart {cart[i]}") #Prints results
     elif (option == "2"): #User input
         item = input("Enter Item:") #Account name being removed
-        index = cart.append(item) #References back to Accounts list
-        cart.pop(index) #Removes account
+        index = cart(item) #References back to Accounts list
+        cart.pop(cart) #Removes account
         for i in range(len(cart)):
             print(f"Account {cart[i]}") #Prints results
     elif (option == "3"):
