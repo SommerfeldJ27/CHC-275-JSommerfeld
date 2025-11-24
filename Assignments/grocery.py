@@ -1,14 +1,11 @@
-# Read file
-file = open("food.txt", "r")
+file = open("food.txt","r")
 buffer = file.readlines()
-file.close()
-
 items = []
 prices = []
-cart = []        # items user selects
-cart_prices = [] # matching prices
+cart = []
+cart_price = []
+file.close()
 
-# Load items + prices from file
 for line in buffer:
     line = line.strip().split(",")
     items.append(line[0])
@@ -26,46 +23,38 @@ while check == False:
     print("3. Checkout")
 
     option = input("Enter your selection: ").strip().lower()
-
     if option == "1":
-        item_name = input("Enter Item Name: ").strip()
-
-        if item_name in items:
-            index = items.index(item_name)
-            cart.append(item_name)
-            cart_prices.append(prices[index])
-            print(f"Added {item_name} to cart.")
+        item = input("Enter Item Name: ").strip()
+        if item in items:
+            index = items.index(item)
+            cart.append(item)
+            cart_price.append(prices[index])
+            print(f"Added {item} to cart.")
         else:
             print("Item not found.")
 
         print("Current cart:", cart)
-
     elif option == "2":
-        item_name = input("Enter Item Name to remove: ").strip()
-
-        if item_name in cart:
-            index = cart.index(item_name)
+        item = input("Enter Item Name to remove: ").strip()
+        if item in cart:
+            index = cart.index(item)
             cart.pop(index)
-            cart_prices.pop(index)
-            print(f"Removed {item_name} from cart.")
+            cart_price.pop(index)
+            print(f"Removed {item} from cart.")
         else:
-            print("Item not in cart.")
+            print("Item not found.")
 
         print("Current cart:", cart)
-
     elif option == "3":
         check = True
-
         print("Receipt")
         for i in range(len(cart)):
-            print(f"{cart[i]} - {cart_prices[i]}")
-
-        subtotal = sum(cart_prices)
+            print(f"{cart[i]} - {cart_price[i]}")
+        subtotal = sum(cart_price)
         statetax = 0.06
         tax = subtotal * statetax
         total = subtotal + tax
         print(f"Total: {total}")
         print("Thank You Come Again!")
-
     else:
-        print("Invalid Option. Please Try again.")
+        print("Invalid Option Try again.")
