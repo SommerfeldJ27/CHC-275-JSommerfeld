@@ -9,7 +9,7 @@ file.close()
 for line in buffer:
     line = line.strip().split(",") #removes whitespace and splits them up
     items.append(line[0])
-    prices.append(float(line[1]))   #converts to number
+    prices.append(float(line[1])) #converts to number
 
 print(items)
 print(prices)
