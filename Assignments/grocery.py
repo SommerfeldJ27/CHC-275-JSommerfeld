@@ -1,15 +1,15 @@
-file = open("food.txt","r")
+file = open("food.txt","r") #opens file and mode
 buffer = file.readlines()
-items = []
-prices = []
-cart = []
-cart_price = []
+items = [] #items
+prices = [] #item prices
+cart = [] #cart of what to purchase
+cart_price = [] #price of wanted items
 file.close()
 
 for line in buffer:
-    line = line.strip().split(",")
+    line = line.strip().split(",") #removes whitespace and splits them up
     items.append(line[0])
-    prices.append(float(line[1]))   # convert to number
+    prices.append(float(line[1]))   #converts to number
 
 print(items)
 print(prices)
@@ -22,26 +22,26 @@ while check == False:
     print("2. Remove from cart")
     print("3. Checkout")
 
-    option = input("Enter your selection: ").strip().lower()
+    option = input("Enter your selection: ").strip().lower() #user input
     if option == "1":
-        item = input("Enter Item Name: ").strip()
-        if item in items:
+        item = input("Enter Item Name: ").strip() #user input
+        try:
             index = items.index(item)
-            cart.append(item)
-            cart_price.append(prices[index])
+            cart.append(item) #adds item to cart
+            cart_price.append(prices[index]) #adds item price to cart
             print(f"Added {item} to cart.")
-        else:
+        except ValueError:
             print("Item not found.")
 
         print("Current cart:", cart)
     elif option == "2":
-        item = input("Enter Item Name to remove: ").strip()
-        if item in cart:
+        item = input("Enter Item Name to remove: ").strip() #user input
+        try:
             index = cart.index(item)
-            cart.pop(index)
-            cart_price.pop(index)
+            cart.pop(index) #removes item from cart
+            cart_price.pop(index) #removes removed item's price from cart price
             print(f"Removed {item} from cart.")
-        else:
+        except ValueError:
             print("Item not found.")
 
         print("Current cart:", cart)
