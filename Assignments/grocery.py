@@ -3,6 +3,7 @@ buffer = file.readlines()
 items = [] #items
 prices = [] #item prices
 cart = [] #cart of what to purchase
+quantity = []
 cart_price = [] #price of wanted items
 file.close()
 
@@ -25,11 +26,12 @@ while check == False:
     option = input("Enter your selection: ").strip().lower() #user input
     if option == "1":
         item = input("Enter Item Name: ").strip() #user input
+        quantity = float(input("How many would you like: "))
         try:
-            index = items.index(item)
+            index = items.index(quantity and item)
             cart.append(item) #adds item to cart
-            cart_price.append(prices[index]) #adds item price to cart
-            print(f"Added {item} to cart.")
+            cart_price.append(quantity * prices[index]) #adds item price to cart
+            print(f"Added {quantity} {item} to cart.")
         except ValueError:
             print("Item not found.")
 
