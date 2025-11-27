@@ -1,15 +1,16 @@
-file = open("food.txt","r") #opens file and mode
+file = open("food.txt","r")
 buffer = file.readlines()
-items = [] #items
-prices = [] #item prices
-cart = [] #cart of what to purchase
-cart_price = [] #price of wanted items
+items = []
+prices = []
+cart = []
+cart_price = []
 file.close()
 
 for line in buffer:
-    line = line.strip().split(",") #removes whitespace and splits them up
+    line = line.strip()
+    line = line.split(",")
     items.append(line[0])
-    prices.append(float(line[1])) #converts to number
+    prices.append(float(line[1]))
 
 print(items)
 print(prices)
@@ -22,25 +23,25 @@ while check == False:
     print("2. Remove from cart")
     print("3. Checkout")
 
-    option = input("Enter your selection: ").strip().lower() #user input
+    option = input("Enter your selection: ").strip().lower()
     if option == "1":
-        item = input("Enter Item Name: ").strip() #user input
+        item = input("Enter item Name: ").strip()
         quantity = float(input("How many would you like: "))
         try:
             index = items.index(quantity and item)
-            cart.append(item) #adds item to cart
-            cart_price.append(quantity * prices[index]) #adds item price to cart
+            cart.append(item)
+            cart_price.append(quantity * prices[index])
             print(f"Added {quantity} {item} to cart.")
         except ValueError:
             print("Item not found.")
 
         print("Current cart:", cart)
     elif option == "2":
-        item = input("Enter Item Name to remove: ").strip() #user input
+        item = input("Enter item Name to remove: ").strip()
         try:
             index = cart.index(item)
-            cart.pop(index) #removes item from cart
-            cart_price.pop(index) #removes removed item's price from cart price
+            cart.pop(index)
+            cart_price.pop(index)
             print(f"Removed {item} from cart.")
         except ValueError:
             print("Item not found.")
@@ -48,14 +49,13 @@ while check == False:
         print("Current cart:", cart)
     elif option == "3":
         check = True
-        print("Receipt")
-        for i in range(len(cart)):
-            print(f"{cart[i]} - {cart_price[i]}")
+        print("Receipt:")
+        print(f"{cart} - {cart_price}")
         subtotal = sum(cart_price)
         statetax = 0.06
         tax = subtotal * statetax
         total = subtotal + tax
         print(f"Total: {total}")
-        print("Thank You Come Again!")
+        print("Thank You Come Again")
     else:
-        print("Invalid Option Try again.")
+        print("Invalid Option")
