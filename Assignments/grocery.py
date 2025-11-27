@@ -28,9 +28,9 @@ while check == False:
         item = input("Enter Item Name: ").strip() #user input
         quantity = float(input("How many would you like: "))
         try:
-            index = items.index(quantity and item)
+            index1 = items.index(item)
             cart.append(item) #adds item to cart
-            cart_price.append(quantity * prices[index]) #adds item price to cart
+            cart_price.append(quantity * prices[index1]) #adds item price to cart
             print(f"Added {quantity} {item} to cart.")
         except ValueError:
             print("Item not found.")
@@ -38,13 +38,16 @@ while check == False:
         print("Current cart:", cart)
     elif option == "2":
         item = input("Enter Item Name to remove: ").strip() #user input
+        quantity2 = float(input("How many would you like to remove: "))
         try:
-            index = cart.index(item)
-            cart.pop(index) #removes item from cart
-            cart_price.pop(index) #removes removed item's price from cart price
-            print(f"Removed {item} from cart.")
-        except ValueError:
-            print("Item not found.")
+            new_quantity = quantity - quantity2
+            cart_price.append(new_quantity * prices[index1]) #establishes new price after removing items
+            print(f"Removed {quantity2} {item} from cart.")
+        except quantity2 > quantity or ValueError:
+            print("Tried to remove too many items or item not found.")
+        if quantity2 == quantity:
+            index2 = cart.index(item)
+            cart.pop(index2) #removes item from cart
 
         print("Current cart:", cart)
     elif option == "3":
