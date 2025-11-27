@@ -49,12 +49,14 @@ while check == False:
         print("Current cart:", cart)
     elif option == "3":
         check = True
-        print("Receipt:")
-        print(f"{cart} - {cart_price}")
         subtotal = sum(cart_price)
         statetax = 0.06
         tax = subtotal * statetax
         total = subtotal + tax
+        print("Receipt:")
+        print(f"{cart} - {cart_price}")
+        print(f"Subtotal: {subtotal}")
+        print(f"Tax: {tax}")
         print(f"Total: {total}")
         print("Thank You Come Again")
     else:
