@@ -26,7 +26,7 @@ while check == False:
 
     option = input("Enter your selection: ").strip().lower()
     if option == "1":
-        item = input("Enter item Name: ").strip()
+        item = input("Enter item name: ").strip()
         quantity = float(input("How many would you like: "))
         try:
             index = items.index(item)
@@ -40,7 +40,7 @@ while check == False:
         print("Current cart:", cart)
         
     elif option == "2":
-        item = input("Enter item Name to remove: ").strip()
+        item = input("Enter item name to remove: ").strip()
         try:
             index = cart.index(item)
             remove_quantity = float(input("How many would you like to remove? "))
