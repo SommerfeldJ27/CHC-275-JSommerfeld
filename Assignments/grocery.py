@@ -3,7 +3,6 @@ buffer = file.readlines()
 items = [] #items
 prices = [] #item prices
 cart = [] #cart of what to purchase
-quantity = []
 cart_price = [] #price of wanted items
 file.close()
 
@@ -28,9 +27,9 @@ while check == False:
         item = input("Enter Item Name: ").strip() #user input
         quantity = float(input("How many would you like: "))
         try:
-            index1 = items.index(quantity and item)
+            index = items.index(quantity and item)
             cart.append(item) #adds item to cart
-            cart_price.append(quantity * prices[index1]) #adds item price to cart
+            cart_price.append(quantity * prices[index]) #adds item price to cart
             print(f"Added {quantity} {item} to cart.")
         except ValueError:
             print("Item not found.")
@@ -38,20 +37,13 @@ while check == False:
         print("Current cart:", cart)
     elif option == "2":
         item = input("Enter Item Name to remove: ").strip() #user input
-        quantity2 = float(input("How many would you like to remove: "))
-        cart_price.clear()
         try:
-            index2 = cart.index(item)
-            new_quantity = quantity - quantity2
-            cart_price.append(new_quantity * prices[index1])
-            print(f"Removed {quantity2} {item} from cart.")
+            index = cart.index(item)
+            cart.pop(index) #removes item from cart
+            cart_price.pop(index) #removes removed item's price from cart price
+            print(f"Removed {item} from cart.")
         except ValueError:
             print("Item not found.")
-        if new_quantity < 0:
-            print("This action cannot be done.")
-        if new_quantity == 0:
-            cart.pop(index2) #removes item from cart
-            cart_price.pop(index2) #removes removed item's price from cart price
 
         print("Current cart:", cart)
     elif option == "3":
