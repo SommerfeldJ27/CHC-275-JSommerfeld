@@ -28,7 +28,7 @@ while check == False:
         item = input("Enter Item Name: ").strip() #user input
         quantity = float(input("How many would you like: "))
         try:
-            index1 = items.index(item)
+            index1 = items.index(quantity and item)
             cart.append(item) #adds item to cart
             cart_price.append(quantity * prices[index1]) #adds item price to cart
             print(f"Added {quantity} {item} to cart.")
