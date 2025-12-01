@@ -56,7 +56,7 @@ while check == False:
         tax = subtotal * statetax
         total = subtotal + tax
         print("Receipt:")
-        print(f"{cart}")
+        print(f"{cart} - {cart_price}")
         print(f"Subtotal: {subtotal}")
         print(f"Tax: {tax}")
         print(f"Total: {total}")
