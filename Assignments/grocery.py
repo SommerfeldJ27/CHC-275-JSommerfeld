@@ -4,7 +4,6 @@ items = []
 prices = []
 cart = []
 cart_price = []
-cart_quantity = []
 file.close()
 
 for line in buffer:
@@ -31,7 +30,6 @@ while check == False:
         try:
             index = items.index(item)
             cart.append(item)
-            cart_quantity.append(quantity)
             cart_price.append(quantity * prices[index])
             print(f"Added {quantity} {item} to cart.")
         except ValueError:
@@ -43,16 +41,9 @@ while check == False:
         item = input("Enter item name to remove: ").strip()
         try:
             index = cart.index(item)
-            remove_quantity = float(input("How many would you like to remove? "))
-            if remove_quantity >= cart_quantity[index]:
-                cart.pop(index)
-                cart_price.pop(index)
-                cart_quantity.pop(index)
-                print(f"Removed {item} from cart.")
-            else:
-                cart_quantity[index] = cart_quantity[index] - remove_quantity
-                cart_price[index] = cart_price[index] - remove_quantity * prices[index]
-                print(f"Removed {remove_quantity} {item} from cart.")
+            cart.pop(index)
+            cart_price.pop(index)
+            print(f"Removed {item} from cart.")
         except ValueError:
             print("Item not found.")
 
