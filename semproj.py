@@ -11,7 +11,7 @@ games_played = int(buffer[0].strip())
 print(f"Games Played: {games_played}")
 kills = []
 deaths = []
-KD = kills/deaths
+killdeathratio = kills/deaths
 wins = []
 losses = []
 winlossratio = wins/losses
@@ -74,12 +74,15 @@ while check == False:
         print("Thank You Come Again")
     else:
         print("Invalid Option")
-avg_filename = "new_stats.txt"
-file = open(avg_filename,"w")
-line0 = f"MSFT: {"mean1"} , {"mean4"}\n"
-line1 = f"AMZN: {"mean2"} , {"mean5"}\n"
-line2 = f"NVDA: {":"} , {"mean6"}\n"
-line3 = f"The best investments would be {""}"
+file_name = "new_stats.txt"
+file = open(file_name,"w")
+line0 = f"Games Played: {games_played}\n"
+line1 = f"Kills: {kills}\n"
+line2 = f"Deaths: {deaths}\n"
+line3 = f"Kill/Death Ratio: {killdeathratio}\n"
+line4 = f"Wins: {wins}\n"
+line5 = f"Losses: {losses}\n"
+line6 = f"Win/Loss Ratio: {winlossratio}\n"
 buffer = [line0, line1, line2, line3]
 file.writelines(buffer)
 file.close()
