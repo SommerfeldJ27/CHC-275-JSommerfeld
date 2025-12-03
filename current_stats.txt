@@ -1,4 +1,4 @@
-1135
-994
-40
-41
+Kills,1135
+Deaths,994
+Wins,40
+Losses,41
