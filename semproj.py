@@ -1,4 +1,10 @@
 "Stat Tracker"
+import pygame
+pygame.init()
+WIDTH, HEIGHT = 1024, 640
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Stat Tracker")
+
 file = open("current_stats.txt","r")
 buffer = file.readlines()
 games_played = int(buffer[0].strip())
