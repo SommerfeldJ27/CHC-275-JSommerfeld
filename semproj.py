@@ -10,11 +10,12 @@ file.close()
 for line in buffer:
     line = line.strip()
     line = line.split(",")
-    kills.append(line[0])
-    deaths.append(float(line[1]))
+    kills.append(float(line[0]))
+    deaths.append(float(line[0]))
 
 print(kills)
 print(deaths)
+print(kills / deaths)
 
 check = False
 
