@@ -1,29 +1,32 @@
 "Stat Tracker"
 file = open("current_stats.txt","r")
 buffer = file.readlines()
+games_played = int(buffer[0].strip())
+print(f"Games Played: {games_played}")
 kills = []
 deaths = []
+KD = kills/deaths
 wins = []
 losses = []
+winlossratio = wins/losses
 file.close()
 
 for line in buffer:
-    line = line.strip()
-    line = line.split(",")
+    line = line.strip().split(",")
     kills.append(float(line[0]))
-    deaths.append(float(line[0]))
+    deaths.append(float(line[1]))
 
 print(kills)
 print(deaths)
 print(kills / deaths)
-
+gamertag = input("Enter your gamertag: ").strip()
 check = False
 
 while check == False:
-    print("Welcome to the grocery store. Please select your option:")
-    print("1. Add to wins")
-    print("2. Remove from wins")
-    print("3. Checkout")
+    print(f"Hey {gamertag} what would you like to do?")
+    print("1. Add wins or losses")
+    print("2. Remove wins or losses")
+    print("3. Add Games Played")
 
     option = input("Enter your selection: ").strip().lower()
     if option == "1":
