@@ -6,25 +6,30 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Stat Tracker")
 
 file = open("current_stats.txt","r")
-buffer = file.readlines()
-games_played = int(buffer[0].strip())
-print(f"Games Played: {games_played}")
-kills = []
-deaths = []
-killdeathratio = kills/deaths
-wins = []
-losses = []
-winlossratio = wins/losses
+buffer=file.readlines()
 file.close()
-
-for line in buffer:
-    line = line.strip().split(",")
-    kills.append(float(line[0]))
-    deaths.append(float(line[1]))
-
+print(buffer[0])
+print(buffer[1])
+print(buffer[2])
+print(buffer[3])
+kills = buffer[0].strip().split(",")
+kills.pop(0)
 print(kills)
+deaths = buffer[1].strip().split(",")
+deaths.pop(0)
 print(deaths)
-print(kills / deaths)
+wins = buffer[2].strip().split(",")
+wins.pop(0)
+print(wins)
+losses = buffer[3].strip().split(",")
+losses.pop(0)
+print(losses)
+for i in range(len(kills)):
+    kills[i] = int(kills[i])
+    deaths[i] = int(deaths[i])
+    wins[i] = int(wins[i])
+    losses[i] = int(losses[i])
+
 gamertag = input("Enter your gamertag: ").strip()
 check = False
 
@@ -36,25 +41,26 @@ while check == False:
 
     option = input("Enter your selection: ").strip().lower()
     if option == "1":
-        item = input("Enter item name: ").strip()
-        quantity = float(input("How many would you like: "))
-        try:
-            index = kills.index(item)
-            wins.append(item)
-            losses.append(quantity * deaths[index])
-            print(f"Added {quantity} {item} to wins.")
-        except ValueError:
-            print("Item not found.")
+        option = input("Are you adding: \n 1. Wins \n 2. Losses? ").strip()
+        if option == "1" or "wins":
+            option2 = float(input("How many did you get: "))
+            try:
+                index = kills.index(option)
+                wins.append(option)
+                losses.append(option2 * deaths[index])
+                print(f"Added {option2} {option} to wins.")
+            except ValueError:
+                print("Item not found.")
 
-        print("Current wins:", wins)
+            print("Current wins:", wins)
         
     elif option == "2":
-        item = input("Enter item name to remove: ").strip()
+        option = input("Enter option name to remove: ").strip()
         try:
-            index = wins.index(item)
+            index = wins.index(option)
             wins.pop(index)
             losses.pop(index)
-            print(f"Removed {item} from wins.")
+            print(f"Removed {option} from wins.")
         except ValueError:
             print("Item not found.")
 
@@ -77,10 +83,10 @@ while check == False:
 file_name = "new_stats.txt"
 file = open(file_name,"w")
 line0 = f"Games Played: {games_played}\n"
-line1 = f"Kills: {kills}\n"
-line2 = f"Deaths: {deaths}\n"
+line1 = f"kills: {kills}\n"
+line2 = f"deaths: {deaths}\n"
 line3 = f"Kill/Death Ratio: {killdeathratio}\n"
-line4 = f"Wins: {wins}\n"
+line4 = f"wins: {wins}\n"
 line5 = f"Losses: {losses}\n"
 line6 = f"Win/Loss Ratio: {winlossratio}\n"
 buffer = [line0, line1, line2, line3]
