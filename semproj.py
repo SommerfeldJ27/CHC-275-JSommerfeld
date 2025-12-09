@@ -1,34 +1,37 @@
 "Stat Tracker"
+"""
 import pygame
 pygame.init()
 WIDTH, HEIGHT = 1024, 640
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Stat Tracker")
+"""
 
 file = open("current_stats.txt","r")
 buffer=file.readlines()
 file.close()
-print(buffer[0])
-print(buffer[1])
-print(buffer[2])
-print(buffer[3])
+
 kills = buffer[0].strip().split(",")
 kills.pop(0)
-print(kills)
+
 deaths = buffer[1].strip().split(",")
 deaths.pop(0)
-print(deaths)
+
 wins = buffer[2].strip().split(",")
 wins.pop(0)
-print(wins)
+
 losses = buffer[3].strip().split(",")
 losses.pop(0)
-print(losses)
+
 for i in range(len(kills)):
     kills[i] = int(kills[i])
     deaths[i] = int(deaths[i])
     wins[i] = int(wins[i])
     losses[i] = int(losses[i])
+    print(f"Kills:{kills}")
+    print(f"Deaths:{deaths}")
+    print(f"Wins:{wins}")
+    print(f"Losses:{losses}")
 
 gamertag = input("Enter your gamertag: ").strip()
 check = False
