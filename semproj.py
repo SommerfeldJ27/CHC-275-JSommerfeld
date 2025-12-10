@@ -73,22 +73,22 @@ while check == False:
     if option == "2":
         option = input("Are you Removing: \n 1. Wins \n 2. Losses? \n 3. Kills \n 4. Deaths").strip()
         if option == "1":
-            option2 = float(input("How many did you get: "))
-            index = wins.index(option2)
-            wins.pop(option2)
-            print(f"Removed {option2} wins")
+            option = float(input("How wins would you like to remove: "))
+            index = wins.index(option)
+            wins.pop(option)
+            print(f"Removed {option} wins")
         if option == "2":
-            option = float(input("How many did you get?: "))
+            option = float(input("How many losses would you like to remove: "))
             index = losses.index(option)
             losses.pop(option)
             print(f"Removed {option} Losses")
         if option == "3":
-            option = float(input("How many kills did you have?: "))
+            option = float(input("How many kills would you like to remove: "))
             index = kills.index(option)
             kills.pop(option)
             print(f"Removed {option} kills")
         if option == "4":
-            option = float(input("How many deaths did you have?: "))
+            option = float(input("How many deaths would you like to remove: "))
             index = deaths.index(option)
             deaths.pop(option)
             print(f"Removed {option} deaths")
@@ -105,7 +105,7 @@ while check == False:
         line4 = f"wins: {wins}\n"
         line5 = f"Losses: {losses}\n"
         line6 = f"Win/Loss Ratio: {winlossratio}\n"
-        buffer = [line0, line1, line2, line3]
+        buffer = [line0, line1, line2, line3, line4, line5, line6]
         file.writelines(buffer)
         file.close()
 
