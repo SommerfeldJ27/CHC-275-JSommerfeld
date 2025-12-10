@@ -10,16 +10,19 @@ file = open("current_stats.txt","r")
 buffer=file.readlines()
 file.close()
 
-kills = buffer[0].strip().split(",")
+games_played = buffer[0].strip().split(":")
+games_played.pop(0)
+
+kills = buffer[1].strip().split(",")
 kills.pop(0)
 
-deaths = buffer[1].strip().split(",")
+deaths = buffer[2].strip().split(",")
 deaths.pop(0)
 
-wins = buffer[2].strip().split(",")
+wins = buffer[3].strip().split(",")
 wins.pop(0)
 
-losses = buffer[3].strip().split(",")
+losses = buffer[4].strip().split(",")
 losses.pop(0)
 
 
@@ -41,12 +44,13 @@ while check == False:
     print("1. Add Stats")
     print("2. Remove Stats")
     print("3. Quit")
-    games_played = sum(wins) + sum(losses)
     killdeathratio = sum(kills) / sum(deaths)
     winlossratio = sum(wins) / sum(losses)
 
     option = input("Enter your selection: ").strip().lower()
     if option == "1":
+        option0 = float(input("How many games have you played?: "))
+        games_played.append(option0)
         option2 = input("Are you adding: \n 1. Wins \n 2. Losses? ").strip()
         if option2 == "1":
             option3 = float(input("How many wins did you get: "))
