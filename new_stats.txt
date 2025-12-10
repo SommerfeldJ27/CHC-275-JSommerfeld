@@ -1,4 +1,0 @@
-Games Played: 81
-kills: [1135, 260.0, 260.0]
-deaths: [994, 100.0]
-Kill/Death Ratio: 1.1418511066398391
