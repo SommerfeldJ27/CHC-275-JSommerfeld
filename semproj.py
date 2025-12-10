@@ -50,24 +50,42 @@ while check == False:
 
     option = input("Enter your selection: ").strip().lower()
     if option == "1":
-        option2 = input("Are you adding: \n 1. Wins \n 2. Losses? ").strip()
-        if option2 == "1":
-            option3 = float(input("How many wins did you get: "))
-            wins.append(option3)
-            print(f"Added {option3} wins")
-            option4 = input("Did you get any kills?: ")
-            if option4 == "y":
-                option5 = float(input("How many kills did you get?: "))
-                kills.append(option5)
-                print(f"Added {option5} kills")
-            if option4 == "n":
+        option = input("Are you adding: \n 1. Wins \n 2. Losses? ").strip()
+        if option == "1":
+            option = float(input("How many wins did you get: "))
+            wins.append(option)
+            print(f"Added {option} wins")
+            option = input("Did you get any kills?: ")
+            if option == "y":
+                option = float(input("How many kills did you get?: "))
+                kills.append(option)
+                print(f"Added {option} kills")
+            if option == "n":
                 print("No kills added.")
-            option6 = input("Did you die?: ")
-            if option6 == "y":
-                option7 = float(input("How many deaths did you have?: "))
-                deaths.append(option7)
-                print(f"Added {option7} deaths")
-            if option6 == "n":
+            option = input("Did you die?: ")
+            if option == "y":
+                option = float(input("How many deaths did you have?: "))
+                deaths.append(option)
+                print(f"Added {option} deaths")
+            if option == "n":
+                print("No deaths added.")
+        if option == "2":
+            option = float(input("How many losses did you get: "))
+            losses.append(option)
+            print(f"Added {option} losses")
+            option = input("Did you get any kills?: ")
+            if option == "y":
+                option = float(input("How many kills did you get?: "))
+                kills.append(option)
+                print(f"Added {option} kills")
+            if option == "n":
+                print("No kills added.")
+            option = input("Did you die?: ")
+            if option == "y":
+                option = float(input("How many deaths did you have?: "))
+                deaths.append(option)
+                print(f"Added {option} deaths")
+            if option == "n":
                 print("No deaths added.")
 
     if option == "2":
@@ -108,3 +126,5 @@ while check == False:
         buffer = [line0, line1, line2, line3, line4, line5, line6]
         file.writelines(buffer)
         file.close()
+    else:
+        print("Invalid option")
