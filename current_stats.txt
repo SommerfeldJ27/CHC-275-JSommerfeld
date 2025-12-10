@@ -1,4 +1,4 @@
-GamesPlayed: 80
+GamesPlayed: 60
 Kills,50
 Deaths,25
 Wins,40
