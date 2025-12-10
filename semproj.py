@@ -6,7 +6,6 @@ WIDTH, HEIGHT = 1024, 640
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Stat Tracker")
 """
-
 file = open("current_stats.txt","r")
 buffer=file.readlines()
 file.close()
@@ -23,6 +22,7 @@ wins.pop(0)
 losses = buffer[3].strip().split(",")
 losses.pop(0)
 
+
 for i in range(len(kills)):
     kills[i] = int(kills[i])
     deaths[i] = int(deaths[i])
@@ -32,66 +32,80 @@ for i in range(len(kills)):
     print(f"Deaths:{deaths}")
     print(f"Wins:{wins}")
     print(f"Losses:{losses}")
+     
+games_played = sum(wins) + sum(losses)
+killdeathratio = sum(kills) / sum(deaths)
+winlossratio = sum(wins) / sum(losses)
 
 gamertag = input("Enter your gamertag: ").strip()
 check = False
 
 while check == False:
     print(f"Hey {gamertag} what would you like to do?")
-    print("1. Add wins or losses")
-    print("2. Remove wins or losses")
-    print("3. Add Games Played")
+    print("1. Add Stats")
+    print("2. Remove Stats")
+    print("3. Quit")
 
     option = input("Enter your selection: ").strip().lower()
     if option == "1":
-        option = input("Are you adding: \n 1. Wins \n 2. Losses? ").strip()
-        if option == "1" or "wins":
+        option2 = input("Are you adding: \n 1. Wins \n 2. Losses? ").strip()
+        if option2 == "1":
+            option3 = float(input("How many wins did you get: "))
+            wins.append(option3)
+            print(f"Added {option3} wins")
+            option4 = input("Did you get any kills?: ")
+            if option4 == "y":
+                option5 = float(input("How many kills did you get?: "))
+                kills.append(option5)
+                print(f"Added {option5} kills")
+            if option4 == "n":
+                print("No kills added.")
+            option6 = input("Did you die?: ")
+            if option6 == "y":
+                option7 = float(input("How many deaths did you have?: "))
+                deaths.append(option7)
+                print(f"Added {option7} deaths")
+            if option6 == "n":
+                print("No deaths added.")
+
+    if option == "2":
+        option = input("Are you Removing: \n 1. Wins \n 2. Losses? \n 3. Kills \n 4. Deaths").strip()
+        if option == "1":
             option2 = float(input("How many did you get: "))
-            try:
-                index = kills.index(option)
-                wins.append(option)
-                losses.append(option2 * deaths[index])
-                print(f"Added {option2} {option} to wins.")
-            except ValueError:
-                print("Item not found.")
+            index = wins.index(option2)
+            wins.pop(option2)
+            print(f"Removed {option2} wins")
+        if option == "2":
+            option = float(input("How many did you get?: "))
+            index = losses.index(option)
+            losses.pop(option)
+            print(f"Removed {option} Losses")
+        if option == "3":
+            option = float(input("How many kills did you have?: "))
+            index = kills.index(option)
+            kills.pop(option)
+            print(f"Removed {option} kills")
+        if option == "4":
+            option = float(input("How many deaths did you have?: "))
+            index = deaths.index(option)
+            deaths.pop(option)
+            print(f"Removed {option} deaths")
 
-            print("Current wins:", wins)
-        
-    elif option == "2":
-        option = input("Enter option name to remove: ").strip()
-        try:
-            index = wins.index(option)
-            wins.pop(index)
-            losses.pop(index)
-            print(f"Removed {option} from wins.")
-        except ValueError:
-            print("Item not found.")
-
-        print("Current wins:", wins)
-
-    elif option == "3":
+    if option == "3":
         check = True
-        subtotal = sum(losses)
-        statetax = 0.06
-        tax = subtotal * statetax
-        total = subtotal + tax
-        print("Receipt:")
-        print(f"{wins} - {losses}")
-        print(f"Subtotal: {subtotal}")
-        print(f"Tax: {tax}")
-        print(f"Total: {total}")
-        print("Thank You Come Again")
+        print("Exiting Stat Tracker")
+        file_name = "new_stats.txt"
+        file = open(file_name,"w")
+        line0 = f"Games Played: {games_played}\n"
+        line1 = f"kills: {kills}\n"
+        line2 = f"deaths: {deaths}\n"
+        line3 = f"Kill/Death Ratio: {killdeathratio}\n"
+        line4 = f"wins: {wins}\n"
+        line5 = f"Losses: {losses}\n"
+        line6 = f"Win/Loss Ratio: {winlossratio}\n"
+        buffer = [line0, line1, line2, line3]
+        file.writelines(buffer)
+        file.close()
+
     else:
         print("Invalid Option")
-file_name = "new_stats.txt"
-file = open(file_name,"w")
-line0 = f"Games Played: {games_played}\n"
-line1 = f"kills: {kills}\n"
-line2 = f"deaths: {deaths}\n"
-line3 = f"Kill/Death Ratio: {killdeathratio}\n"
-line4 = f"wins: {wins}\n"
-line5 = f"Losses: {losses}\n"
-line6 = f"Win/Loss Ratio: {winlossratio}\n"
-buffer = [line0, line1, line2, line3]
-file.writelines(buffer)
-file.close()
