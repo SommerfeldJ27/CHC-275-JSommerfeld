@@ -44,13 +44,12 @@ while check == False:
     print("1. Add Stats")
     print("2. Remove Stats")
     print("3. Quit")
+    games_played = sum(wins) + sum(losses)
     killdeathratio = sum(kills) / sum(deaths)
     winlossratio = sum(wins) / sum(losses)
 
     option = input("Enter your selection: ").strip().lower()
     if option == "1":
-        option0 = float(input("How many games have you played?: "))
-        games_played.append(option0)
         option2 = input("Are you adding: \n 1. Wins \n 2. Losses? ").strip()
         if option2 == "1":
             option3 = float(input("How many wins did you get: "))
