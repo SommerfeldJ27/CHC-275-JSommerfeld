@@ -114,10 +114,10 @@ while check == False:
         file_name = "new_stats.txt"
         file = open(file_name,"w")
         line0 = f"Games Played: {games_played}\n"
-        line1 = f"kills: {kills}\n"
-        line2 = f"deaths: {deaths}\n"
+        line1 = f"Kills: {kills}\n"
+        line2 = f"Deaths: {deaths}\n"
         line3 = f"Kill/Death Ratio: {killdeathratio}\n"
-        line4 = f"wins: {wins}\n"
+        line4 = f"Wins: {wins}\n"
         line5 = f"Losses: {losses}\n"
         line6 = f"Win/Loss Ratio: {winlossratio}\n"
         buffer = [line0, line1, line2, line3, line4, line5, line6]
