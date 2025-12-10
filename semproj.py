@@ -50,7 +50,7 @@ while check == False:
 
     option = input("Enter your selection: ").strip().lower()
     if option == "1":
-        option = input("Are you adding: \n 1. Wins \n 2. Losses? ").strip()
+        option = input("What would you like to add: \n 1. Wins \n 2. Losses \n Add: ").strip()
         if option == "1":
             option = float(input("How many wins did you get: "))
             wins.append(option)
@@ -89,7 +89,7 @@ while check == False:
                 print("No deaths added.")
 
     if option == "2":
-        option = input("Are you Removing: \n 1. Wins \n 2. Losses? \n 3. Kills \n 4. Deaths").strip()
+        option = input("What would you like to remove: \n 1. Wins \n 2. Losses \n 3. Kills \n 4. Deaths \n Remove: ").strip()
         if option == "1":
             option = float(input("How wins would you like to remove: "))
             index = wins.index(option)
