@@ -12,16 +12,12 @@ file.close()
 
 games_played = buffer[0].strip().split(":")
 games_played.pop(0)
-
 kills = buffer[1].strip().split(",")
 kills.pop(0)
-
 deaths = buffer[2].strip().split(",")
 deaths.pop(0)
-
 wins = buffer[3].strip().split(",")
 wins.pop(0)
-
 losses = buffer[4].strip().split(",")
 losses.pop(0)
 
