@@ -32,10 +32,6 @@ for i in range(len(kills)):
     print(f"Deaths:{deaths}")
     print(f"Wins:{wins}")
     print(f"Losses:{losses}")
-     
-games_played = sum(wins) + sum(losses)
-killdeathratio = sum(kills) / sum(deaths)
-winlossratio = sum(wins) / sum(losses)
 
 gamertag = input("Enter your gamertag: ").strip()
 check = False
@@ -45,6 +41,9 @@ while check == False:
     print("1. Add Stats")
     print("2. Remove Stats")
     print("3. Quit")
+    games_played = sum(wins) + sum(losses)
+    killdeathratio = sum(kills) / sum(deaths)
+    winlossratio = sum(wins) / sum(losses)
 
     option = input("Enter your selection: ").strip().lower()
     if option == "1":
