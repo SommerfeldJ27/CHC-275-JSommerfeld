@@ -88,6 +88,7 @@ while check == False:
             if option == "n":
                 print("No deaths added.")
 
+#make index work for each option so we can subtract from list
     if option == "2":
         option = input("What would you like to remove: \n 1. Wins \n 2. Losses \n 3. Kills \n 4. Deaths \n Remove: ").strip()
         if option == "1":
