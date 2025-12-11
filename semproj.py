@@ -6,6 +6,7 @@ WIDTH, HEIGHT = 1024, 640
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Stat Tracker")
 """
+
 file = open("current_stats.txt","r")
 buffer=file.readlines()
 file.close()
@@ -20,7 +21,6 @@ wins = buffer[3].strip().split(",")
 wins.pop(0)
 losses = buffer[4].strip().split(",")
 losses.pop(0)
-
 
 for i in range(len(kills)):
     kills[i] = int(kills[i])
@@ -48,67 +48,100 @@ while check == False:
     if option == "1":
         option = input("What would you like to add: \n 1. Wins \n 2. Losses \n Add: ").strip()
         if option == "1":
-            option = float(input("How many wins did you get: "))
-            wins.append(option)
+            try:
+                option = float(input("How many wins did you get: "))
+                index = len(wins) - 1
+                wins[index]+= option
+            except ValueError:
+                print("Invalid input. Please enter a number.")
             print(f"Added {option} wins")
             option = input("Did you get any kills?: ")
             if option == "y":
-                option = float(input("How many kills did you get?: "))
-                kills.append(option)
+                try:
+                    option = float(input("How many kills did you get?: "))
+                    index = len(kills) - 1
+                    kills[index]+= option
+                except ValueError:
+                    print("Invalid input. Please enter a number.")
                 print(f"Added {option} kills")
-            if option == "n":
+            elif option == "n":
                 print("No kills added.")
             option = input("Did you die?: ")
             if option == "y":
-                option = float(input("How many deaths did you have?: "))
-                deaths.append(option)
+                try:
+                    option = float(input("How many deaths did you have?: "))
+                    index = len(deaths) - 1
+                    deaths[index]+= option
+                except ValueError:
+                    print("Invalid input. Please enter a number.")
                 print(f"Added {option} deaths")
-            if option == "n":
+            elif option == "n":
                 print("No deaths added.")
-        if option == "2":
-            option = float(input("How many losses did you get: "))
-            losses.append(option)
+        elif option == "2":
+            try:
+                option = float(input("How many losses did you get: "))
+                index = len(losses) - 1
+                losses[index]+= option
+            except ValueError:
+                print("Invalid input. Please enter a number.")
             print(f"Added {option} losses")
             option = input("Did you get any kills?: ")
             if option == "y":
-                option = float(input("How many kills did you get?: "))
-                kills.append(option)
+                try:
+                    option = float(input("How many kills did you get?: "))
+                    index = len(kills) - 1
+                    kills[index]+= option
+                except ValueError:
+                    print("Invalid input. Please enter a number.")
                 print(f"Added {option} kills")
-            if option == "n":
+            elif option == "n":
                 print("No kills added.")
             option = input("Did you die?: ")
             if option == "y":
-                option = float(input("How many deaths did you have?: "))
-                deaths.append(option)
+                try:
+                    option = float(input("How many deaths did you have?: "))
+                    index = len(deaths) - 1
+                    deaths[index]+= option
+                except ValueError:
+                    print("Invalid input. Please enter a number.")
                 print(f"Added {option} deaths")
-            if option == "n":
+            elif option == "n":
                 print("No deaths added.")
-
-#make index work for each option so we can subtract from list
-    if option == "2":
+    elif option == "2":
         option = input("What would you like to remove: \n 1. Wins \n 2. Losses \n 3. Kills \n 4. Deaths \n Remove: ").strip()
         if option == "1":
-            option = float(input("How wins would you like to remove: "))
-            index = wins.index(option)
-            wins.pop(option)
+            try:
+                option = float(input("How wins would you like to remove: "))
+                index = len(wins) - 1
+                wins[index]-= option
+            except ValueError:
+                print("Invalid input. Please enter a number.")
             print(f"Removed {option} wins")
-        if option == "2":
-            option = float(input("How many losses would you like to remove: "))
-            index = losses.index(option)
-            losses.pop(option)
+        elif option == "2":
+            try:
+                option = float(input("How many losses would you like to remove: "))
+                index = len(losses) - 1
+                losses[index] -= option
+            except ValueError:
+                print("Invalid input. Please enter a number.")
             print(f"Removed {option} Losses")
-        if option == "3":
-            option = float(input("How many kills would you like to remove: "))
-            index = kills.index(option)
-            kills.pop(option)
+        elif option == "3":
+            try:
+                option = float(input("How many kills would you like to remove: "))
+                index = len(kills) - 1
+                kills[index] -= option
+            except ValueError:
+                print("Invalid input. Please enter a number.")
             print(f"Removed {option} kills")
-        if option == "4":
-            option = float(input("How many deaths would you like to remove: "))
-            index = deaths.index(option)
-            deaths.pop(option)
+        elif option == "4":
+            try:
+                option = int(input("How many deaths would you like to remove: "))
+                index = len(deaths) - 1
+                deaths[index] -= option
+            except ValueError:
+                print("Invalid input. Please enter a number.")
             print(f"Removed {option} deaths")
-
-    if option == "3":
+    elif option == "3":
         check = True
         print("Exiting Stat Tracker")
         file_name = "new_stats.txt"
@@ -124,4 +157,4 @@ while check == False:
         file.writelines(buffer)
         file.close()
     else:
-        print("Invalid option")
+        print("Invalid option. Please try again.")
