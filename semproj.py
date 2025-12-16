@@ -50,6 +50,9 @@ while check == False:
 
     option = input("Enter your selection: ").strip().lower()
     if option == "1":
+        print("Which account would you like to add stats to?")
+        gamertag = input("Enter Account Name: ")
+            #reference accounts list
         option = input("What would you like to add: \n 1. Wins \n 2. Losses \n Add: ").strip()
         if option == "1":
             try:
@@ -113,6 +116,9 @@ while check == False:
                 print("No deaths added.")
     elif option == "2":
         option = input("What would you like to remove: \n 1. Wins \n 2. Losses \n 3. Kills \n 4. Deaths \n Remove: ").strip()
+        print("which account would you like to remove stats from?")
+        gamertag = input("Enter Account Name: ")
+         #reference accounts list
         if option == "1":
             try:
                 option = float(input("How wins would you like to remove: "))
@@ -164,7 +170,7 @@ while check == False:
         if option == "n":
             print("No base stats added")
     elif option == "4":
-        gamertag = input("Enter Account Name:")
+        gamertag = input("Which account are we deleting:")
         index = accounts.index(gamertag)
         accounts.pop(index)
         wins.pop(index)
@@ -184,7 +190,7 @@ while check == False:
         line5 = f"Wins: {wins}\n"
         line6 = f"Losses: {losses}\n"
         line7 = f"Win/Loss Ratio: {winlossratio}\n"
-        buffer = [line1, line2, line3, line4, line5, line6, line7]
+        buffer = [line0, line1, line2, line3, line4, line5, line6, line7]
         file.writelines(buffer)
         file.close()
     else:
