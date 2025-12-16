@@ -11,6 +11,7 @@ file = open("current_stats.txt","r")
 buffer=file.readlines()
 file.close()
 
+accounts = []
 games_played = buffer[0].strip().split(":")
 games_played.pop(0)
 kills = buffer[1].strip().split(",")
@@ -33,13 +34,16 @@ for i in range(len(kills)):
     print(f"Losses:{losses}")
 
 gamertag = input("Enter your gamertag: ").strip()
+accounts.append(gamertag)
 check = False
 
 while check == False:
     print(f"Hey {gamertag} what would you like to do?")
     print("1. Add Stats")
     print("2. Remove Stats")
-    print("3. Quit")
+    print ("3. Add Accounts")
+    print("4. Remove Accounts")
+    print("5. Quit")
     games_played = sum(wins) + sum(losses)
     killdeathratio = sum(kills) / sum(deaths)
     winlossratio = sum(wins) / sum(losses)
@@ -142,18 +146,45 @@ while check == False:
                 print("Invalid input. Please enter a number.")
             print(f"Removed {option} deaths")
     elif option == "3":
+        gamertag = input("Enter Account Name:")
+        accounts.append(gamertag)
+        option = input("Would you like to enter base stats for this account: ")
+        if option == "y":
+            try:
+                wins_1 = float(input("Enter number of wins: "))
+                wins.append(wins_1)
+                losses_1 = float(input("Enter number of losses: "))
+                losses.append(losses_1)
+                kills_1 = float(input("Enter number of kills: "))
+                kills.append(kills_1)
+                deaths_1 = float(input("Enter number of deaths: "))
+                deaths.append(deaths_1)
+            except ValueError:
+                print("Invalid input. Please enter a number.")
+        if option == "n":
+            print("No base stats added")
+    elif option == "4":
+        gamertag = input("Enter Account Name:")
+        index = accounts.index(gamertag)
+        accounts.pop(index)
+        wins.pop(index)
+        losses.pop(index)
+        kills.pop(index)
+        deaths.pop(index)
+    elif option == "5":
         check = True
         print("Exiting Stat Tracker")
         file_name = "new_stats.txt"
         file = open(file_name,"w")
-        line0 = f"Games Played: {games_played}\n"
-        line1 = f"Kills: {kills}\n"
-        line2 = f"Deaths: {deaths}\n"
-        line3 = f"Kill/Death Ratio: {killdeathratio}\n"
-        line4 = f"Wins: {wins}\n"
-        line5 = f"Losses: {losses}\n"
-        line6 = f"Win/Loss Ratio: {winlossratio}\n"
-        buffer = [line0, line1, line2, line3, line4, line5, line6]
+        line0 = f"Accounts:{accounts}\n"
+        line1 = f"Games Played: {games_played}\n"
+        line2 = f"Kills: {kills}\n"
+        line3 = f"Deaths: {deaths}\n"
+        line4 = f"Kill/Death Ratio: {killdeathratio}\n"
+        line5 = f"Wins: {wins}\n"
+        line6 = f"Losses: {losses}\n"
+        line7 = f"Win/Loss Ratio: {winlossratio}\n"
+        buffer = [line1, line2, line3, line4, line5, line6, line7]
         file.writelines(buffer)
         file.close()
     else:
