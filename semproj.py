@@ -52,7 +52,9 @@ while check == False:
     if option == "1":
         print("Which account would you like to add stats to?")
         gamertag = input("Enter Account Name: ")
-            #reference accounts list
+        for i in range(len(accounts)):
+            if accounts[i] == gamertag:
+                index = i
         option = input("What would you like to add: \n 1. Wins \n 2. Losses \n Add: ").strip()
         if option == "1":
             try:
@@ -115,10 +117,12 @@ while check == False:
             elif option == "n":
                 print("No deaths added.")
     elif option == "2":
-        option = input("What would you like to remove: \n 1. Wins \n 2. Losses \n 3. Kills \n 4. Deaths \n Remove: ").strip()
         print("which account would you like to remove stats from?")
         gamertag = input("Enter Account Name: ")
-         #reference accounts list
+        for i in range(len(accounts)):
+            if accounts[i] == gamertag:
+                index = i
+        option = input("What would you like to remove: \n 1. Wins \n 2. Losses \n 3. Kills \n 4. Deaths \n Remove: ").strip()
         if option == "1":
             try:
                 option = float(input("How wins would you like to remove: "))
