@@ -44,9 +44,21 @@ while check == False:
     print ("3. Add Accounts")
     print("4. Remove Accounts")
     print("5. Quit")
-    games_played = sum(wins) + sum(losses)
-    killdeathratio = sum(kills) / sum(deaths)
-    winlossratio = sum(wins) / sum(losses)
+    games_played = []
+    killdeathratio = []
+    winlossratio = []
+
+    for i in range(len(wins)):
+        games_played.append(wins[i] + losses[i])
+        if deaths[i] != 0:
+            killdeathratio.append(kills[i] / deaths[i])
+        else:
+            killdeathratio.append(kills[i])
+        if losses[i] != 0:
+            winlossratio.append(wins[i] / losses[i])
+        else:
+            winlossratio.append(wins[i])
+
 
     option = input("Enter your selection: ").strip().lower()
     if option == "1":
@@ -59,7 +71,6 @@ while check == False:
         if option == "1":
             try:
                 option = float(input("How many wins did you get: "))
-                index = len(wins) - 1
                 wins[index]+= option
             except ValueError:
                 print("Invalid input. Please enter a number.")
@@ -68,7 +79,6 @@ while check == False:
             if option == "y":
                 try:
                     option = float(input("How many kills did you get?: "))
-                    index = len(kills) - 1
                     kills[index]+= option
                 except ValueError:
                     print("Invalid input. Please enter a number.")
@@ -79,7 +89,6 @@ while check == False:
             if option == "y":
                 try:
                     option = float(input("How many deaths did you have?: "))
-                    index = len(deaths) - 1
                     deaths[index]+= option
                 except ValueError:
                     print("Invalid input. Please enter a number.")
@@ -89,7 +98,6 @@ while check == False:
         elif option == "2":
             try:
                 option = float(input("How many losses did you get: "))
-                index = len(losses) - 1
                 losses[index]+= option
             except ValueError:
                 print("Invalid input. Please enter a number.")
@@ -98,7 +106,6 @@ while check == False:
             if option == "y":
                 try:
                     option = float(input("How many kills did you get?: "))
-                    index = len(kills) - 1
                     kills[index]+= option
                 except ValueError:
                     print("Invalid input. Please enter a number.")
@@ -109,7 +116,6 @@ while check == False:
             if option == "y":
                 try:
                     option = float(input("How many deaths did you have?: "))
-                    index = len(deaths) - 1
                     deaths[index]+= option
                 except ValueError:
                     print("Invalid input. Please enter a number.")
@@ -126,7 +132,6 @@ while check == False:
         if option == "1":
             try:
                 option = float(input("How wins would you like to remove: "))
-                index = len(wins) - 1
                 wins[index]-= option
             except ValueError:
                 print("Invalid input. Please enter a number.")
@@ -134,7 +139,6 @@ while check == False:
         elif option == "2":
             try:
                 option = float(input("How many losses would you like to remove: "))
-                index = len(losses) - 1
                 losses[index] -= option
             except ValueError:
                 print("Invalid input. Please enter a number.")
@@ -142,7 +146,6 @@ while check == False:
         elif option == "3":
             try:
                 option = float(input("How many kills would you like to remove: "))
-                index = len(kills) - 1
                 kills[index] -= option
             except ValueError:
                 print("Invalid input. Please enter a number.")
@@ -150,7 +153,6 @@ while check == False:
         elif option == "4":
             try:
                 option = int(input("How many deaths would you like to remove: "))
-                index = len(deaths) - 1
                 deaths[index] -= option
             except ValueError:
                 print("Invalid input. Please enter a number.")
