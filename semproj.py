@@ -33,7 +33,7 @@ for i in range(len(kills)):
     print(f"Wins:{wins}")
     print(f"Losses:{losses}")
 
-gamertag = input("Enter your gamertag: ").strip()
+gamertag = input("What's the name for this base account: ").strip()
 accounts.append(gamertag)
 check = False
 
