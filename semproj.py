@@ -33,12 +33,12 @@ for i in range(len(kills)):
     print(f"Wins:{wins}")
     print(f"Losses:{losses}")
 
-gamertag = input("What's the name for this base account: ").strip()
-accounts.append(gamertag)
+init_gamertag = input("What's the name for this base account: ").strip()
+accounts.append(init_gamertag)
 check = False
 
 while check == False:
-    print(f"Hey {gamertag} what would you like to do?")
+    print(f"Hey {init_gamertag} what would you like to do?")
     print("1. Add Stats")
     print("2. Remove Stats")
     print ("3. Add Accounts")
