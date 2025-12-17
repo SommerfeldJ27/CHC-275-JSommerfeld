@@ -28,8 +28,27 @@ for i in range(len(kills)):
     print(f"Wins:{wins}")
     print(f"Losses:{losses}")
 
+games_played = []
+killdeathratio = []
+winlossratio = []
+
 init_gamertag = input("What's the name for this base account: ").strip()
 accounts.append(init_gamertag)
+file_name = "current_stats.txt"
+file = open(file_name,"w")
+line0 = f"Accounts:{accounts}\n"
+line1 = f"Games Played: {games_played}\n"
+line2 = f"Kills: {kills}\n"
+line3 = f"Deaths: {deaths}\n"
+line4 = f"Kill/Death Ratio: {killdeathratio}\n"
+line5 = f"Wins: {wins}\n"
+line6 = f"Losses: {losses}\n"
+line7 = f"Win/Loss Ratio: {winlossratio}\n"
+buffer = [line0, line1, line2, line3, line4, line5, line6, line7]
+file.writelines(buffer)
+file.close()
+print(f"Current Stats Updated")
+
 check = False
 
 while check == False:
@@ -39,9 +58,6 @@ while check == False:
     print ("3. Add Accounts")
     print("4. Remove Accounts")
     print("5. Quit")
-    games_played = []
-    killdeathratio = []
-    winlossratio = []
 
     for i in range(len(wins)):
         games_played.append(wins[i] + losses[i])
@@ -199,11 +215,15 @@ while check == False:
     import pygame
 
 pygame.init()
+
 screen = pygame.display.set_mode((800, 600))
-font = pygame.font.Font(None, 32)
+font = pygame.font.Font(None, 28)
 
 with open("current_stats.txt") as f:
-    lines = f.readlines()
+    left_lines = f.readlines()
+
+with open("new_stats.txt") as f:
+    right_lines = f.readlines()
 
 running = True
 while running:
@@ -213,12 +233,23 @@ while running:
 
     screen.fill((0, 0, 0))
 
+    # LEFT FILE (current_stats.txt)
     y = 20
-    for line in lines:
-        text_surface = font.render(line.strip(), True, (255, 255, 255))
-        screen.blit(text_surface, (20, y))
-        y += 36
+    for line in left_lines:
+        text = font.render(line.strip(), True, (255, 255, 255))
+        screen.blit(text, (20, y))
+        y += 30
+
+    # RIGHT FILE (new_stats.txt)
+    y = 20
+    for line in right_lines:
+        text = font.render(line.strip(), True, (255, 255, 255))
+        screen.blit(text, (420, y))
+        y += 30
 
     pygame.display.flip()
+
+pygame.quit()
+
 
 pygame.quit()
