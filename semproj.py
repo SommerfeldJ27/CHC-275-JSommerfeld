@@ -40,7 +40,6 @@ while check == False:
     print("4. Remove Accounts")
     print("5. Quit")
 
-
     option = input("Enter your selection: ").strip().lower()
     if option == "1":
         print("Which account would you like to add stats to?")
