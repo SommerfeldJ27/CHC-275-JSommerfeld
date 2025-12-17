@@ -1,7 +1,5 @@
 "Stat Tracker"
 
-import pygame
-
 file = open("current_stats.txt","r")
 buffer=file.readlines()
 file.close()
@@ -32,22 +30,19 @@ games_played = []
 killdeathratio = []
 winlossratio = []
 
+for i in range(len(wins)):
+    games_played.append(wins[i] + losses[i])
+    if deaths[i] != 0:
+        killdeathratio.append(kills[i] / deaths[i])
+    else:
+        killdeathratio.append(kills[i])
+    if losses[i] != 0:
+        winlossratio.append(wins[i] / losses[i])
+    else:
+        winlossratio.append(wins[i])
+
 init_gamertag = input("What's the name for this base account: ").strip()
 accounts.append(init_gamertag)
-file_name = "current_stats.txt"
-file = open(file_name,"w")
-line0 = f"Accounts:{accounts}\n"
-line1 = f"Games Played: {games_played}\n"
-line2 = f"Kills: {kills}\n"
-line3 = f"Deaths: {deaths}\n"
-line4 = f"Kill/Death Ratio: {killdeathratio}\n"
-line5 = f"Wins: {wins}\n"
-line6 = f"Losses: {losses}\n"
-line7 = f"Win/Loss Ratio: {winlossratio}\n"
-buffer = [line0, line1, line2, line3, line4, line5, line6, line7]
-file.writelines(buffer)
-file.close()
-print(f"Current Stats Updated")
 
 check = False
 
@@ -58,17 +53,6 @@ while check == False:
     print ("3. Add Accounts")
     print("4. Remove Accounts")
     print("5. Quit")
-
-    for i in range(len(wins)):
-        games_played.append(wins[i] + losses[i])
-        if deaths[i] != 0:
-            killdeathratio.append(kills[i] / deaths[i])
-        else:
-            killdeathratio.append(kills[i])
-        if losses[i] != 0:
-            winlossratio.append(wins[i] / losses[i])
-        else:
-            winlossratio.append(wins[i])
 
 
     option = input("Enter your selection: ").strip().lower()
@@ -199,23 +183,24 @@ while check == False:
         print("Exiting Stat Tracker")
         file_name = "new_stats.txt"
         file = open(file_name,"w")
-        line0 = f"Accounts:{accounts}\n"
-        line1 = f"Games Played: {games_played}\n"
-        line2 = f"Kills: {kills}\n"
-        line3 = f"Deaths: {deaths}\n"
-        line4 = f"Kill/Death Ratio: {killdeathratio}\n"
-        line5 = f"Wins: {wins}\n"
-        line6 = f"Losses: {losses}\n"
-        line7 = f"Win/Loss Ratio: {winlossratio}\n"
-        buffer = [line0, line1, line2, line3, line4, line5, line6, line7]
+        line0 = f"New Stats:\n"
+        line1 = f"-------------------------\n"
+        line2 = f"Accounts:{accounts}\n"
+        line3 = f"Games Played: {games_played}\n"
+        line4 = f"Kills: {kills}\n"
+        line5 = f"Deaths: {deaths}\n"
+        line6 = f"Kill/Death Ratio: {killdeathratio}\n"
+        line7 = f"Wins: {wins}\n"
+        line8 = f"Losses: {losses}\n"
+        line9 = f"Win/Loss Ratio: {winlossratio}\n"
+        buffer = [line0, line1, line2, line3, line4, line5, line6, line7, line8, line9]
         file.writelines(buffer)
         file.close()
     else:
         print("Invalid option. Please try again.")
-    import pygame
 
+import pygame
 pygame.init()
-
 screen = pygame.display.set_mode((800, 600))
 font = pygame.font.Font(None, 28)
 
@@ -233,14 +218,12 @@ while running:
 
     screen.fill((0, 0, 0))
 
-    # LEFT FILE (current_stats.txt)
     y = 20
     for line in left_lines:
         text = font.render(line.strip(), True, (255, 255, 255))
         screen.blit(text, (20, y))
         y += 30
 
-    # RIGHT FILE (new_stats.txt)
     y = 20
     for line in right_lines:
         text = font.render(line.strip(), True, (255, 255, 255))
@@ -248,8 +231,5 @@ while running:
         y += 30
 
     pygame.display.flip()
-
-pygame.quit()
-
 
 pygame.quit()
