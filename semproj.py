@@ -7,15 +7,15 @@ buffer=file.readlines()
 file.close()
 
 accounts = []
-games_played = buffer[0].strip().split(":")
+games_played = buffer[3].strip().split(":")
 games_played.pop(0)
-kills = buffer[1].strip().split(":")
+kills = buffer[4].strip().split(":")
 kills.pop(0)
-deaths = buffer[2].strip().split(":")
+deaths = buffer[5].strip().split(":")
 deaths.pop(0)
-wins = buffer[3].strip().split(":")
+wins = buffer[7].strip().split(":")
 wins.pop(0)
-losses = buffer[4].strip().split(":")
+losses = buffer[8].strip().split(":")
 losses.pop(0)
 
 for i in range(len(kills)):
