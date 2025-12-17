@@ -17,7 +17,8 @@ wins.pop(0)
 losses = buffer[5].strip().split(":")
 losses.pop(0)
 
-for i in range(len(kills)):
+for i in range(len(accounts)):
+    accounts[i] = accounts[i].strip()
     games_played[i] = int(games_played[i])
     kills[i] = int(kills[i])
     deaths[i] = int(deaths[i])
