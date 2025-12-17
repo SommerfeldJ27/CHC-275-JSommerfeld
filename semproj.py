@@ -196,3 +196,44 @@ while check == False:
         file.close()
     else:
         print("Invalid option. Please try again.")
+
+import pygame
+
+pygame.init()
+
+WIDTH, HEIGHT = 600, 400
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Stat Tracker")
+
+with open("current_stats.txt", "r") as f1:
+    lines1 = f1.read().splitlines()
+with open("new_stats.txt", "r") as f2:
+    lines2 = f2.read().splitlines()
+
+font = pygame.font.SysFont(None, 30)
+line_height = 35
+
+running = True
+while running:
+    screen.fill((0, 0, 0))
+
+    y = 50
+    for line in lines1:
+        text_surface = font.render(line, True, (255, 255, 255))
+        screen.blit(text_surface, (50, y))
+        y += line_height
+
+    y = 50
+    for line in lines2:
+        text_surface = font.render(line, True, (255, 255, 255))
+        screen.blit(text_surface, (250, y))
+        y += line_height
+
+    pygame.display.flip()
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+pygame.quit()
+
