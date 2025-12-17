@@ -4,50 +4,36 @@ file = open("current_stats.txt","r")
 buffer=file.readlines()
 file.close()
 
-accounts = []
-games_played = buffer[3].strip().split(":")
+accounts = buffer[0].strip().split(":")
+accounts.pop(0)
+games_played = buffer[1].strip().split(":")
 games_played.pop(0)
-kills = buffer[4].strip().split(":")
+kills = buffer[2].strip().split(":")
 kills.pop(0)
-deaths = buffer[5].strip().split(":")
+deaths = buffer[3].strip().split(":")
 deaths.pop(0)
-wins = buffer[7].strip().split(":")
+wins = buffer[4].strip().split(":")
 wins.pop(0)
-losses = buffer[8].strip().split(":")
+losses = buffer[5].strip().split(":")
 losses.pop(0)
 
 for i in range(len(kills)):
+    games_played[i] = int(games_played[i])
     kills[i] = int(kills[i])
     deaths[i] = int(deaths[i])
     wins[i] = int(wins[i])
     losses[i] = int(losses[i])
-    print(f"Kills:{kills}")
-    print(f"Deaths:{deaths}")
-    print(f"Wins:{wins}")
-    print(f"Losses:{losses}")
 
-games_played = []
-killdeathratio = []
-winlossratio = []
-
-for i in range(len(wins)):
-    games_played.append(wins[i] + losses[i])
-    if deaths[i] != 0:
-        killdeathratio.append(kills[i] / deaths[i])
-    else:
-        killdeathratio.append(kills[i])
-    if losses[i] != 0:
-        winlossratio.append(wins[i] / losses[i])
-    else:
-        winlossratio.append(wins[i])
-
-init_gamertag = input("What's the name for this base account: ").strip()
-accounts.append(init_gamertag)
+print(f"Accounts: {accounts}")
+print(f"Kills: {kills}")
+print(f"Deaths: {deaths}")
+print(f"Wins: {wins}")
+print(f"Losses: {losses}")
 
 check = False
 
 while check == False:
-    print(f"Hey {init_gamertag} what would you like to do?")
+    print(f"Hey Admin what would you like to do?")
     print("1. Add Stats")
     print("2. Remove Stats")
     print ("3. Add Accounts")
@@ -59,21 +45,24 @@ while check == False:
     if option == "1":
         print("Which account would you like to add stats to?")
         gamertag = input("Enter Account Name: ")
-        for i in range(len(accounts)):
-            if accounts[i] == gamertag:
-                index = i
+        if gamertag in accounts:
+            index = accounts.index(gamertag)
+        else:
+            print("Account not found.")
+            continue
         option = input("What would you like to add: \n 1. Wins \n 2. Losses \n Add: ").strip()
         if option == "1":
             try:
-                option = float(input("How many wins did you get: "))
+                option = int(input("How many wins did you get: "))
                 wins[index]+= option
+                games_played[index] += option
             except ValueError:
                 print("Invalid input. Please enter a number.")
             print(f"Added {option} wins")
             option = input("Did you get any kills?: ")
             if option == "y":
                 try:
-                    option = float(input("How many kills did you get?: "))
+                    option = int(input("How many kills did you get?: "))
                     kills[index]+= option
                 except ValueError:
                     print("Invalid input. Please enter a number.")
@@ -83,24 +72,26 @@ while check == False:
             option = input("Did you die?: ")
             if option == "y":
                 try:
-                    option = float(input("How many deaths did you have?: "))
+                    option = int(input("How many deaths did you have?: "))
                     deaths[index]+= option
                 except ValueError:
                     print("Invalid input. Please enter a number.")
                 print(f"Added {option} deaths")
             elif option == "n":
                 print("No deaths added.")
+
         elif option == "2":
             try:
-                option = float(input("How many losses did you get: "))
+                option = int(input("How many losses did you get: "))
                 losses[index]+= option
+                games_played[index] += option
             except ValueError:
                 print("Invalid input. Please enter a number.")
             print(f"Added {option} losses")
             option = input("Did you get any kills?: ")
             if option == "y":
                 try:
-                    option = float(input("How many kills did you get?: "))
+                    option = int(input("How many kills did you get?: "))
                     kills[index]+= option
                 except ValueError:
                     print("Invalid input. Please enter a number.")
@@ -110,37 +101,42 @@ while check == False:
             option = input("Did you die?: ")
             if option == "y":
                 try:
-                    option = float(input("How many deaths did you have?: "))
+                    option = int(input("How many deaths did you have?: "))
                     deaths[index]+= option
                 except ValueError:
                     print("Invalid input. Please enter a number.")
                 print(f"Added {option} deaths")
             elif option == "n":
                 print("No deaths added.")
+
     elif option == "2":
         print("which account would you like to remove stats from?")
         gamertag = input("Enter Account Name: ")
-        for i in range(len(accounts)):
-            if accounts[i] == gamertag:
-                index = i
+        if gamertag in accounts:
+            index = accounts.index(gamertag)
+        else:
+            print("Account not found.")
+            continue
         option = input("What would you like to remove: \n 1. Wins \n 2. Losses \n 3. Kills \n 4. Deaths \n Remove: ").strip()
         if option == "1":
             try:
-                option = float(input("How wins would you like to remove: "))
+                option = int(input("How wins would you like to remove: "))
                 wins[index]-= option
+                games_played[index] -= option
             except ValueError:
                 print("Invalid input. Please enter a number.")
             print(f"Removed {option} wins")
         elif option == "2":
             try:
-                option = float(input("How many losses would you like to remove: "))
+                option = int(input("How many losses would you like to remove: "))
                 losses[index] -= option
+                games_played[index] -= option
             except ValueError:
                 print("Invalid input. Please enter a number.")
             print(f"Removed {option} Losses")
         elif option == "3":
             try:
-                option = float(input("How many kills would you like to remove: "))
+                option = int(input("How many kills would you like to remove: "))
                 kills[index] -= option
             except ValueError:
                 print("Invalid input. Please enter a number.")
@@ -152,84 +148,51 @@ while check == False:
             except ValueError:
                 print("Invalid input. Please enter a number.")
             print(f"Removed {option} deaths")
+
     elif option == "3":
         gamertag = input("Enter Account Name:")
         accounts.append(gamertag)
         option = input("Would you like to enter base stats for this account: ")
         if option == "y":
             try:
-                wins_1 = float(input("Enter number of wins: "))
+                games_played_1 = int(input("Enter number of games played: "))
+                games_played.append(games_played_1)
+                wins_1 = int(input("Enter number of wins: "))
                 wins.append(wins_1)
-                losses_1 = float(input("Enter number of losses: "))
+                losses_1 = int(input("Enter number of losses: "))
                 losses.append(losses_1)
-                kills_1 = float(input("Enter number of kills: "))
+                kills_1 = int(input("Enter number of kills: "))
                 kills.append(kills_1)
-                deaths_1 = float(input("Enter number of deaths: "))
+                deaths_1 = int(input("Enter number of deaths: "))
                 deaths.append(deaths_1)
             except ValueError:
                 print("Invalid input. Please enter a number.")
         if option == "n":
             print("No base stats added")
+
     elif option == "4":
         gamertag = input("Which account are we deleting:")
         index = accounts.index(gamertag)
         accounts.pop(index)
+        games_played.pop(index)
         wins.pop(index)
         losses.pop(index)
         kills.pop(index)
         deaths.pop(index)
+
     elif option == "5":
         check = True
         print("Exiting Stat Tracker")
         file_name = "new_stats.txt"
         file = open(file_name,"w")
-        line0 = f"New Stats:\n"
-        line1 = f"-------------------------\n"
-        line2 = f"Accounts:{accounts}\n"
-        line3 = f"Games Played: {games_played}\n"
-        line4 = f"Kills: {kills}\n"
-        line5 = f"Deaths: {deaths}\n"
-        line6 = f"Kill/Death Ratio: {killdeathratio}\n"
-        line7 = f"Wins: {wins}\n"
-        line8 = f"Losses: {losses}\n"
-        line9 = f"Win/Loss Ratio: {winlossratio}\n"
-        buffer = [line0, line1, line2, line3, line4, line5, line6, line7, line8, line9]
+        line0 = f"Accounts: {accounts}\n"
+        line1 = f"Games Played: {games_played}\n"
+        line2 = f"Kills: {kills}\n"
+        line3 = f"Deaths: {deaths}\n"
+        line4 = f"Wins: {wins}\n"
+        line5 = f"Losses: {losses}\n"
+        buffer = [line0, line1, line2, line3, line4, line5]
         file.writelines(buffer)
         file.close()
     else:
         print("Invalid option. Please try again.")
-
-import pygame
-pygame.init()
-screen = pygame.display.set_mode((800, 600))
-font = pygame.font.Font(None, 28)
-
-with open("current_stats.txt") as f:
-    left_lines = f.readlines()
-
-with open("new_stats.txt") as f:
-    right_lines = f.readlines()
-
-running = True
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-
-    screen.fill((0, 0, 0))
-
-    y = 20
-    for line in left_lines:
-        text = font.render(line.strip(), True, (255, 255, 255))
-        screen.blit(text, (20, y))
-        y += 30
-
-    y = 20
-    for line in right_lines:
-        text = font.render(line.strip(), True, (255, 255, 255))
-        screen.blit(text, (420, y))
-        y += 30
-
-    pygame.display.flip()
-
-pygame.quit()
