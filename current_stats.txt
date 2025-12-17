@@ -1,5 +1,10 @@
-GamesPlayed:60
-Kills:50
-Deaths:25
-Wins:40
-Losses:20
+Old Stats:
+---------------------------------
+Accounts: 
+GamesPlayed: 60
+Kills: 50
+Deaths: 25
+Kill / Death Ratio: 2.0
+Wins: 40
+Losses: 20
+Win / Loss Ration: 2.0
