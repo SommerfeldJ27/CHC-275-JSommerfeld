@@ -44,13 +44,13 @@ while check == False:
     option = input("Enter your selection: ").strip().lower()
     if option == "1":
         print("Which account would you like to add stats to?")
-        gamertag = input("Enter Account Name: ")
+        gamertag = input("Enter Account Name: ").strip().lower()
         if gamertag in accounts:
             index = accounts.index(gamertag)
         else:
             print("Account not found.")
             continue
-        option = input("What would you like to add: \n 1. Wins \n 2. Losses \n Add: ").strip()
+        option = input("What would you like to add: \n 1. Wins \n 2. Losses \n Add: ")
         if option == "1":
             try:
                 option = int(input("How many wins did you get: "))
@@ -59,7 +59,7 @@ while check == False:
             except ValueError:
                 print("Invalid input. Please enter a number.")
             print(f"Added {option} wins")
-            option = input("Did you get any kills?: ")
+            option = input("Did you get any kills?: ").strip().lower()
             if option == "y":
                 try:
                     option = int(input("How many kills did you get?: "))
@@ -69,7 +69,7 @@ while check == False:
                 print(f"Added {option} kills")
             elif option == "n":
                 print("No kills added.")
-            option = input("Did you die?: ")
+            option = input("Did you die?: ").strip().lower()
             if option == "y":
                 try:
                     option = int(input("How many deaths did you have?: "))
@@ -88,7 +88,7 @@ while check == False:
             except ValueError:
                 print("Invalid input. Please enter a number.")
             print(f"Added {option} losses")
-            option = input("Did you get any kills?: ")
+            option = input("Did you get any kills?: ").strip().lower()
             if option == "y":
                 try:
                     option = int(input("How many kills did you get?: "))
@@ -98,7 +98,7 @@ while check == False:
                 print(f"Added {option} kills")
             elif option == "n":
                 print("No kills added.")
-            option = input("Did you die?: ")
+            option = input("Did you die?: ").strip().lower()
             if option == "y":
                 try:
                     option = int(input("How many deaths did you have?: "))
@@ -111,7 +111,7 @@ while check == False:
 
     elif option == "2":
         print("which account would you like to remove stats from?")
-        gamertag = input("Enter Account Name: ")
+        gamertag = input("Enter Account Name: ").strip().lower()
         if gamertag in accounts:
             index = accounts.index(gamertag)
         else:
@@ -150,9 +150,9 @@ while check == False:
             print(f"Removed {option} deaths")
 
     elif option == "3":
-        gamertag = input("Enter Account Name:")
+        gamertag = input("Enter Account Name:").strip().lower()
         accounts.append(gamertag)
-        option = input("Would you like to enter base stats for this account: ")
+        option = input("Would you like to enter base stats for this account: ").strip().lower()
         if option == "y":
             try:
                 games_played_1 = int(input("Enter number of games played: "))
@@ -171,7 +171,7 @@ while check == False:
             print("No base stats added")
 
     elif option == "4":
-        gamertag = input("Which account are we deleting:")
+        gamertag = input("Which account are we deleting:").strip().lower()
         index = accounts.index(gamertag)
         accounts.pop(index)
         games_played.pop(index)
