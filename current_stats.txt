@@ -1,6 +1,6 @@
 Old Stats:
 ---------------------------------
-Accounts: 
+Accounts:
 GamesPlayed: 60
 Kills: 50
 Deaths: 25
