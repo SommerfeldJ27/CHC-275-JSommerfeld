@@ -1,11 +1,6 @@
 "Stat Tracker"
-"""
+
 import pygame
-pygame.init()
-WIDTH, HEIGHT = 1024, 640
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Stat Tracker")
-"""
 
 file = open("current_stats.txt","r")
 buffer=file.readlines()
@@ -201,3 +196,29 @@ while check == False:
         file.close()
     else:
         print("Invalid option. Please try again.")
+    import pygame
+
+pygame.init()
+screen = pygame.display.set_mode((800, 600))
+font = pygame.font.Font(None, 32)
+
+with open("current_stats.txt") as f:
+    lines = f.readlines()
+
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+    screen.fill((0, 0, 0))
+
+    y = 20
+    for line in lines:
+        text_surface = font.render(line.strip(), True, (255, 255, 255))
+        screen.blit(text_surface, (20, y))
+        y += 36
+
+    pygame.display.flip()
+
+pygame.quit()
