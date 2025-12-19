@@ -4,17 +4,17 @@ file = open("current_stats.txt","r")
 buffer=file.readlines()
 file.close()
 
-accounts = buffer[0].strip().split(":")
+accounts = buffer[2].strip().split(":")
 accounts.pop(0)
-games_played = buffer[1].strip().split(":")
+games_played = buffer[3].strip().split(":")
 games_played.pop(0)
-kills = buffer[2].strip().split(":")
+kills = buffer[4].strip().split(":")
 kills.pop(0)
-deaths = buffer[3].strip().split(":")
+deaths = buffer[5].strip().split(":")
 deaths.pop(0)
-wins = buffer[4].strip().split(":")
+wins = buffer[6].strip().split(":")
 wins.pop(0)
-losses = buffer[5].strip().split(":")
+losses = buffer[7].strip().split(":")
 losses.pop(0)
 
 for i in range(len(accounts)):
@@ -211,13 +211,15 @@ while check == False:
         print("Exiting Stat Tracker")
         file_name = "new_stats.txt"
         file = open(file_name,"w")
-        line0 = f"Accounts: {accounts}\n"
-        line1 = f"Games Played: {games_played}\n"
-        line2 = f"Kills: {kills}\n"
-        line3 = f"Deaths: {deaths}\n"
-        line4 = f"Wins: {wins}\n"
-        line5 = f"Losses: {losses}\n"
-        buffer = [line0, line1, line2, line3, line4, line5]
+        line0 = f"New Stats:\n"
+        line1 = f"----------------------\n"
+        line2 = f"Accounts: {accounts}\n"
+        line3 = f"Games Played: {games_played}\n"
+        line4 = f"Kills: {kills}\n"
+        line5 = f"Deaths: {deaths}\n"
+        line6 = f"Wins: {wins}\n"
+        line7 = f"Losses: {losses}\n"
+        buffer = [line0, line1, line2, line3, line4, line5, line6, line7]
         file.writelines(buffer)
         file.close()
     else:
