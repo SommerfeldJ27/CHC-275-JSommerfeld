@@ -41,7 +41,7 @@ while check == False:
     print("4. Remove Accounts")
     print("5. Quit")
 
-    option = input("Enter your selection: ").strip().lower()
+    option = input("Enter your selection: ").strip()
     if option == "1":
         print("Which account would you like to add stats to?")
         gamertag = input("Enter Account Name: ").strip().lower()
@@ -50,7 +50,7 @@ while check == False:
         else:
             print("Account not found.")
             continue
-        option = input("What would you like to add: \n 1. Wins \n 2. Losses \n Add: ")
+        option = input("What would you like to add: \n 1. Wins \n 2. Losses \n Add: ").strip()
         if option == "1":
             try:
                 option = int(input("How many wins did you get: "))
@@ -60,26 +60,26 @@ while check == False:
                 print("Invalid input. Please enter a number.")
             print(f"Added {option} wins")
             option = input("Did you get any kills?: ").strip().lower()
-            if option == "y":
+            if option == "y".strip().lower():
                 try:
                     option = int(input("How many kills did you get?: "))
                     kills[index]+= option
                 except ValueError:
                     print("Invalid input. Please enter a number.")
                 print(f"Added {option} kills")
-            elif option == "n":
+            elif option == "n".strip().lower():
                 print("No kills added.")
             else:
                 print("Invalid input.")
             option = input("Did you die?: ").strip().lower()
-            if option == "y":
+            if option == "y".strip().lower():
                 try:
                     option = int(input("How many deaths did you have?: "))
                     deaths[index]+= option
                 except ValueError:
                     print("Invalid input. Please enter a number.")
                 print(f"Added {option} deaths")
-            elif option == "n":
+            elif option == "n".strip().lower():
                 print("No deaths added.")
             else:
                 print("Invalid input.")
@@ -92,26 +92,26 @@ while check == False:
                 print("Invalid input. Please enter a number.")
             print(f"Added {option} losses")
             option = input("Did you get any kills?: ").strip().lower()
-            if option == "y":
+            if option == "y".strip().lower():
                 try:
                     option = int(input("How many kills did you get?: "))
                     kills[index]+= option
                 except ValueError:
                     print("Invalid input. Please enter a number.")
                 print(f"Added {option} kills")
-            elif option == "n":
+            elif option == "n".strip().lower():
                 print("No kills added.")
             else:
                 print("Invalid input.")
             option = input("Did you die?: ").strip().lower()
-            if option == "y":
+            if option == "y".strip().lower():
                 try:
                     option = int(input("How many deaths did you have?: "))
                     deaths[index]+= option
                 except ValueError:
                     print("Invalid input. Please enter a number.")
                 print(f"Added {option} deaths")
-            elif option == "n":
+            elif option == "n".strip().lower():
                 print("No deaths added.")
             else:
                 print("Invalid input.")
@@ -160,7 +160,7 @@ while check == False:
         gamertag = input("Enter Account Name:").strip().lower()
         accounts.append(gamertag)
         option = input("Would you like to enter base stats for this account: ").strip().lower()
-        if option == "y":
+        if option == "y".strip().lower():
             try:
                 games_played_1 = int(input("Enter number of games played: "))
                 games_played.append(games_played_1)
@@ -174,7 +174,7 @@ while check == False:
                 deaths.append(deaths_1)
             except ValueError:
                 print("Invalid input. Please enter a number.")
-        if option == "n":
+        if option == "n".strip().lower():
             print("No base stats added")
         else:
             print("Invalid input.")
