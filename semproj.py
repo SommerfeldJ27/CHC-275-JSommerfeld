@@ -235,7 +235,6 @@ import pygame
 pygame.init()
 screen = pygame.display.set_mode((600, 400)) #Screen Size
 pygame.display.set_caption("Stat Tracker") #Name of Window
-
 font = pygame.font.SysFont(None, 30) #Set Font and Size
 
 file1 = open("current_stats.txt", "r")
@@ -258,7 +257,7 @@ while running:
         text_surface = font.render(line, True, (255, 255, 255)) #Color and Render Text
         screen.blit(text_surface, (50, y)) #Positions the Text Box
         y += 35 #Spacing in Between Lines
-
+        
     y = 50 #Set First Line Height
     for line in buffer2:
         text_surface = font.render(line, True, (255, 255, 255)) #Color and Render Text
