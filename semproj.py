@@ -32,6 +32,10 @@ print(f"Wins: {wins}")
 print(f"Losses: {losses}")
 
 check = False
+check1 = False
+check2 = False
+check3 = False
+check4 = False
 
 while check == False:
     print(f"Hey Admin what would you like to do?")
@@ -59,30 +63,36 @@ while check == False:
             except ValueError:
                 print("Invalid input. Please enter a number.")
             print(f"Added {option} wins")
-            option = input("Did you get any kills?: ").strip().lower()
-            if option == "y".strip().lower():
-                try:
-                    option = int(input("How many kills did you get?: "))
-                    kills[index]+= option
-                except ValueError:
-                    print("Invalid input. Please enter a number.")
-                print(f"Added {option} kills")
-            elif option == "n".strip().lower():
-                print("No kills added.")
-            else:
-                print("Invalid input.")
-            option = input("Did you die?: ").strip().lower()
-            if option == "y".strip().lower():
-                try:
-                    option = int(input("How many deaths did you have?: "))
-                    deaths[index]+= option
-                except ValueError:
-                    print("Invalid input. Please enter a number.")
-                print(f"Added {option} deaths")
-            elif option == "n".strip().lower():
-                print("No deaths added.")
-            else:
-                print("Invalid input.")
+            while check1 == False:
+                option = input("Did you get any kills?: ").strip().lower()
+                if option == "y".strip().lower():
+                    try:
+                        option = int(input("How many kills did you get?: "))
+                        kills[index]+= option
+                    except ValueError:
+                        print("Invalid input. Please enter a number.")
+                    print(f"Added {option} kills")
+                    check1 = True
+                elif option == "n".strip().lower():
+                    print("No kills added.")
+                    check1 = True
+                else:
+                    print("Invalid input.")
+            while check2 == False:
+                option = input("Did you die?: ").strip().lower()
+                if option == "y".strip().lower():
+                    try:
+                        option = int(input("How many deaths did you have?: "))
+                        deaths[index]+= option
+                    except ValueError:
+                        print("Invalid input. Please enter a number.")
+                    print(f"Added {option} deaths")
+                    check2 = True
+                elif option == "n".strip().lower():
+                    print("No deaths added.")
+                    check2 = True
+                else:
+                    print("Invalid input.")
         elif option == "2":
             try:
                 option = int(input("How many losses did you get: "))
@@ -91,30 +101,36 @@ while check == False:
             except ValueError:
                 print("Invalid input. Please enter a number.")
             print(f"Added {option} losses")
-            option = input("Did you get any kills?: ").strip().lower()
-            if option == "y".strip().lower():
-                try:
-                    option = int(input("How many kills did you get?: "))
-                    kills[index]+= option
-                except ValueError:
-                    print("Invalid input. Please enter a number.")
-                print(f"Added {option} kills")
-            elif option == "n".strip().lower():
-                print("No kills added.")
-            else:
-                print("Invalid input.")
-            option = input("Did you die?: ").strip().lower()
-            if option == "y".strip().lower():
-                try:
-                    option = int(input("How many deaths did you have?: "))
-                    deaths[index]+= option
-                except ValueError:
-                    print("Invalid input. Please enter a number.")
-                print(f"Added {option} deaths")
-            elif option == "n".strip().lower():
-                print("No deaths added.")
-            else:
-                print("Invalid input.")
+            while check3 == False:
+                option = input("Did you get any kills?: ").strip().lower()
+                if option == "y".strip().lower():
+                    try:
+                        option = int(input("How many kills did you get?: "))
+                        kills[index]+= option
+                    except ValueError:
+                        print("Invalid input. Please enter a number.")
+                    print(f"Added {option} kills")
+                    check3 = True
+                elif option == "n".strip().lower():
+                    print("No kills added.")
+                    check3 = True
+                else:
+                    print("Invalid input.")
+            while check4 == False:
+                option = input("Did you die?: ").strip().lower()
+                if option == "y".strip().lower():
+                    try:
+                        option = int(input("How many deaths did you have?: "))
+                        deaths[index]+= option
+                    except ValueError:
+                        print("Invalid input. Please enter a number.")
+                    print(f"Added {option} deaths")
+                    check4 = True
+                elif option == "n".strip().lower():
+                    print("No deaths added.")
+                    check4 = True
+                else:
+                    print("Invalid input.")
 
     elif option == "2":
         print("which account would you like to remove stats from?")
