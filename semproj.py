@@ -225,8 +225,8 @@ while check == False:
 import pygame
 
 pygame.init()
-WIDTH, HEIGHT = 600, 400
-screen = pygame.display.set_mode((WIDTH, HEIGHT))
+size = 600, 400
+screen = pygame.display.set_mode((size))
 pygame.display.set_caption("Stat Tracker")
 
 with open("current_stats.txt", "r") as f1:
