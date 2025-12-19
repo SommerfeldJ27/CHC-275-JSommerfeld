@@ -256,7 +256,7 @@ while running:
         screen.blit(text_surface, (250, y))
         y += line_height
 
-    pygame.display.flip() #hi
+    pygame.display.flip()
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
