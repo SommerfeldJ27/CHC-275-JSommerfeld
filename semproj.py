@@ -54,79 +54,79 @@ while check == False:
         else:
             print("Account not found.")
             continue
-        option = input("What would you like to add: \n 1. Wins \n 2. Losses \n Add: ").strip()
-        if option == "1":
+        option1 = input("What would you like to add: \n 1. Wins \n 2. Losses \n Add: ").strip()
+        if option1 == "1":
             try:
-                option = int(input("How many wins did you get: "))
-                wins[index]+= option
-                games_played[index] += option
+                option2 = int(input("How many wins did you get: "))
+                wins[index]+= option2
+                games_played[index] += option2
             except ValueError:
                 print("Invalid input. Please enter a number.")
             print(f"Added {option} wins")
             while check1 == False:
-                option = input("Did you get any kills?: ").strip().lower()
-                if option == "y".strip().lower():
+                option3 = input("Did you get any kills?: ").strip().lower()
+                if option3 == "y".strip().lower():
                     try:
-                        option = int(input("How many kills did you get?: "))
-                        kills[index]+= option
+                        option4 = int(input("How many kills did you get?: "))
+                        kills[index]+= option4
                     except ValueError:
                         print("Invalid input. Please enter a number.")
-                    print(f"Added {option} kills")
+                    print(f"Added {option4} kills")
                     check1 = True
-                elif option == "n".strip().lower():
+                elif option3 == "n".strip().lower():
                     print("No kills added.")
                     check1 = True
                 else:
                     print("Invalid input.")
             while check2 == False:
-                option = input("Did you die?: ").strip().lower()
-                if option == "y".strip().lower():
+                option5 = input("Did you die?: ").strip().lower()
+                if option5 == "y".strip().lower():
                     try:
-                        option = int(input("How many deaths did you have?: "))
-                        deaths[index]+= option
+                        option6 = int(input("How many deaths did you have?: "))
+                        deaths[index]+= option6
                     except ValueError:
                         print("Invalid input. Please enter a number.")
-                    print(f"Added {option} deaths")
+                    print(f"Added {option6} deaths")
                     check2 = True
-                elif option == "n".strip().lower():
+                elif option5 == "n".strip().lower():
                     print("No deaths added.")
                     check2 = True
                 else:
                     print("Invalid input.")
         elif option == "2":
             try:
-                option = int(input("How many losses did you get: "))
-                losses[index]+= option
-                games_played[index] += option
+                option7 = int(input("How many losses did you get: "))
+                losses[index]+= option7
+                games_played[index] += option7
             except ValueError:
                 print("Invalid input. Please enter a number.")
-            print(f"Added {option} losses")
+            print(f"Added {option7} losses")
             while check3 == False:
-                option = input("Did you get any kills?: ").strip().lower()
-                if option == "y".strip().lower():
+                option8 = input("Did you get any kills?: ").strip().lower()
+                if option8 == "y".strip().lower():
                     try:
-                        option = int(input("How many kills did you get?: "))
-                        kills[index]+= option
+                        option9 = int(input("How many kills did you get?: "))
+                        kills[index]+= option9
                     except ValueError:
                         print("Invalid input. Please enter a number.")
-                    print(f"Added {option} kills")
+                    print(f"Added {option9} kills")
                     check3 = True
-                elif option == "n".strip().lower():
+                elif option8 == "n".strip().lower():
                     print("No kills added.")
                     check3 = True
                 else:
                     print("Invalid input.")
             while check4 == False:
-                option = input("Did you die?: ").strip().lower()
-                if option == "y".strip().lower():
+                option10 = input("Did you die?: ").strip().lower()
+                if option10 == "y".strip().lower():
                     try:
-                        option = int(input("How many deaths did you have?: "))
-                        deaths[index]+= option
+                        option11 = int(input("How many deaths did you have?: "))
+                        deaths[index]+= option11
                     except ValueError:
                         print("Invalid input. Please enter a number.")
-                    print(f"Added {option} deaths")
+                    print(f"Added {option11} deaths")
                     check4 = True
-                elif option == "n".strip().lower():
+                elif option10 == "n".strip().lower():
                     print("No deaths added.")
                     check4 = True
                 else:
@@ -140,43 +140,43 @@ while check == False:
         else:
             print("Account not found.")
             continue
-        option = input("What would you like to remove: \n 1. Wins \n 2. Losses \n 3. Kills \n 4. Deaths \n Remove: ").strip()
-        if option == "1":
+        option12 = input("What would you like to remove: \n 1. Wins \n 2. Losses \n 3. Kills \n 4. Deaths \n Remove: ").strip()
+        if option12 == "1":
             try:
-                option = int(input("How wins would you like to remove: "))
-                wins[index]-= option
-                games_played[index] -= option
+                option13 = int(input("How wins would you like to remove: "))
+                wins[index]-= option13
+                games_played[index] -= option13
             except ValueError:
                 print("Invalid input. Please enter a number.")
-            print(f"Removed {option} wins")
-        elif option == "2":
+            print(f"Removed {option13} wins")
+        elif option12 == "2":
             try:
-                option = int(input("How many losses would you like to remove: "))
-                losses[index] -= option
-                games_played[index] -= option
+                option14 = int(input("How many losses would you like to remove: "))
+                losses[index] -= option14
+                games_played[index] -= option14
             except ValueError:
                 print("Invalid input. Please enter a number.")
-            print(f"Removed {option} Losses")
-        elif option == "3":
+            print(f"Removed {option14} Losses")
+        elif option12 == "3":
             try:
-                option = int(input("How many kills would you like to remove: "))
-                kills[index] -= option
+                option15 = int(input("How many kills would you like to remove: "))
+                kills[index] -= option15
             except ValueError:
                 print("Invalid input. Please enter a number.")
-            print(f"Removed {option} kills")
-        elif option == "4":
+            print(f"Removed {option15} kills")
+        elif option12 == "4":
             try:
-                option = int(input("How many deaths would you like to remove: "))
-                deaths[index] -= option
+                option16 = int(input("How many deaths would you like to remove: "))
+                deaths[index] -= option16
             except ValueError:
                 print("Invalid input. Please enter a number.")
-            print(f"Removed {option} deaths")
+            print(f"Removed {option16} deaths")
 
     elif option == "3":
         gamertag = input("Enter Account Name:").strip().lower()
         accounts.append(gamertag)
-        option = input("Would you like to enter base stats for this account: ").strip().lower()
-        if option == "y".strip().lower():
+        option17 = input("Would you like to enter base stats for this account: ").strip().lower()
+        if option17 == "y".strip().lower():
             try:
                 games_played_1 = int(input("Enter number of games played: "))
                 games_played.append(games_played_1)
@@ -190,7 +190,7 @@ while check == False:
                 deaths.append(deaths_1)
             except ValueError:
                 print("Invalid input. Please enter a number.")
-        if option == "n".strip().lower():
+        if option17 == "n".strip().lower():
             print("No base stats added")
         else:
             print("Invalid input.")
@@ -204,6 +204,7 @@ while check == False:
         losses.pop(index)
         kills.pop(index)
         deaths.pop(index)
+        print(f"Account: {gamertag} has been deleted")
 
     elif option == "5":
         check = True
