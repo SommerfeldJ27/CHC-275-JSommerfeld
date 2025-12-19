@@ -233,9 +233,10 @@ while check == False:
 import pygame
 
 pygame.init()
-size = 600, 400
-screen = pygame.display.set_mode((size))
-pygame.display.set_caption("Stat Tracker")
+screen = pygame.display.set_mode((600, 400)) #Screen Size
+pygame.display.set_caption("Stat Tracker") #Name of Window
+
+font = pygame.font.SysFont(None, 30) #Set Font and Size
 
 file1 = open("current_stats.txt", "r")
 buffer1 = file1.read().splitlines()
@@ -245,29 +246,24 @@ file2 = open("new_stats.txt", "r")
 buffer2 = file2.read().splitlines()
 file2.close()
 
-font = pygame.font.SysFont(None, 30)
-line_height = 35
-
 running = True
 while running:
-    screen.fill((0, 0, 0))
-
-    y = 50
-    for line in buffer1:
-        text_surface = font.render(line, True, (255, 255, 255))
-        screen.blit(text_surface, (50, y))
-        y += line_height
-
-    y = 50
-    for line in buffer2:
-        text_surface = font.render(line, True, (255, 255, 255))
-        screen.blit(text_surface, (250, y))
-        y += line_height
-
-    pygame.display.flip()
-
+    screen.fill((0, 0, 0)) #Set Background Color
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
 
+    y = 50 #Set First Line Height
+    for line in buffer1:
+        text_surface = font.render(line, True, (255, 255, 255)) #Color and Render Text
+        screen.blit(text_surface, (50, y)) #Positions the Text Box
+        y += 35 #Spacing in Between Lines
+
+    y = 50 #Set First Line Height
+    for line in buffer2:
+        text_surface = font.render(line, True, (255, 255, 255)) #Color and Render Text
+        screen.blit(text_surface, (350, y)) #Positions the Text Box
+        y += 35
+
+    pygame.display.flip()
 pygame.quit()
