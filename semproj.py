@@ -191,6 +191,11 @@ while check == False:
             except ValueError:
                 print("Invalid input. Please enter a number.")
         if option17 == "n".strip().lower():
+            games_played.append(0)
+            wins.append(0)
+            losses.append(0)
+            kills.append(0)
+            deaths.append(0)
             print("No base stats added")
         else:
             print("Invalid input.")
