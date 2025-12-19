@@ -229,10 +229,13 @@ size = 600, 400
 screen = pygame.display.set_mode((size))
 pygame.display.set_caption("Stat Tracker")
 
-with open("current_stats.txt", "r") as f1:
-    lines1 = f1.read().splitlines()
-with open("new_stats.txt", "r") as f2:
-    lines2 = f2.read().splitlines()
+file1 = open("current_stats.txt", "r")
+buffer1 = file1.read().splitlines()
+file1.close()
+
+file2 = open("new_stats.txt", "r")
+buffer2 = file2.read().splitlines()
+file2.close()
 
 font = pygame.font.SysFont(None, 30)
 line_height = 35
@@ -242,13 +245,13 @@ while running:
     screen.fill((0, 0, 0))
 
     y = 50
-    for line in lines1:
+    for line in buffer1:
         text_surface = font.render(line, True, (255, 255, 255))
         screen.blit(text_surface, (50, y))
         y += line_height
 
     y = 50
-    for line in lines2:
+    for line in buffer2:
         text_surface = font.render(line, True, (255, 255, 255))
         screen.blit(text_surface, (250, y))
         y += line_height
