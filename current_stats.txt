@@ -1,8 +1,0 @@
-Old Stats:
-----------------------
-Accounts: Admin 
-GamesPlayed: 60
-Kills: 50
-Deaths: 25
-Wins: 40
-Losses: 20
