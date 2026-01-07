@@ -261,9 +261,9 @@ def draw_hud(sc, health):
 # ---------- Movement & Game Logic ----------
 def move_player(keys):
     global player_x, player_y, player_angle
-    if keys[pygame.K_a]:
+    if keys[pygame.K_LEFT]:
         player_angle -= rot_speed
-    if keys[pygame.K_d]:
+    if keys[pygame.K_RIGHT]:
         player_angle += rot_speed
 
     # forward/back movement with collision (use small step checking)
@@ -279,6 +279,16 @@ def move_player(keys):
     if keys[pygame.K_s]:
         nx = player_x - move_dx
         ny = player_y - move_dy
+        if not is_wall(nx + PLAYER_RADIUS * 0.5, ny) and not is_wall(nx - PLAYER_RADIUS * 0.5, ny) and not is_wall(nx, ny - PLAYER_RADIUS * 0.5):
+            player_x, player_y = nx, ny
+    if keys[pygame.K_a]:
+        nx = player_x + move_dy
+        ny = player_y - move_dx
+        if not is_wall(nx + PLAYER_RADIUS * 0.5, ny) and not is_wall(nx - PLAYER_RADIUS * 0.5, ny) and not is_wall(nx, ny - PLAYER_RADIUS * 0.5):
+            player_x, player_y = nx, ny
+    if keys[pygame.K_d]:
+        nx = player_x - move_dy
+        ny = player_y + move_dx
         if not is_wall(nx + PLAYER_RADIUS * 0.5, ny) and not is_wall(nx - PLAYER_RADIUS * 0.5, ny) and not is_wall(nx, ny - PLAYER_RADIUS * 0.5):
             player_x, player_y = nx, ny
 
@@ -430,6 +440,20 @@ while True:
             player_health = 100
             player_x, player_y = 160, 160
             enemies.clear()
+            for pos in open_positions[:6]:
+                spawn_enemy(pos[0], pos[1])
+            bullets.clear()
+
+    if all(e["alive"] == False for e in enemies):
+        win_text = FONT.render("All enemies defeated - press R to continue", True, (255,255,255))
+        screen.blit(win_text, (WIDTH//2 - win_text.get_width()//2, HEIGHT//2))
+        # allow respawn
+        if keys[pygame.K_r]:
+            # respawn player and reset enemies
+            player_health = 100
+            player_x, player_y = 160, 160
+            enemies.clear()
+            random.shuffle(open_positions)
             for pos in open_positions[:6]:
                 spawn_enemy(pos[0], pos[1])
             bullets.clear()
