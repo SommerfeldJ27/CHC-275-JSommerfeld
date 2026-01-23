@@ -1,276 +1,180 @@
 #functions.py
 
 """
-We are not presenting projects
-
-We are going straight into creating our own functions.
-
-We need to remember what functions were:
-    - a rule that takes in an input, transforms it, and spits something out
+Last semester: 
+    - if you missed one assignment or if you did poorly on one, that wrecks your grade
+    - I did not test conceptual understanding all that much
     
-    f(x) = x + 5
-    
-    takes in a value x, adds 5 to, and returns the value x + 5.
-    
-Functions in programming are pretty much the exact same thing:
-    - a repeatable routine that:
-        - may or may not include an input
-        - may or may not include an output 
+This semester:
+    - Drills <- this assignments are going to be very low stakes 
+        - programming a small program
+        - reading code and evaluating what the output is or whether there is an error 
         
-Let's think why this might be appealing to us: 
-    Lab 3 or 4, where file IO was really important (stock picker lab)
-        - We had to read in a file,
-            - manipulate the raw string data into integers and place corresponding lists
-        - Take the average of the stock prices
-        - compare average 1 to average 2
-        
-How did we rectify the fact that we had to deal with different files? (day 1-20 and 21-40), what we ended
-up doing was just copying the program and pasting it again but changing the file name
-
-Using functions is appealing because we can create named routines that we know we're going to use often
-Rather than copy and pasting a bunch of code over and over again, we can actually just write the routine once,
-and call the function twice. 
-
-What are some examples of functions that we used before? 
-    - input(<prompt>) <- this is a named routine
-        -  print <prompt> to terminal
-        -  wait for user input
-        -  store the user input into the variable input() was being assigned to
-        - ex. name = input("What is your name? ")
-            - prints "what is your name? "
-            - waits for the user to type their name in
-            - assigns that name to the variable "name" 
+Last semester we learned a lot about basic programming
+    - variables, data types, how to input variables from the terminal using the input() function <- september
+    - control structures
+        - sequential evaluation 
+        - selection (if-else)
+        - reptition (looping statements like for loops and while loops)
+    - lists (how to collect multiple pieces of information under one variable name)
+    - file I/O and exception handling
     
-    - .lower() 
-        - change all of the characters in a string to lowercase
+One of the most annoying things about last semester:
+    - stock picker lab
+        - writing the solution once, and then copy and pasting the entire program again. 
+        - we basically rewrote the same program twice for days 1-20 and 21-40.
+        - This is not the most efficient way to go about this, 
+            - Write the code once, and use it twice. 
+            
+We can enable this by using things called functions. You should have run into a similar concept in a math
+class
+
+f(x) = x^2
+
+^ takes in x as an input and outputs x squared. 
+
+Functions: 
+    - named routines that you can repeat that outputs something
+    - so rather it being a mathematical expression, it could also be a set of repeatable instructions.
+
+
+This subject has a lot of nuance in programming 
+
+pros:
+    - we can reuse code rather than having to rewrite it all the time
+    - much more readable. 
     
-    - .strip()
-        - removes all of the leading and trailing white space of a string 
+cons: 
+    - kind of difficult to understand what is actually happening within the program. 
+    - we introduce a large level of abstraction that we are not used to so far. 
+        - this includes "control flow" being more complicated, in the sense that code execution has 
+        owners and services. 
         
-Great: we see the appeal, we know we've used them before, how do we actually write our functions?
-
-def <name of the function>(): <- syntax for defining our own function
-
-
 
 """
 
-
-def foo(): #<- def <function name>(): is called the function header
-           #includes the function definition, the function name, and the parameter list 
+#basic function example
+def foo(): #this is called the function header. 3 parts to the function header. 
+           #1. Def keyword. This tells the python interpreter that you are about to specify a function
+           #2. Function name. This is the name of the routine that you to use. Ex, foo is the name
+           #3. Parameter list. Are your inputs of your function, and they go inside the ()
+    
+    #starting from line 63, this is the function body. Function bodies need to indented. 
+    #when a function ends, you must unindent the codeblock. 
     print("bar")
 
+foo() #remember, when you are using a function, you must end that function name with the parentheses. 
 
 """ 
-In this case, our function is very simple, all we're doing is printing "bar" to the terminal. 
+Functions really like act verbs in plain english. You can think of the parentheses as being the period 
+at the end of a sentence. 
 
-How do we call said function? 
+This example feels a little stupid right, all we're doing is printing something out into the terminal. 
 """
 
-foo()
-#REMEMBER: when we call a function, we ALWAYS need to end it with parentheses
-#REMEMBER: tab back over to the left
-
-def add5(num):
-    #function definition: def
-    #function name: add5
-    #parameter list: num
+def add(x,y):
+    #1. def keyword 2. function name: add 3. parameter list: x,y
+    #how parameters behave: they are just placeholders for values that we can plug in later. 
+    print(x + y)
     
-    """
-    When we add a parameter into the parameter list: num is a placeholder for a value we can specify later on
-    
-    num does not exist yet, we must specify it later on when we call the function. DESPITE THIS, 
-    we can treat num as if it does exist and is a variable. 
-    """
-    
-    num = num + 5 #Recall this design pattern from the start of last semester, all this does
-    # is add 5 to the value num. 
-    print(num)
-    
-add5(8)
-add5(4)
-
-mynum = 10 #I can pass in the raw values 8 and 4, or any variable
-add5(mynum)
-
 """ 
-When we a use a function: "calling the function"
-In the function header: the stuff inside the parentheses is called the "parameter list"
-    - each individual value in the parentheses are called parameters
-
-at runtime: 
-    - the stuff inside the parentheses are called "arguments" 
-    
-we can think of the parameter as being an abstract placeholder and the arguments as being explicit
-examples of the parameters. 
+The parameter list is very confusing to first year students of computer science. In this program,
+I have not previously assigned values to x and y, yet I am using them inside of the function body as if 
+they exist. 
 """
 
+add(6,7) #now I want to use the add function
+add("foo","bar") #we can add two strings together as well. 
+#add("hello",5) #this is going to be a type error
 """ 
-I can pass in multiple parameters
-"""
-
-def multiply(num1,num2):
-    #function name: mulitply
-    #parameter list: num1 and num2
-    
-    product = num1*num2
-    print(product)
-
-
-multiply(3,5)
-multiply(4,10)
-#This is weird 
-multiply(4,"a") 
-
-""" 
-python is dynamically typed: we don't have to specify the data types of our parameter list. 
-We can call the parameters whatever we want, but we can't guarantee that the behavior is going to correspond
-to specific data types. 
-"""
-
-def add(num1,num2):
-    sum = num1+num2
-    print(sum)
-    
-add(2,5)
-add("hello","world")
-add("world","hello")
-#add(2,"5") #This is going to cause a type error
-
-""" 
-For our parameter list: the order matters. So in our add function:
-add("hello","world") = "helloworld"
-add("world","hello") = "worldhello" 
-
-
-"""
-
-def studentUpdate(name,age,gpa):
-    age = age + 1
-    print(f"Student name: {name}, student age: {age}, student gpa: {gpa}")
-    
-studentUpdate("bob",15,4.0)
-#we expect bob, 16, 4.0
-#studentUpdate(15,"bob",4.0)
-#this is a type error
-
-""" 
-The bottom line: 
-
-in the add example, we got lucky and didn't get a runtime error because the two data
-types are expected to match.
-
-In the studentUpdate example, we didn't get so lucky. When we passed "bob" into the "age" parameter, 
-we got a runtime error because of the mismatched data types. 
-
-It is our responsibility as programmers to make sure that the function we write gets the arguments 
-we expect. 
-
-for the last 5 minutes, I'm going to leave us with a thought experiment:
-""" 
-
-def update(num1):
-    num1 = num1 + 10
-    
-x = 5
-update(x)
-print(x)
-
-""" 
-we expected 15, but 5 ended up getting printed out? Why is that the case?
-
-pass by value vs pass by reference <- which we are going to pick up with next class. 
-
-Before we talk about pass by value and pass by reference, we need to discuss mutability
-
-mutability = ability to be changed or the possibility of having its state changed
-
-immutable = its state cant be changed
-mutable = its state CAN be changed
-
-Based on our example above, integers are IMMUTABLE
-
-the typical heuristic to figure out if something is mutable or immutable:
-    - whether or not its size can change (its length)
-
-
-mutable:
-    - lists
-    - strings
-
-immutable:
-    - numbers
-"""
-print("mutability example")
-mylist = [1,2,3,4] #this is a list, its length can change
-
-print(mylist)
-def update2(nums):
-    #we are expecting nums to be a list here
-    nums.append(5)
-
-update2(mylist)
-print(mylist)
-
-""" 
-immutable objects are passed by value
-    - when the function is called, python will make a temporary copy of the variable, and the variable outside of the function won't get updated
-    
-mutable objects are passed by reference
-    - when the function is called, python will directly access the variable and update it if any changes are made. 
-    
-It's called pass by reference because:
-    variables:
-        - the name of the variable itself (we can think of this as a memory address)
-        - its data type
-        - the value(s) itself
+6 and 7 get plugged in for x and y when the function is used. For vocabulary purposes:
+    - When we use a function, we are "calling the function" 
+        - line 86 is a "function call" 
+    - 6 and 7 are not parameters
+        - they are called arguments. 
         
-    variables are named locations in memory where you can store a value
+The parameter list are abstract placeholders for values to be used inside the function. 
+The function's arguments at runtime (the stuff inside the parentheses), are explicit examples of those 
+parameters. 
+
+Here is a quirk about python: 
+    - The data types of the parameters are not specified. 
+    - When I use those values, python does not know what to expect until the function is actually called.
     
-so when we say we are passing by reference, we are passing in the LOCATION of the object rather than the VALUE of the object.
-
-How exactly do we update immutable objects? 
-
-we have to use the "return" keyword
-
-    - input() specifically "returns" a string
+What is exactly happening during a function call? 
+    - When you are running a program, the program has a concept called "ownership"
+        - the primary owner of a program is python.exe 
+        - python.exe is in "control" of the program
+    - When we make a function call, python "passes control" of the program to the function being called. 
+        - Weird things will happen with the program once we pass control.
+        
+    We can think of this as our computer's RAM being a map. 
+        - one of the continents is python.exe
+        - another continent could be a function. 
+        - we can think of sailing from one continent to another as passing control of the program. 
     
-for objects declared inside of a function (this is including the copies of arguments for immutable objects), they have a limited lifespan. 
-
-for example, if we created a function called foo(x), and x is supposed to be an integer, then x has a limited lifetime, after foo(x) ends, x 
-will be destroyed and that memory will be freed up
-"""
-""" 
-def foo(x):
-    factor = 0.2
-    print(factor)
-    print(x*factor)
+    variables are declared within the function cannot be accessed from outside the function. 
     
-foo(5)
-print(factor) 
-print(100 * factor) #factor is still inaccessible
-""" 
-
-""" 
-we can think of return as python flagging the computer to remember certain pieces of information from the function's lifetime.
-
-Each codeblock in python has its own "scope" so things outside of that codeblock's "scope" can't access variables created inside that scope. 
-
-When we did stuff like 
-
-
-for x in mylist: x has a temporary lifetime, it can accessed within the scope of the for-loop. Tab levels indicate scope in python. 
-
 """
 
-def updateBalance(money,change):
-    #two parameters, money and change.
-    money = money - change
-    return money #if we return money, then we are flagging to the system to keep money within the system's money
-    #all return does is flags the computer to remember something. We need to assign that remebered variable to something
+def transaction(x):
+    tax = x * 0.06 #this is 6 percent sales tax
+    print(x - tax)
     
-print("return example")
-balance = 500 
-print(balance)
-balance = updateBalance(balance,200) #just like using input, we need to assign this value back into a variable
-print(balance)
+transaction(100)
+#print(tax) #tax is not defined outside of the function..
+
+
+""" 
+Functions' variables have temporary lifetimes. Things that are created inside of a function are going to
+be destroyed after the function ends. 
+
+This makes perfect sense: 
+    - These programs can be running 24/7 365 days a year. 
+    - If everytime a function is called, the intermediate variables persisted after the function ends. 
+    - you would waste all of the resources on your computer. 
+
+This concept of temporary lifetimes of variables is called scope.
+
+Scope = what variables the function has access to at any given moment. 
+
+python.exe has global scope. But transaction(x) has its own local scope. So anything declared inside
+of its local scope is going to get destroyed when transaction passes control back to python. 
+
+Here is a thought question:
+"""
+
+def add5(x):
+    x = x + 5 #we're taking x and adding 5 to itself
+    
+num1 = 10
+print(num1)
+add5(num1)
+print(num1) #the result of add5 did not save back into num1. 
+#that feels weird
+
+""" 
+When we pass a global scope variable into a function and that function updates that variable in its local
+scope, we should expect that value to change back outside in the global scope. 
+
+Recall from for-loops: 
+
+for x in mylist:
+    x = x + 5
+
+for-each loops created temporary copies of those variables. For-each loops have their local scope.   
+"""
+
+mylist = [1,2,3,4]
+
+def add10(nums):
+    for i in range(len(nums)):
+        nums[i] = nums[i] + 10
+        
+print(mylist)
+add10(mylist)
+print(mylist) #this behaved differently than the previous example
+
+""" 
+This is a concept called pass by value vs pass by reference, this is where we are going to pick up tomorrow.
+"""
