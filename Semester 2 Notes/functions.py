@@ -177,4 +177,66 @@ print(mylist) #this behaved differently than the previous example
 
 """ 
 This is a concept called pass by value vs pass by reference, this is where we are going to pick up tomorrow.
+
+To understand pass by value vs pass by reference: we need to talk about mutability
+    - mutability = ability to be able to be changed 
+
+data types in programming can either be mutable or immuatable
+    - mutable = it can be changed
+    - immuatble = it cant be changed 
+    
+datatypes
+    - integers = immutable
+    - all numeric types are immutable
+    
+    lists = mutable 
+    
+pretty much anything that can change in length is mutable. So when it comes to functions, parameters that are mutable are pass by reference
+and parameters that are immutable are pass by value
+
+pass by reference = the parameter that actually gets passed in is the location in memory. <- when we change values at those memory locations
+those edits are going to stick when the function passes control back to python. 
+
+pass by value = the parameter that gets passed into the function is the value, so the value gets copied within the local scope of the function
+so edits do not persist because we are not actually accessing the original variable, we are accessing a local scope copy.
+
+So immutable objects, in local scope they end dying after the function ends. How do we keep local scope objects after a function call ends?
+
+return <- this is how you save values after a function call ends. At the end of the function, if we use the return keyword, it'll flag python
+to remember the variable you are to return when control is passed back to python. 
 """
+
+def add7(x):
+    x = x + 7
+    return x #this is going to flag python to remember that x got reassigned to x + 7
+
+""" 
+When we talked input(), which is a function, I explicitly said "input() returns a string" 
+"""
+
+num2 = 10
+print(num2)
+num2 = add7(num2) #if you use return, you NEED to reassign this to a variable. 
+print(num2)
+
+""" 
+All return does is flag to python that there is something worth remembering, it doesn't actually do the task of remembering said value. 
+
+Any time we want a value to persist, we need to use return. Looking back at add(x,y), all we did was print the value x + y, not return it.
+
+Typically for functions, you don't want to print within the function. Typically that result is relevant and SHOULD persist after the function ends.
+
+"""
+
+#DONT DO THIS
+def add(x,y):
+    print(x + y) #This is bad practice, you shouldn't do this
+    
+#DO THIS INSTEAD 
+def add2(x,y):
+    return x+y #this is the typical design pattern you should do 
+
+num1 = 5
+num2 = 10
+sum = add2(num1,num2)
+print(sum) #print in global scope rather than local scope 
