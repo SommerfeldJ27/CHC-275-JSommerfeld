@@ -239,4 +239,4 @@ def add2(x,y):
 num1 = 5
 num2 = 10
 sum = add2(num1,num2)
-print(sum) #print in global scope rather than local scope 
+print(sum) #print in global scope rather than local scope
