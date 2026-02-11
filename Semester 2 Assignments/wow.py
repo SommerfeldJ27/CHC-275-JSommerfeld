@@ -13,7 +13,8 @@ Return Type: List
 Description: Prompts user to fill in an empty list until they are satisfied 
 """
 def getList():
-    print("Enter a list of integers, or type 'q' to end the list! ")
+    print("Welcome to the List Statistics Calculator")
+    print("Enter a list of integers or 'q' to end the list! ")
     userList = []
     check = True
     while check == True:
@@ -36,7 +37,7 @@ Return Type: none
 Description: Prints menu for statistics calculator
 """
 def printMenu():
-    print("Please choose the statistic you would like to calculate: ")
+    print("Please choose the statistic you would like to calculate! ")
     print("1. Min")
     print("2. Max")
     print("3. Mean")
@@ -119,8 +120,11 @@ def main():
         return
     while True:
         printMenu()
-        option = input("Enter your option: ")
-        if option == "1":
+        option = input("Please enter your choice, or press 0 to exit:")
+        if option == "0":
+            print("Exiting")
+            break
+        elif option == "1":
             print("The minimum is:", getMin(myList))
         elif option == "2":
             print("The maximum is:", getMax(myList))
@@ -130,11 +134,6 @@ def main():
             print("The median is:", getMedian(myList))
         elif option == "5":
             print("The standard deviation is:", getStdDev(myList))
-        elif option == "6":
-            print("Clearing list...")
-            myList = getList()
-        elif option == "7":
-            print("Program ended.")
             break
         else:
             print("Invalid option. Try again.")
