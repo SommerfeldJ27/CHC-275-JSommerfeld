@@ -45,8 +45,7 @@ def printMenu():
     print("3. Mean")
     print("4. Median")
     print("5. Clear List")
-#Find a way to remove "None" from appearing when calling this function
-print(printMenu())
+printMenu()
 option = input("Enter your option: ")
 
 """
