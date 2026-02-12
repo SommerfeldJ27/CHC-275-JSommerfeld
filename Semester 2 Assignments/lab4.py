@@ -6,7 +6,6 @@ Description: Lab 4
 
 import math
 
-
 """
 Function Name: getList
 Parameters: none
@@ -30,8 +29,6 @@ def getList():
                 userList.append(number)
     return userList
 
-print(getList())
-
 """ 
 Function Name: printMenu
 Parameters: none
@@ -45,8 +42,6 @@ def printMenu():
     print("3. Mean")
     print("4. Median")
     print("5. Clear List")
-printMenu()
-option = input("Enter your option: ")
 
 """
 Function Name: getMean
@@ -60,10 +55,6 @@ def getMean(userList):
         sum = sum + userList[i]
     return sum / len(userList)
 
-if option == "3":
-    myList = getList()
-    print(f"The mean is: {getMean(myList)}")
-
 """
 Function Name: getMedian
 Parameters: List
@@ -72,6 +63,11 @@ Description: Calculates the median for the list and returns the value
 """
 def getMedian(userList):
     userList = sorted(userList)
+    if len(userList) % 2 == 0:
+        median = (userList[len(userList) // 2] + userList[len(userList) // 2 - 1]) / 2
+    else:
+        median = userList[len(userList) // 2]
+    return median
 
 """ 
 Function Name: getMin
@@ -86,10 +82,6 @@ def getMin(userList):
             min = userList[i]
     return min
 
-if option == "1":
-    myList = getList()
-    print(f"The minimum is: {getMin(myList)}")
-
 """ 
 Function Name: getMax
 Parameters: List
@@ -103,10 +95,6 @@ def getMax(userList):
             max = userList[i]
     return max
 
-if option == "2":
-    myList = getList()
-    print(f"The maximum is: {getMax(myList)}")
-
 """ 
 Function Name: getStdDev
 Parameters: List
@@ -114,13 +102,34 @@ Return Type: none
 Description: Calculates the population Standard Deviation of a list
 """
 def getStdDev(userList):
-    pass
-
-
+    mean = getMean(userList)
+    n = len(userList)
+    SSE = 0
+    for i in range(len(userList)):
+        SSE = SSE + (userList[i] - mean) ** 2
+    SSE = SSE / n
+    return math.sqrt(SSE)
 
 def main():
-    pass
-
+    userList = getList()
+    check = False
+    while check == False:
+        printMenu()
+        option = input("Enter the number of the statistic you would like to calculate: ")
+        if option == "1":
+            print(f"The minimum of the list is {getMin(userList)}")
+        elif option == "2":
+            print(f"The maximum of the list is {getMax(userList)}")
+        elif option == "3":
+            print(f"The mean of the list is {getMean(userList)}")
+        elif option == "4":
+            print(f"The median of the list is {getMedian(userList)}")
+        elif option == "5":
+            print(f"The standard deviation of the list is {getStdDev(userList)}")
+            check = True
+            break
+        else:
+            print("Invalid option, please try again.")
 
 if __name__ == "__main__":
     main()
