@@ -64,7 +64,7 @@ Description: Calculates the median for the list and returns the value
 def getMedian(userList):
     userList = sorted(userList)
     if len(userList) % 2 == 0:
-        median = (userList[len(userList) // 2] + userList[len(userList) // 2 - 1]) / 2
+        median = (userList[len(userList) // 2 - 1] + userList[len(userList) // 2]) / 2
     else:
         median = userList[len(userList) // 2]
     return median
