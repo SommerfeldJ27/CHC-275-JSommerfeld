@@ -13,7 +13,7 @@ Return Type: List
 Description: Prompts user to fill in an empty list until they are satisfied 
 """
 def getList():
-    print("Enter a list of integers, or type 'q' to end the list! ")
+    print("Enter a list of integers or type 'q' to end the list")
     userList = []
     check = True
     while check == True:
@@ -129,7 +129,7 @@ def main():
             check = True
             break
         else:
-            print("Invalid option, please try again.")
+            print("Invalid option please try again.")
 
 if __name__ == "__main__":
     main()
