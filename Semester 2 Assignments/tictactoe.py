@@ -4,55 +4,59 @@ board = [
     [0, 0, 0]
 ]
 
+# Print the initial board
 for row in board:
     for space in row:
-        print(space, end = " ")
+        print(space, end=" ")
     print()
-
-row = int(input("Row (0-2): "))
-column = int(input("Column (0-2): "))
 
 player1 = "X"
 player2 = "O"
 moves = 0
 
-if board[row][column] == player1 or board[row][column] == player2:
-    print("That space is already taken. Try again.")
+while moves < 9:
+    row = int(input("Row (0-2): "))
+    column = int(input("Column (0-2): "))
 
-if moves < 9:
-    # print board
-    for row in board:
-        print(row)
+    if board[row][column] == player1 or board[row][column] == player2:
+        print("That space is already taken. Try again.")
+        continue  # ask again
+
+    # Alternate between players based on move number
+    if moves % 2 == 0:
+        board[row][column] = player1
+        current_player = player1
+    else:
+        board[row][column] = player2
+        current_player = player2
+
+    moves += 1
+
+    # Print board after move
+    for r in board:
+        for s in r:
+            print(s, end=" ")
+        print()
     print()
-elif moves == 9:
-    print("Tie!")
 
-def winner(player1):
-    for i in range(len(board[0])):
-#Collum Win
-        if board[i][0] == board[i][1] == board[i][2] == player1:
-            return
-#Row Win
-        if board[0][i] == board[1][i] == board[2][i] == player1:
-            return
-#Diagonal Win       
-        if board[0][0] == board[1][1] == board[2][2] == player1:
-            return
-        if board[0][2] == board[1][1] == board[2][0] == player1:
-            return
-    print(f"Player {player1} wins")
-    
-def winner(player2):
-    for i in range(len(board[0])):
-#Collum Win
-        if board[i][0] == board[i][1] == board[i][2] == player2:
-            return
-#Row Win
-        if board[0][i] == board[1][i] == board[2][i] == player2:
-            return
-#Diagonal Win       
-        if board[0][0] == board[1][1] == board[2][2] == player2:
-            return
-        if board[0][2] == board[1][1] == board[2][0] == player2:
-            return
-    print(f"Player {player2} wins")
+    # Check for winner
+    def winner(player):
+        for i in range(3):
+            # Row win
+            if board[i][0] == board[i][1] == board[i][2] == player:
+                return True
+            # Column win
+            if board[0][i] == board[1][i] == board[2][i] == player:
+                return True
+        # Diagonal win
+        if board[0][0] == board[1][1] == board[2][2] == player:
+            return True
+        if board[0][2] == board[1][1] == board[2][0] == player:
+            return True
+        return False
+
+    if winner(current_player):
+        print(f"Player {current_player} wins!")
+        break
+else:
+    print("Tie!")
