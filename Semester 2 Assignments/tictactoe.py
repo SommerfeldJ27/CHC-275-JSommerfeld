@@ -4,62 +4,49 @@ board = [
     [0, 0, 0]
 ]
 
-def print_board():
-    print()
-    for row in board:
-        for cell in row:
-            if cell == 0:
-                print(".", end=" ")
-            else:
-                print(cell, end=" ")
-        print()
-    print()
-
-def check_winner(player):
-    # Rows
-    for row in board:
-        if row[0] == row[1] == row[2] == player:
+def check_winner(p):
+    for i in range(3):
+        # rows
+        if board[i][0] == board[i][1] == board[i][2] == p:
+            return True
+        # columns
+        if board[0][i] == board[1][i] == board[2][i] == p:
             return True
 
-    # Columns
-    for col in range(3):
-        if board[0][col] == board[1][col] == board[2][col] == player:
-            return True
-
-    # Diagonals
-    if board[0][0] == board[1][1] == board[2][2] == player:
+    # diagonals
+    if board[0][0] == board[1][1] == board[2][2] == p:
         return True
-    if board[0][2] == board[1][1] == board[2][0] == player:
+    if board[0][2] == board[1][1] == board[2][0] == p:
         return True
 
     return False
 
 
-current_player = "X"
-turns = 0
+player = "X"
+moves = 0
 
-while turns < 9:
-    print_board()
+while moves < 9:
+    # print board
+    for row in board:
+        print(row)
+    print()
 
-    row = int(input("Row (0-2): "))
-    col = int(input("Col (0-2): "))
+    r = int(input("Row (0-2): "))
+    c = int(input("Column (0-2): "))
 
-    if board[row][col] == 0:
-        board[row][col] = current_player
-        turns += 1
+    if board[r][c] == 0:
+        board[r][c] = player
+        moves += 1
 
-        if check_winner(current_player):
-            print_board()
-            print("Player", current_player, "wins!")
+        if check_winner(player):
+            for row in board:
+                print(row)
+            print("Player", player, "wins!")
             break
 
-        if current_player == "X":
-            current_player = "O"
-        else:
-            current_player = "X"
+        player = "O" if player == "X" else "X"
     else:
-        print("Spot taken!")
+        print("Taken!")
 
-if turns == 9:
-    print_board()
-    print("It's a tie!")
+if moves == 9:
+    print("Tie!")
