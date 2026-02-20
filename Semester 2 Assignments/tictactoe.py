@@ -7,7 +7,7 @@ board = [
 # Print the board
 for row in board:
     for space in row:
-        print(space, end=" ")
+        print(space, end = " ")
     print()
 
 player1 = "X"
