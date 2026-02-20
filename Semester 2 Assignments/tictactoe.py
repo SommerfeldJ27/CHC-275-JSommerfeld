@@ -4,7 +4,7 @@ board = [
     [0, 0, 0]
 ]
 
-# Print the initial board
+# Print the board
 for row in board:
     for space in row:
         print(space, end=" ")
@@ -20,9 +20,9 @@ while moves < 9:
 
     if board[row][column] == player1 or board[row][column] == player2:
         print("That space is already taken. Try again.")
-        continue  # ask again
+        continue
 
-    # Alternate between players based on move number
+    # Alternate between players each move
     if moves % 2 == 0:
         board[row][column] = player1
         current_player = player1
@@ -32,10 +32,10 @@ while moves < 9:
 
     moves += 1
 
-    # Print board after move
-    for r in board:
-        for s in r:
-            print(s, end=" ")
+    # Print board after each move
+    for row in board:
+        for space in row:
+            print(space, end = " ")
         print()
     print()
 
@@ -43,15 +43,19 @@ while moves < 9:
     def winner(player):
         for i in range(3):
             # Row win
-            if board[i][0] == board[i][1] == board[i][2] == player:
+            if board[i][0] == board[i][1] == board[i][2] == player1:
+                return True
+            if board[i][0] == board[i][1] == board[i][2] == player2:
                 return True
             # Column win
-            if board[0][i] == board[1][i] == board[2][i] == player:
+            if board[0][i] == board[1][i] == board[2][i] == player1:
+                return True
+            if board[0][i] == board[1][i] == board[2][i] == player2:
                 return True
         # Diagonal win
-        if board[0][0] == board[1][1] == board[2][2] == player:
+        if board[0][0] == board[1][1] == board[2][2] == player1:
             return True
-        if board[0][2] == board[1][1] == board[2][0] == player:
+        if board[0][2] == board[1][1] == board[2][0] == player2:
             return True
         return False
 
