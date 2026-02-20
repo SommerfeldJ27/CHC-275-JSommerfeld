@@ -6,8 +6,8 @@ board = [
 
 # Print the board
 for row in board:
-    for space in row:
-        print(space, end = " ")
+    for i in row:
+        print(i, end = " ")
     print()
 
 player1 = "X"
@@ -19,7 +19,7 @@ while moves < 9:
     column = int(input("Column (0-2): "))
 
     if board[row][column] == player1 or board[row][column] == player2:
-        print("That space is already taken. Try again.")
+        print("That i is already taken. Try again.")
         continue
 
     # Alternate between players each move
@@ -34,8 +34,8 @@ while moves < 9:
 
     # Print board after each move
     for row in board:
-        for space in row:
-            print(space, end = " ")
+        for i in row:
+            print(i, end = " ")
         print()
     print()
 
