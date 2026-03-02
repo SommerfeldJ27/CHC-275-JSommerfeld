@@ -18,7 +18,7 @@ board = [
         [0,0,0,0,0,0,0],
 ]
 
-def printBoard(board):
+def drawBoard(board):
     for row in board: 
         for space in row: 
             print(space, end="")
@@ -74,11 +74,11 @@ def main():
     check = False
 
     while check == False:
-        printBoard(board)
+        drawBoard(board)
         column = int(input("Choose a column (0-6): "))
         if dropPiece(board, player, column) == True:
             if checkWinner(board, player) == True:
-                printBoard(board)
+                drawBoard(board)
                 check = True
             else:
                 player = switchPlayer(player)
