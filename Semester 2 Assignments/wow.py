@@ -9,64 +9,58 @@ Scenario: We are to build a connect 4 game that runs in the terminal
 """
 
 def drawBoard(board):
-    """
-    This function draws the board in  a nice, clean manner into the terminal.
-        PARAMETERS:
-        board: 2D List corresponding to connect 4 Board
-        
-        Return Type:
-        NONE
-    """
+    for row in board: 
+        for space in row: 
+            print(space, end="")
+        print()
  
 
 def switchPlayer(player):
-    """
-    Switches player from X to O or O to X
-    
-        PARAMETERS: 
-        Player (STR): Corresponds to the current player
-        
-        Return Type:
-        Player (STR): Switched Player
-    """
+    if player == "O":
+         return "X"
+    elif player == "X":
+         return "O"
 
     
 def dropPiece(board,player,column):
-    """ 
-    Drops piece in specified column
-    
-        PARAMETERS:
-        board (2D List): Game board
-        player (STR): current player
-        column (int): column to drop piece in
-        
-        Return Type:
-        NONE
-    """
+    if board[column] == 0:
+        board[column] = player
+        return True
+    else:
+        return False
 
     
     
 def checkWinner(board,player):
-    """
-    Checks Board for winner
+    # Row Victories 
+    for i in range(len(board)):
+        for j in range(len(board[0])):
+            if board[i][j] == board[i][j+1] == board[i][j+2] == board[i][j+3] == player:
+                print(f"{player} wins")
+                return True
     
-        PARAMETERS:
-        board(2d list): Game board
-        player(STR): Current player being checked for victory   
+    # Column Victories
+    for i in range(len(board)):
+        for j in range(len(board[0])):
+            if board[i][j] == board[i+1][j] == board[i+2][j] == board[i+3][j] == player:
+                print(f"{player} wins")
+                return True
         
-        Return Type:
-        (BOOL): True if win False if not win 
-    """
-    #Check Horizontal Win
+    # Left Diagonal Victories
+    for i in range(len(board)):
+        for j in range(len(board[0])):
+            if board[i][j] == board[i+1][j+1] == board[i+2][j+2] == board[i+3][j+3] == player:
+                print(f"{player} wins")
+                return True
+        
+    # Right diagonal victories
+    for i in range(len(board)):
+        for j in range(len(board[0])):
+            if board[i][j] == board[i+1][j-1] == board[i+2][j-2] == board[i+3][j-3] == player:
+                print(f"{player} wins")
+                return True
 
-    
-    #Check Vertical Win
-
-
-    #Check Left Diagonal win
- 
-    
-    #Check Right Diagonal Win
+    return False
 
     
 
