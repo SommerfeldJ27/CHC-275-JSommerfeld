@@ -10,12 +10,12 @@ Scenario: We are to build a connect 4 game that runs in the terminal
 
 player = "O"
 board = [
-        [0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0],
+    [0,0,0,0,0,0,0],
 ]
 
 def drawBoard(board):
@@ -69,6 +69,16 @@ def checkWinner(board,player):
     return False
     
 def main():
-
+    drawBoard(board)
+    print(board)
+    while True:
+        column = int(input(f"{player}, enter the column you would like to drop your piece in: "))
+        if dropPiece(board,player,column):
+            drawBoard(board)
+            if checkWinner(board,player):
+                break
+            player = switchPlayer(player)
+        else:
+            print("That column is full, try again")
     if __name__ == "__main__":
         main()
