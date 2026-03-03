@@ -38,7 +38,6 @@ def dropPiece(board,player,column):
         return False
     
 def checkWinner(board,player):
-
     # Row Victories 
     for i in range(len(board)):
         for j in range(len(board[0])):
