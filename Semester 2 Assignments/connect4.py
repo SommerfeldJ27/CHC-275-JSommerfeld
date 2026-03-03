@@ -61,7 +61,7 @@ def checkWinner(board,player):
         
     # Right diagonal victories
     for i in range(len(board)):
-        for j in range(3, len(board[0])):
+        for j in range(len(board[0])):
             if board[i][j] == board[i+1][j-1] == board[i+2][j-2] == board[i+3][j-3] == player:
                 print(f"{player} wins")
                 return True
