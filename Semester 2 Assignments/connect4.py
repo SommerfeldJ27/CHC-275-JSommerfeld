@@ -31,37 +31,37 @@ def switchPlayer(player):
          return "O"
 
 def dropPiece(board,player,column):
-    for row in range(len(board)-1, -1, -1):
-        if board[row][column] == 0:
-            board[row][column] = player
-            return True
-    return False
+    if board[column] == 0:
+        board[column] = player
+        return True
+    else:
+        return False
     
 def checkWinner(board,player):
 
     # Row Victories 
     for i in range(len(board)):
-        for j in range(len(board[0]) - 3):
+        for j in range(len(board[0])):
             if board[i][j] == board[i][j+1] == board[i][j+2] == board[i][j+3] == player:
                 print(f"{player} wins")
                 return True
     
     # Column Victories
-    for i in range(len(board) - 3):
+    for i in range(len(board)):
         for j in range(len(board[0])):
             if board[i][j] == board[i+1][j] == board[i+2][j] == board[i+3][j] == player:
                 print(f"{player} wins")
                 return True
         
     # Left Diagonal Victories
-    for i in range(len(board) - 3):
-        for j in range(len(board[0]) - 3):
+    for i in range(len(board)):
+        for j in range(len(board[0])):
             if board[i][j] == board[i+1][j+1] == board[i+2][j+2] == board[i+3][j+3] == player:
                 print(f"{player} wins")
                 return True
         
     # Right diagonal victories
-    for i in range(len(board) - 3):
+    for i in range(len(board)):
         for j in range(3, len(board[0])):
             if board[i][j] == board[i+1][j-1] == board[i+2][j-2] == board[i+3][j-3] == player:
                 print(f"{player} wins")
@@ -70,20 +70,6 @@ def checkWinner(board,player):
     return False
     
 def main():
-    player = "O"
-    check = False
 
-    while check == False:
-        drawBoard(board)
-        column = int(input("Choose a column (0-6): "))
-        if dropPiece(board, player, column) == True:
-            if checkWinner(board, player) == True:
-                drawBoard(board)
-                check = True
-            else:
-                player = switchPlayer(player)
-        else:
-            print("Column is full. Try again.")
-
-if __name__ == "__main__":
-    main()
+    if __name__ == "__main__":
+        main()
