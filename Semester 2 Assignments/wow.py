@@ -15,7 +15,7 @@ def drawBoard(board):
         print()
  
 
-def switchPlayer(player):
+def switchPlayer(player):  
     if player == "O":
          return "X"
     elif player == "X":
