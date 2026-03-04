@@ -6,14 +6,16 @@ def checkWinner(board,current_player):
     #Row Victories 
     #I think a for loop might be useful here, but I need direct access to the memory
     for i in range(len(board)):
-        if board[i][0] == board[i][1] == board[i][2] == current_player:
-           print(f"{current_player} wins")
-           return True
+        for j in range(len(board)):
+            if board[i][j] == board[i][j+1] == board[i][j+2] == current_player:
+                print(f"{current_player} wins")
+            return True
     
     #Column Victories
     for i in range(len(board[0])):
-        if board[0][i] == board[1][i] == board[2][i] == current_player:
-            print(f"{current_player} wins")
+        for j in range(len(board[0])):
+            if board[i][j] == board[i+1][j] == board[i+2][j] == current_player:
+                print(f"{current_player} wins")
             return True
     #Diagonal Victories
     #left diagonal 
@@ -24,7 +26,7 @@ def checkWinner(board,current_player):
     000
     000
     """
-    if board[0][0] == board[1][1] == board[2][2] == current_player:
+    if board[i][j] == board[i+1][j+1] == board[i+2][j+2] == current_player:
             print(f"{current_player} wins")
             return True
         
@@ -35,7 +37,7 @@ def checkWinner(board,current_player):
     000
     000
     """
-    if board[0][2] == board[1][1] == board[2][0] == current_player:
+    if board[i][j+2] == board[i+1][j+1] == board[i+2][j] == current_player:
         print(f"{current_player} wins")
         return True
     
@@ -64,13 +66,15 @@ def printBoard(board):
             print(space, end="") #replace end with an empty string so all of the spaces in a row print on the same line
         print() #empty print function just prints \n to the terminal
 
-def placePiece(row,col,board,current_player):
+def placePiece(col,board,current_player):
     #remember that when we pass control to a function we leave the global scope and enter local scope so 
     #we can't access variables declared in global scope 
-    if board[row][col] == 0:
-        board[row][col]=current_player #is this sufficient in the logic of tictactoe?
+    i = 0
+    if board[i][col] == 0:
+        board[i][col]=current_player #is this sufficient in the logic of tictactoe?
         return True #returning true so the program knows that the piece was actually placed
-    else: 
+    else:
+        board[i-1][col]=current_player 
         return False 
     
 def switchPlayer(current_player):
@@ -84,16 +88,18 @@ def main():
     #we just need to implement the main function
     curr = "X"
     board = [
-        [0,0,0],
-        [0,0,0],
-        [0,0,0]
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0]
     ]
     while checkWinner(board,curr) != True:
-        curr = switchPlayer(curr)
         printBoard(board)
-        x = int(input("Enter Row: ").strip())
         y = int(input("Enter Col: ").strip())
-        placePiece(x,y,board,curr)
+        placePiece(y,board,curr)
+        curr = switchPlayer(curr)
         
     
 
