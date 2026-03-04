@@ -23,11 +23,7 @@ def switchPlayer(player):
 
     
 def dropPiece(board,player,column):
-    if board[column] == 0:
-        board[column] = player
-        return True
-    else:
-        return False
+    print
 
     
     
@@ -77,17 +73,10 @@ def main():
     ]
 
     CURRENT_PLAYER = "X"
-    CURRENT_PLAYER = switchPlayer(CURRENT_PLAYER)
-    drawBoard(BOARD)
-    columns = int(input("What column would you like to drop your piece in (0-6):"))
-    if columns in BOARD:
-        dropPiece(BOARD,CURRENT_PLAYER)
-        if checkWinner(BOARD,CURRENT_PLAYER):
-            print(f"{CURRENT_PLAYER} wins!")
-            return
-        CURRENT_PLAYER = switchPlayer(CURRENT_PLAYER)
-    else:
-        print("Invalid column number.")
+    #what switch player does is checks to see if current player = x
+    #if it is, return O
+    #if its not, return X 
+    CURRENT_PLAYER = switchPlayer()
     
 if __name__ == "__main__":
     main()
