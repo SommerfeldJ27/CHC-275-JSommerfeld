@@ -6,15 +6,15 @@ def checkWinner(board,current_player):
     #Row Victories 
     #I think a for loop might be useful here, but I need direct access to the memory
     for i in range(len(board)):
-        for j in range(len(board[0])-2):
-            if board[i][j] == board[i][j+1] == board[i][j+2] == current_player:
+        for j in range(len(board[0])-3):
+            if board[i][j] == board[i][j+1] == board[i][j+2] == board[i][j+3] == current_player:
                 print(f"{current_player} wins")
                 return True
     
     #Column Victories
-    for i in range(len(board)-2):
+    for i in range(len(board)-3):
         for j in range(len(board[0])):
-            if board[i][j] == board[i+1][j] == board[i+2][j] == current_player:
+            if board[i][j] == board[i+1][j] == board[i+2][j] == board[i+3][j] == current_player:
                 print(f"{current_player} wins")
                 return True
     #Diagonal Victories
@@ -26,7 +26,7 @@ def checkWinner(board,current_player):
     000
     000
     """
-    if board[i][j] == board[i+1][j+1] == board[i+2][j+2] == current_player:
+    if board[i][j] == board[i+1][j+1] == board[i+2][j+2] == board[i+3][j+3] == current_player:
             print(f"{current_player} wins")
             return True
         
@@ -37,7 +37,7 @@ def checkWinner(board,current_player):
     000
     000
     """
-    if board[i][j+2] == board[i+1][j+1] == board[i+2][j] == current_player:
+    if board[i][j+3] == board[i+1][j+2] == board[i+2][j+1] == board[i+3][j] == current_player:
         print(f"{current_player} wins")
         return True
     
