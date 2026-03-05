@@ -1,4 +1,6 @@
 """ 
+Name: Jackson Sommerfeld
+Section: 275-2
 Connect4.py
 """
 
