@@ -11,7 +11,7 @@ Scenario: We are to build a connect 4 game that runs in the terminal
 def drawBoard(board):
     for row in board: 
         for space in row: 
-            print(space, end="")
+            print(space, end=" ")
         print()
  
 
@@ -22,42 +22,54 @@ def switchPlayer(player):
          return "O"
 
     
-def dropPiece(board,player,column):
+def dropPiece(board,player,col):
+    # step 1: column full
+    if board[0][col] != 0:
+        return False
+
     i = 0
-    if board[i][column] == 0:
-        board[i+1][column]=player
-        return True
-    else:
-        board[i-1][column]=player
-        return False 
+
+    # step 2: move down the column
+    while i < len(board):
+        curr = board[i][col]
+
+        if curr == 0:
+            i += 1
+        else:
+            board[i-1][col] = player
+            return True
+
+    # step 3: bottom spot empty
+    board[i-1][col] = player
+    return True
 
     
     
 def checkWinner(board,player):
     # Row Victories 
     for i in range(len(board)):
-        for j in range(len(board[0])):
+        for j in range(len(board[0])-3):
             if board[i][j] == board[i][j+1] == board[i][j+2] == board[i][j+3] == player:
                 print(f"{player} wins")
                 return True
     
     # Column Victories
-    for i in range(len(board)):
-        for j in range(len(board[0])):
+    for i in range(len(board)-3):
+        for j in range(len(board)):
             if board[i][j] == board[i+1][j] == board[i+2][j] == board[i+3][j] == player:
                 print(f"{player} wins")
                 return True
         
     # Left Diagonal Victories
-    for i in range(len(board)):
-        for j in range(len(board[0])):
+    for i in range(len(board)-3):
+        for j in range(len(board[0])-3):
             if board[i][j] == board[i+1][j+1] == board[i+2][j+2] == board[i+3][j+3] == player:
                 print(f"{player} wins")
                 return True
         
     # Right diagonal victories
-    for i in range(len(board)):
-        for j in range(len(board[0])):
+    for i in range(len(board)-3):
+        for j in range(3,len(board[0])):
             if board[i][j] == board[i+1][j-1] == board[i+2][j-2] == board[i+3][j-3] == player:
                 print(f"{player} wins")
                 return True
@@ -79,11 +91,16 @@ def main():
     ]
 
     CURRENT_PLAYER = "X"
-    while checkWinner(BOARD,CURRENT_PLAYER) != True:
-        CURRENT_PLAYER = switchPlayer(CURRENT_PLAYER)
+    while checkWinner(BOARD,CURRENT_PLAYER) == False:
         drawBoard(BOARD)
-        column = int(input("Please Enter The Column You Would Like to Use:"))
-        dropPiece(BOARD,CURRENT_PLAYER,column)
+        column = int(input("Please Enter The Column You Would Like to Use: "))
+        dropPiece(BOARD, CURRENT_PLAYER, column)
+        checkWinner(BOARD,CURRENT_PLAYER)
+        #separate what'll happen if there's a winner or not
+        CURRENT_PLAYER = switchPlayer(CURRENT_PLAYER)
+    while checkWinner(BOARD,CURRENT_PLAYER) == True:
+        print(f"{CURRENT_PLAYER}, wins")
+        break
     
 if __name__ == "__main__":
     main()
