@@ -26,9 +26,11 @@ def checkWinner(board,current_player):
     000
     000
     """
-    if board[i][j] == board[i+1][j+1] == board[i+2][j+2] == board[i+3][j+3] == current_player:
-            print(f"{current_player} wins")
-            return True
+    for i in range(len(board)-3):
+        for j in range(len(board[0])-3):
+            if board[i][j] == board[i+1][j+1] == board[i+2][j+2] == board[i+3][j+3] == current_player:
+                print(f"{current_player} wins")
+                return True
         
     #right diagonal victories
     """ 
@@ -37,9 +39,11 @@ def checkWinner(board,current_player):
     000
     000
     """
-    if board[i][j+3] == board[i+1][j+2] == board[i+2][j+1] == board[i+3][j] == current_player:
-        print(f"{current_player} wins")
-        return True
+    for i in range(len(board)-3):
+        for j in range(len(board[0])-3):
+            if board[i][j] == board[i+1][j-1] == board[i+2][j-1] == board[i+3][j-3] == current_player:
+                print(f"{current_player} wins")
+                return True
     
     #Ties
     #What constitutes a tie? No empty spaces left
@@ -67,13 +71,19 @@ def printBoard(board):
         print() #empty print function just prints \n to the terminal
 
 def placePiece(col,board,current_player):
-    #remember that when we pass control to a function we leave the global scope and enter local scope so 
-    #we can't access variables declared in global scope 
-    for i in range(len(board)-1,-1,-1):
-        if board[i][col] == 0:
-            board[i][col]=current_player #is this sufficient in the logic of tictactoe?
-            return True #returning true so the program knows that the piece was actually placed
-    return False 
+    if board[0][col] != 0:
+        return False
+    i = 0
+    while i < len(board):
+        curr = board[i][col]
+
+        if curr == 0:
+            i = i+1
+        else:
+            board[i-1][col] = current_player
+            return True
+    board[i-1][col] = current_player
+    return True
     
 def switchPlayer(current_player):
     #are strings pass by value?
@@ -98,6 +108,8 @@ def main():
         y = int(input("Enter Col: ").strip())
         placePiece(y,board,curr)
         curr = switchPlayer(curr)
+    while checkWinner(board,curr) == False:
+            break
         
     
 
