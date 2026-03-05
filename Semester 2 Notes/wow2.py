@@ -1,5 +1,5 @@
 """ 
-TicTacToe.py
+Connect4.py
 """
 
 def checkWinner(board,current_player):
