@@ -6,17 +6,17 @@ def checkWinner(board,current_player):
     #Row Victories 
     #I think a for loop might be useful here, but I need direct access to the memory
     for i in range(len(board)):
-        for j in range(len(board)):
+        for j in range(len(board[0])-2):
             if board[i][j] == board[i][j+1] == board[i][j+2] == current_player:
                 print(f"{current_player} wins")
-            return True
+                return True
     
     #Column Victories
-    for i in range(len(board[0])):
+    for i in range(len(board)-2):
         for j in range(len(board[0])):
             if board[i][j] == board[i+1][j] == board[i+2][j] == current_player:
                 print(f"{current_player} wins")
-            return True
+                return True
     #Diagonal Victories
     #left diagonal 
     
@@ -69,13 +69,11 @@ def printBoard(board):
 def placePiece(col,board,current_player):
     #remember that when we pass control to a function we leave the global scope and enter local scope so 
     #we can't access variables declared in global scope 
-    i = 0
-    if board[i][col] == 0:
-        board[i][col]=current_player #is this sufficient in the logic of tictactoe?
-        return True #returning true so the program knows that the piece was actually placed
-    else:
-        board[i-1][col]=current_player 
-        return False 
+    for i in range(len(board)-1,-1,-1):
+        if board[i][col] == 0:
+            board[i][col]=current_player #is this sufficient in the logic of tictactoe?
+            return True #returning true so the program knows that the piece was actually placed
+    return False 
     
 def switchPlayer(current_player):
     #are strings pass by value?
