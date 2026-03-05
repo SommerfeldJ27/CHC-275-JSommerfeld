@@ -108,8 +108,6 @@ def main():
         y = int(input("Enter Col: ").strip())
         placePiece(y,board,curr)
         curr = switchPlayer(curr)
-    while checkWinner(board,curr) == False:
-            break
         
     
 
