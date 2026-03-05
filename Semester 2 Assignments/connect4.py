@@ -1,7 +1,7 @@
 """ 
 Name: Jackson Sommerfeld
 Section: 275-2
-Connect4.py
+Description: Connect4.py
 """
 
 def checkWinner(board,current_player):
