@@ -102,10 +102,13 @@ def main():
         [0,0,0,0,0,0,0],
         [0,0,0,0,0,0,0]
     ]
-    while checkWinner(board,curr) != True:
+    check = False
+    while check != True:
         printBoard(board)
         y = int(input("Enter Col: ").strip())
         placePiece(y,board,curr)
+        if checkWinner(board,curr):
+            check = True
         curr = switchPlayer(curr)
         
     
