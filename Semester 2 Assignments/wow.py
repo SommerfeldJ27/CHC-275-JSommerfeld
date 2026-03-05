@@ -23,24 +23,18 @@ def switchPlayer(player):
 
     
 def dropPiece(board,player,col):
-    # step 1: column full
     if board[0][col] != 0:
         return False
-
     i = 0
-
-    # step 2: move down the column
     while i < len(board):
         curr = board[i][col]
 
         if curr == 0:
-            i += 1
+            i = i+1
         else:
             board[i-1][col] = player
             return True
-
-    # step 3: bottom spot empty
-    board[i-1][col] = player
+    board[i][col] = player
     return True
 
     
@@ -69,7 +63,7 @@ def checkWinner(board,player):
         
     # Right diagonal victories
     for i in range(len(board)-3):
-        for j in range(3,len(board[0])):
+        for j in range(len(board[0])-3):
             if board[i][j] == board[i+1][j-1] == board[i+2][j-2] == board[i+3][j-3] == player:
                 print(f"{player} wins")
                 return True
