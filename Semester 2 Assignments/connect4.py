@@ -67,7 +67,7 @@ def printBoard(board):
         #pull out every row
         for space in row: 
         #pulls out space in every row
-            print(space, end="") #replace end with an empty string so all of the spaces in a row print on the same line
+            print(space, end=" ") #replace end with an empty string so all of the spaces in a row print on the same line
         print() #empty print function just prints \n to the terminal
 
 def placePiece(col,board,current_player):
