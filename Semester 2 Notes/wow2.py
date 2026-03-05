@@ -76,7 +76,6 @@ def placePiece(col,board,current_player):
     i = 0
     while i < len(board):
         curr = board[i][col]
-
         if curr == 0:
             i = i+1
         else:
