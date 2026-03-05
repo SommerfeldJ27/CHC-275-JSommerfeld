@@ -34,7 +34,7 @@ def dropPiece(board,player,col):
         else:
             board[i-1][col] = player
             return True
-    board[i][col] = player
+    board[i-1][col] = player
     return True
 
     
@@ -89,12 +89,9 @@ def main():
         drawBoard(BOARD)
         column = int(input("Please Enter The Column You Would Like to Use: "))
         dropPiece(BOARD, CURRENT_PLAYER, column)
-        checkWinner(BOARD,CURRENT_PLAYER)
-        #separate what'll happen if there's a winner or not
+        if checkWinner(BOARD,CURRENT_PLAYER) == True:
+            break
         CURRENT_PLAYER = switchPlayer(CURRENT_PLAYER)
-    while checkWinner(BOARD,CURRENT_PLAYER) == True:
-        print(f"{CURRENT_PLAYER}, wins")
-        break
     
 if __name__ == "__main__":
     main()
