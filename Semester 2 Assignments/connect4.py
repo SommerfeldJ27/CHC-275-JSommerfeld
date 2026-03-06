@@ -29,7 +29,7 @@ def checkWinner(board,current_player):
     #Right Diagonal Victories
     for i in range(len(board)-3):
         for j in range(len(board[0])-3):
-            if board[i][j] == board[i+1][j-1] == board[i+2][j-1] == board[i+3][j-3] == current_player:
+            if board[i][j] == board[i+1][j-1] == board[i+2][j-2] == board[i+3][j-3] == current_player:
                 print(f"{current_player} wins")
                 return True
     
