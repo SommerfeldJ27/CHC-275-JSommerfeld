@@ -47,18 +47,22 @@ def printBoard(board):
         print()
 
 def placePiece(col,board,current_player):
-    if board[0][col] != 0:
-        return False
-    i = 0
-    while i < len(board):
-        curr = board[i][col]
-        if curr == 0:
-            i = i+1
-        else:
-            board[i-1][col] = current_player
-            return True
-    board[i-1][col] = current_player
-    return True
+    try:
+        if board[0][col] != 0:
+            return False
+        i = 0
+        while i < len(board):
+            curr = board[i][col]
+            if curr == 0:
+                i = i+1
+            else:
+                board[i-1][col] = current_player
+                return True
+        board[i-1][col] = current_player
+        return True
+    except: 
+        print("Invalid Please Try Again")
+
     
 def switchPlayer(current_player):
     if current_player == "O":
@@ -79,8 +83,11 @@ def main():
     check = False
     while check != True:
         printBoard(board)
-        y = int(input("Enter Col: ").strip())
-        placePiece(y,board,curr)
+        piece = True
+        while piece == True:
+            y = int(input("Enter Col: ").strip())
+            if placePiece(y, board,curr):
+                piece = False
         if checkWinner(board,curr):
             printBoard(board)
             check = True
