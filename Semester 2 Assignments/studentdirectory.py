@@ -4,149 +4,176 @@ Section:
 Description: Template for Lab 7
 """
 
-"""
-Scenario: we live in a world where blackbaud no longer exists. our job is to write
-a student records program that can print out the transcript, grade level, and email of our students.
-You are to implement this using functions, dictionaries, and lists
-"""
-
-
 def getStudent(directory, student):
-    """
-        Function Name: getStudent
-        Parameters:
-            Directory <dict> : Student Directory that is specified in the main() function
-            student <String> : String that corresponds to the student name
-            Return Type: Multiple returns of all values associated to the keys at directory[student] 
-        Description:
-            A Function that returns all of the values associated to the keys in the dictionary at key "student"
-    """
-    pass
+    if student in directory:
+        return directory[student]["grades"], directory[student]["gradelevel"], directory[student]["email"]
+    else:
+        return None
+
 
 def getStudentGrades(directory, student):
-    """
-        Function Name: getStudentGrades
-        Parameters:
-            Directory <dict> : Student Directory that is specified in the main() function
-            student <String> : String that corresponds to the student name
-            Return Type: Dictionary of Student Gradebook
-        Description:
-            A Function that returns a Dictinary of the student's gradebook at dictionary[student]
-    """
-    pass
+    if student in directory:
+        return directory[student]["grades"]
+    return None
 
-def getStudentGradeLevel(directory,student):
-    """
-        Function Name: getStudentGradeLevel
-        Parameters:
-            Directory <dict> : Student Directory that is specified in the main() function
-            student <String> : String that corresponds to the student name
-            Return Type:  integer corresponding to student's grade level
-        Description:
-            A Function that returns a Dictionary of the student's gradebook at dictionary[student]
-    """
-    pass
 
-def getStudentEmail(directory,student):
-    """
-        Function Name: getStudentGradeLevel
-        Parameters:
-            Directory <dict> : Student Directory that is specified in the main() function
-            student <String> : String that corresponds to the student name
-            Return Type:  string corresponding to student's email
-        Description:
-            A Function that returns a string of the student's email at dictionary[student]
-    """
-    pass
+def getStudentGradeLevel(directory, student):
+    if student in directory:
+        return directory[student]["gradelevel"]
+    return None
+
+
+def getStudentEmail(directory, student):
+    if student in directory:
+        return directory[student]["email"]
+    return None
+
 
 def getStudentsByGradeLevel(directory, gradelevel):
-    """
-        Function Name: getStudentsbyGradeLevel
-        Parameters:
-            Directory <dict> : Student Directory that is specified in the main() function
-            gradelevel <int> : integer corresponding to the grade level
-            Return Type:  none
-        Description:
-            procedure that prints out all of the students of a corresponding grade level.
-    """
-    pass
+    for student in directory:
+        if directory[student]["gradelevel"] == gradelevel:
+            print(student)
+
 
 def addStudent(directory):
-    """
-        Function Name: addStudent
-        Parameters:
-            Directory <dict> : Student Directory that is specified in the main() function
-            Return Type:  none
-        Description:
-            procedure that adds a student with the following values: <dict> grades, <int> grade level, <string> email to the <dict>directory
-    """
-    pass
+    name = input("Enter student name: ")
+    email = input("Enter student email: ")
+    gradelevel = int(input("Enter grade level: "))
+
+    grades = {}
+    num_classes = int(input("How many classes? "))
+
+    for i in range(num_classes):
+        course = input("Course name: ")
+        grade = int(input("Grade: "))
+        grades[course] = grade
+
+    directory[name] = {
+        "grades": grades,
+        "gradelevel": gradelevel,
+        "email": email
+    }
+
 
 def removeStudent(directory, student):
-    """
-        Function Name: removeStudent
-        Parameters:
-            Directory <dict> : Student Directory that is specified in the main() function
-            student <String> : String that corresponds to the student name
-            Return Type:  none
-        Description:
-            procedure that removes the student at directory[student]
-    """
-    pass
+    if student in directory:
+        del directory[student]
+        print("Student removed.")
+    else:
+        print("Student not found.")
+
 
 def updateGrade(directory, student):
-    """
-     Function Name: updateGrades
-        Parameters:
-            Directory <dict> : Student Directory that is specified in the main() function
-            student <String> : String that corresponds to the student name
-            Return Type:  none
-        Description:
-            procedure that updates a student's gradebook
-    """
-    pass
+    if student in directory:
+        course = input("Enter course to update: ")
+        grade = int(input("Enter new grade: "))
+        directory[student]["grades"][course] = grade
+    else:
+        print("Student not found.")
 
 
 def calculateGPA(directory, student):
-    """
-     Function Name: calculateGPA
-        Parameters:
-            Directory <dict> : Student Directory that is specified in the main() function
-            student <String> : String that corresponds to the student name
-            Return Type:  <float> average of all grades
-        Description:
-            creates a GPA variable set equal to zero, then computes the average (mean) of all of the grades in the gradebook
-    """
     GPA = 0
-    pass
+    grades = directory[student]["grades"].values()
+
+    total = sum(grades)
+    count = len(grades)
+
+    if count > 0:
+        GPA = total / count
+
+    return GPA
 
 
-def checkHonorRoll(directory,student):
-    """
-     Function Name: checkHonorRoll
-        Parameters:
-            Directory <dict> : Student Directory that is specified in the main() function
-            student <String> : String that corresponds to the student name
-            Return Type:  <bool> True or False depending on a student has made the honor roll or not
-        Description:
-            Calls the calculateGPA() subroutine that gets the GPA then checks all grades in the grade book to see if they are all over 81, then returns True or False depending on if the GPA is 88 or better
-    """
-    pass
+def checkHonorRoll(directory, student):
+    gpa = calculateGPA(directory, student)
+
+    grades = directory[student]["grades"].values()
+
+    for grade in grades:
+        if grade <= 81:
+            return False
+
+    if gpa >= 88:
+        return True
+
+    return False
+
 
 def printMenu():
-    """ 
-         Function Name: printMenu
-        Parameters:
-           none
-        Description:
-            prints out the menu with 7 menu options, along with an 8th one corresponding to quitting out of the function
-    """
-    pass
+    print("\nStudent Records System")
+    print("1. Get Student Info")
+    print("2. Get Student Grades")
+    print("3. Get Students By Grade Level")
+    print("4. Add Student")
+    print("5. Remove Student")
+    print("6. Update Grade")
+    print("7. Check Honor Roll")
+    print("8. Quit")
+
 
 def main():
-    #TODO: Implement every function in main
-    Students = {}
-    pass
+
+    Students = {
+        "Jimmy": {
+            "grades": {"Math": 90, "Science": 85},
+            "gradelevel": 10,
+            "email": "jimmy@email.com"
+        },
+        "Timmy": {
+            "grades": {"Math": 80, "Science": 88},
+            "gradelevel": 11,
+            "email": "timmy@email.com"
+        },
+        "Mike": {
+            "grades": {"Math": 95, "Science": 92},
+            "gradelevel": 12,
+            "email": "mike@email.com"
+        },
+        "John": {
+            "grades": {"Math": 75, "Science": 70},
+            "gradelevel": 9,
+            "email": "john@email.com"
+        }
+    }
+
+    while True:
+        printMenu()
+        choice = input("Choose an option: ")
+
+        if choice == "1":
+            student = input("Student name: ")
+            print(getStudent(Students, student))
+
+        elif choice == "2":
+            student = input("Student name: ")
+            print(getStudentGrades(Students, student))
+
+        elif choice == "3":
+            grade = int(input("Grade level: "))
+            getStudentsByGradeLevel(Students, grade)
+
+        elif choice == "4":
+            addStudent(Students)
+
+        elif choice == "5":
+            student = input("Student name: ")
+            removeStudent(Students, student)
+
+        elif choice == "6":
+            student = input("Student name: ")
+            updateGrade(Students, student)
+
+        elif choice == "7":
+            student = input("Student name: ")
+            print(checkHonorRoll(Students, student))
+
+        elif choice == "8":
+            break
+
+        else:
+            print("Invalid choice")
+
 
 if __name__ == "__main__":
     main()
