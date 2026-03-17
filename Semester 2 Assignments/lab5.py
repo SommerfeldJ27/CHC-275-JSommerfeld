@@ -1,6 +1,6 @@
 """
-Name:
-Section:
+Name: Jackson Sommerfeld
+Section: 275-2
 Description: Template for Lab 5
 """
 
@@ -150,4 +150,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
