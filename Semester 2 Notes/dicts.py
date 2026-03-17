@@ -1,330 +1,253 @@
 #dicts.py
 
 """ 
-We've only ever used one data structure so far:
-    - A list
-    - 2D list 
+We just did 2D lists which are just lists of lists. The only real way we know to aggregate data under one variable name is through lists.
+
+Today we are going to learn dictionaries, which is another kind of data structures
+
+data structures = its own subfield of CS dedicated to the storage of information and efficient retrival/sorting of that data
+
+Dictionaries == Hashmaps/Hash tables in other programming languages
+
+Information in dictionaries are stored using something called a hash function <- a really complicated mathematics function
+https://en.wikipedia.org/wiki/Hash_function <- Source if you want to learn how this works theoretically
+
+
+Lists <- ORDERED collections of data under one variable name
+
+What uniquely determines a value inside of a list? <- the index uniquely determines a value/position
+
+list = [1,0,1,1,1] <- the difference between the ones is which index its at.
+
+What happens if you remove something in the middle of a list? Everything AFTER that value shifts over to i-1, which is BAD in some cases. 
+
+Think about our implementation for bank:
+
+names = []
+balances = []
+
+We supposed that the schema (defining structure of the data) of names and balances is that each name and balance shares THE SAME index
+
+JOHN = INDEX 0 = names[0] and balances[0] 
+
+This is not the ideal way to do this for this reason: 
+    - Remove people from the bank.
+    - If WE ONLY removed from names
     
-2D Lists as lists of lists. 
+    
+Joseph, Mark
+1000, 0, -250
 
-What uniquely determines an element in a list? If I were to get an element
-from a list, what piece of information within the list identifies that object?
-    - Its position (index) inside of the list
+If we get any sort of schema drift (if the lists become misaligned), then all of a sudden our records are not correct anymore. This is the motivation
+for why we care about dictionaries
 
-That might not be the best way to uniquely identify an object. There are other ways
-to naturally order objects.
+Lists had indices and values,
 
-    - We can order people:
-        - Birthdate (index) 
-        - Class year (not necessarily an index because there's no difference within
-        the groups)
-        - By the order they walked in the room (which is basically another index)
-        - Identify them by their names 
+Dictionaries have key-value pairs
+
+A dictionary is an UNORDERED list where the elements are (key,value) pairs
+
+"""
+
+mydict = {}
+        #curly braces to define a dictionary
+
+#we can populate a dictionary at variable instantiation by using :,s
+
+mydict2 = {"John":1000, "Joseph":0, "Mark":-250}
+#So now each name and balance is instead a key,value pair inside of a dictionary. 
+#How do we retrieve from a dictionary? How did you do it for a list? You would use the square bracket operator
+
+print(mydict2["John"]) #what do we expect to print out? 1000
+
+""" 
+Getting values from a dictionary uses this syntax
+
+<name of the dictionary>[<key>] <- this returns the value at the key
+"""
+
+print(mydict2["Mark"]) #-250
+
+""" 
+Rather than indices uniquely determining values, KEYS uniquely determine values. 
+
+Let's talk about keys:
+    - What is allowed to be a key? IMMUTABLE OBJECTS
+        - Mutable: Lists
+        - Immutable: strings, numerics
+        - Immutable objects are the only things allowed to be keys <- its because of the hash function really 
         
-Lists in python are ordered sequences of objects and the index uniquely identifies
-each object 
-   
-   
-[1,2,3,1] 
+        | key 2 | key 1 | key 3
+          4 bytes 2 bytes  1 byte
+    - Can a key have more than one value? NO
+        - Graphical test we use in algebra 2 to determine if a graph is a function? 
+            - VLT = Every X value has EXACTLY one Y value
+            - Dictionaries work on a hash FUNCTION
 
-We might want to identify things by other attributes: Dictionary 
+Let's talk about Values:
+    - What is allowed to be a value? LITERALLY ANYTHING can be a value? 
+        - does that include lists? YES
+        - does that include strings? YES
+        - does that include ints? YES
+        - does that include another dictionary? YES
+ """
+ 
+mydict3 = {1:["a","b","c"],2:{"foo":10},3:True}
 
-In other languages, they might not be called dictionaries, hashmaps/hash tables
-
-The way dictionaries work is you have a list of UNORDERED objects, and they are differentiated
-by their key 
-
-{(key:value), (key:value), (key:value)}
-
-Objects in dictionaries are key:value pairs
-"""
-
-products = {"oranges":0, "apples":5, "pears":10, "grapes":8}
-#to make a dictionary in python, you would use the curly braces at variable 
-#creation
+print(mydict3) 
 
 """ 
-In my products dictionary, I'm going to create a bunch of key:value pairs that 
-correspond to products and their quantities
+The question is, how we get get "a" from this dictionary?
 
-when we create a dictionary, we can fill the dictionary with key:value pairs
-by using <key>:<value> 
+How did we get individual values from a 2D list? How many sets of square brackets did we use? two sets?
 
-EVERY KEY REQUIRES A VALUE. How do you think I would retrieve a value from a dictionary?
+grid[row][col]
 
-I can retrieve information using the square bracket operator as usual
+The same syntax works for nested lists inside dictionaries and nested dictionaries inside dictionaries
 """
 
-print(f"Oranges: {products["oranges"]}")
+print(mydict3[1][1]) #we should expect to get the letter b
+print(mydict3[2]["foo"]) #print 10
 
 """ 
-list[index], dict["key"]
+Keep this example in your brain, highly important for the lab? How about adding things to a dictionary
 
-As opposed to lists where the position uniquely identifies every object, in a dictionary, it is the key that uniquely identifies
-every object. 
+.append()  <- does not exist for dictionaries
 
-
+<dict>[<newkey>] = <newvalue>
 """
 
-productsList = [0,5,10,8] #same values as the products dictionary
-print(productsList[0]) #i don't know what this values correspond to? 
+mydict2["Frank"] = 10000 #this adds Frank:10000 to the dictionary
 
-productsList.pop(0)
-print(productsList[0]) #5
+print(mydict2)
+print(mydict2["Frank"])
 
 """ 
-Using the position as a unique identifier might not be the best idea in some circumstances because what happens
-when an item gets added or removed from the list? All of the positions change
+How about removing something from a dictionary? There are two different ways: one of which is very unsafe, the other way implicitly handles
+the exception that you could get. 
 
-if index 0 is SUPPOSED to correspond to oranges, and for some reason .pop gets called on the list, then our indices
-no longer match up with our table of contents.
+1) del keyword <- this just zaps the key:value pair from memory 
 
-Dictionaries circumvent this problem by having very verbose indentifiers for objects. The existence of dictionaries
-directly solves the problem from lab 2 involving banks, because in that lab we had two parallel lists, so if one list
-becomes unaligned with the other, we will end up having a lot of problems. 
-
-Rather than having two parallel lists, one for the name and one for the balance, we couldve instead had 
-
-A SINGLE DICTIONARY, where the key was the name and value the balance
-
-
-There are some rules you need to know about dictionaries (about keys):
-    - what things can be keys?
-        - Keys MUST be immutable: They can't change 
-            - Strings
-            - integer values
-            - Floating point values
-        - the technical reason why this is: 
-            - Dictionaries are also called hashmaps, so how it works is the data is fed into a hashing function based on the key
-            so if the key changes, the output of the hashing function also changes (https://en.wikipedia.org/wiki/Hash_function)
-    - Can you have duplicate objects inside of a dictionary? 
-        - The answer is YES for values but NO for keys
-            - Having a single key map to two things breaks a certain mathematical principle about functions: 
-                - This breaks the vertical line test 
-                
-How do we add things into a dictionary? in a list we would use .append(), but for dictionaries this wont work because
-we need to also specify a key   
 """
-
-products["bananas"] = 15
-#the syntax is <nameofdict>[<new key>] = <new value> this is completely different syntax than before
-print(f"bananas: {products["bananas"]}")
-#what if I tried to redeclare my key and point it to a new thing
-products["bananas"] = 10
-print(f"bananas: {products["bananas"]}")
-#because having one key mapping to two objects breaks the VLT, the natural way to deal with this kind of operation
-#is to just overwrite the value at that key
+del mydict2["John"]
+print(mydict2)
 
 """ 
-Do all of my keys need to be the same data type? The answer is no,
+The second way is .pop(), which is a much safer way, for a list this takes in ONE parameters.
+
+but for a dictionary, it takes in two parameters.
+
+
 """
 
-products[1] = 60
-print(f"1: {products[1]}")
+mydict2.pop("Joseph","user not found")
+            #key     #error message if key not found
+print(mydict2)
+
+print(mydict2.pop("Joseph","user not found")) #remember returned values need to be printed if you want to use them 
+print(mydict2)
 
 """ 
-What happens if we print the entire dictionary? We are going to get all of the keys and their corresponding values
+We've answered:
+    1)How do we retrieve information
+    2)How do we add information
+    3)How do we remove information
+    
+We still need to answer:
+    1)How do looping statements behave for dictionaries
+    
+The developers of python have two natural choices for what happens in a for-each loop
+
+
 """
 
-print(products)
-
+for x in mydict2: #Lets think about what makes sense for x to be #it could be either the keys or the values? 
+    print(x) #we got the keys
+    print(mydict2[x]) #if we want the values within the dictionaries
 """ 
-What about looping statements? If you know what happens you're a genius, but otherwise its fine. For looping statements over
-dictionaries, there are two natural options:
+for each loops give us the keys. 
 
-1) Keys
-2) Values
+There is something important that we need to make note of. square brackets ALWAYS directly accesses memory. There might be times where
+we DONT want to do that
+
+
+.values() <- returns a view object of the values
+.keys() <- return view objects of the keys
 """
 
-for x in products: 
-    print(products[x])
+for x in mydict2.values():
+    print(x) #this gets the balances
+    
     
 """ 
-For loops over dictionaries explicitly returns the keys. So if I wanted the value, how would I change that print statement?
-knowing that x is now a key.
-
-Remember if you want the values out of a dictionary you need to use square brackets. for-each loops behave strangely for dictionaries
-
-There are two helper functions baked into dictionaries that allow you to make the "shallow" copies of the values/keys
-
-Let's say you were a teacher, and you wanted to see if a curve would dramatically affect the mean of a test 
-"""
-
-test = {"john":60,"mark":75}
-
-""" 
-test.values()
-<dict.values() <- returns a list of the values inside of the dictionary
-"""
-average = 0
-for grade in test.values():
-    average += grade + 5
-    
-average= average/2
-print(average)
-print(sum(test.values())/len(test.values()))
-
-print(test)
-
-""" 
-dict.keys() gives you the keys
-"""
-
-for name in test.keys():
-    print(name)
-    
-""" 
-What about the values? Would there be a natural restriction on values? No, anything can be a value
-
-INCLUDING:
-    - lists
-    - Another dictionary
-"""
-
-testdict = {1:"hello",2:True,3:[1,2,3],4:{"foo":1,"bar":2}}
-print(testdict)
-
-""" 
-Last class we covered dictionaries. These are a new kind of data structure that offer tradeoffs versus standard lists
-
-1) Information retrieval ends up being more descriptive, because we store things in key-value pairs over position-based 
-descriptions, information retrieval ends up becoming more intuitive. 
-2) the syntax is much harder and there are a lot of limitations on what can be a key
-    i) Immutable objects
-        - Integers
-        - Strings
-        - Tuple <- we'll get to this
+Tuples: 
+    - Keys: HAVE TO BE IMMUTABLE
+        - Restricts us to Strings and Numbers <- this might not be sufficient for some usecases
         
-Creating a dictionary requires curly braces
-
-mydict = {} <- curly braces instead of square brackets
-
-information retrieval is done the same way as a list
-
-mydict[<key>] <- this returns the value associated with the key 
-
-There are helper functions that might be useful such as .keys() and .values()
-
-1) When we do a for-loop over a dictionary, what does the temp variable represent?
-    - Keys or Values? For-loops return keys
-"""
-
-
-""" 
-Adding things is different compared to lists: 
-    1) for a list we used .append()
-    2) for a dictionary, we need to specify both a key and a value 
-        i) dict[<key>] = value
         
-Dictionaries are based on something called a hash function <- wait until college to figure this out
-
-There are some questions that we have unanswered:
-    1) How do we remove something from dictionaries? 
-        - There are two ways 
 """
 
-
-mydict = {1:"foo",2:"bar",3:"hello"}
-
+accounts = {} #<= this is how you create a dictionary
 
 """ 
-The unsafe way: is using the del keyword.
+KEYS: NAME FOR THE ACCOUNT HOLDER
+VALUE: BALANCE
+
+THE SCHEMA OF THIS DICTIONARY IS KEYS: ACCOUNT NAMES VALUES: BALANCES (NAME:BALANCE)
+
+two people: 
+    - John Smith : -250
+    - John Smith : 1000000
 """
 
-del mydict[1] #this will remove the key/value pair at the key specified
-print(mydict)
-
-#del mydict[1] #This is unsafe because you can accidentally delete the entire dictionary or you can get a keyError
-#which terminates the program if the key doesn't exist. 
-#print(mydict)
+accounts["John Smith"] = -250 #we add the first John Smith
+print(accounts)
+accounts["John Smith"] = 1000000 #this is no longer adding into the dictionary, this becomes variable reassignment
+print(accounts)
 
 """ 
-Rather than getting name and key errors from making a mistake with del keyword, we can use a dictionary builtin function
-that accomplishes the same thing but returns a value instead of just straight up crashing the program
+NAMES ARE NOT SUFFICIENT TO UNIQUELY DETERMINE DIFFERENT CORRECT. IDEALLY IN A PERFECT WORLD, WE WANT MULTIPLE PIECES OF INFORMATION
+TO UNIQUELY DETERMINE SOMEONE
+    - LISTS 
+    - DICTIONARIES
+    
+are these mutable or immutable? MUTABLE, so we can't use them as keys. we need a new data structure that can hold a collection of objects
+while also being immutable
 
-.pop(<key>)
+THE TUPLE SOLVES THIS PROBLEM
 """
 
-mydict.pop(2)
-print(mydict) #3:"hello"
+mytuple = () #<- this is a tuple
+#typically tuples are used as unique identifiers for other variables
+
+ID1 = (1,"John Smith")
+ID2 = (2,"John Smith") 
+
+accounts2 = {ID1:-250, ID2:1000000}
+
+print(accounts2[ID2])
 
 """ 
-.pop() for lists take no other argument, but for dictionaries, if the doesn't exist anymore, you can specify a second argument
-that is returned when python doesn't find the key specified
-"""
-print("after second pop")
-mydict.pop(2,0) #pop key 2 and return 0 if key 2 isn't in the dictionary
-print(mydict)
+THIS IS A COMMON INTERNSHIP INTERVIEW PROBLEM:
 
-print(mydict.pop(2,"object not found"))
+    1) What is the difference between immutable and mutable objects?
+    2) What is the difference between a tuple and a list? 
+"""
 
 """ 
-.pop() returns the value that was deleted
+REMEMEBER THIS FOR THE LAB:
+
+DIRECTORY <- DICTIONARY
+
+<"NAME OF THE STUDENT">:{"GRADES":{},"GRADELEVEL":INT,"EMAIL":STRING}
+
+
+FOR ADD STUDENT:
+    -ASK FOR THE NAME
+    -EACH GRADE INDIVIDUALLY
+    -THE EMAIL
+    -GRADE LEVEL
+    
+    -ASSEMBLE THE GRADES DICTIONARY USING THE GRADES YOU ASKED FOR 
+    -ADD THE STUDENT INTO THE DIRECTORY DICTIONARY USING THE NAME YOU ASKED FOR AS THE KEY
 """
-
-mydict.clear() #this just removes everything from the dictionary 
-print(mydict)
-
-""" 
-mutable objects are pass by reference: lists, dictionaries, etc. 
-
-immutable objects are pass by value: integers and floats/strings 
-
-dictionaries model file types called .JSONs <- when you are parsing JSONs through dictionaries it would be useful
-to have a clear function because you don't want to destroy the RAM on your computer. 
-
-The last new data structure I'm willing to introduce in this class is called a tuple. <- They are just lists that are immutable
-
-tuples use the ordered pair notation. (x,y) <- tuples use this same notation
-"""
-
-mytuple = (10,20,30)
-print(mytuple)
-
-#mytuple[1] = 200 #tuples are immutable, this should give me an error
-print(mytuple)
-
-"""
-why do we care about tuples? they just seem like worse lists. 
-
-can a List be a key? lists are mutable so they can't be. 
-
-So if I wanted a key to be a collection of information, I can't use a list
-
-People can have the same name, so I can't just use a raw string
-
-"John Smith" <- can't have this just be my key, you can have multiple John Smiths 
-
-(studentID,firstName,LastName) <- this is a satisfying key because studentID uniquely determines a student 
-"""
-
-students = {}
-
-
-students[(1,"John","Smith")] = {"english":80,"math":90,"econ":71} #this is typically a much safer way to store
-students[(2,"Myles","Whatever")] = {"english":85,"math":90,"econ":71} 
-#user information in a dictionary. 
-print(students)
-
-""" 
-Typically going to be served data in a .csv (which is a spreadsheet) -> construct keys using tuples from columns
-of the spreadsheet -> you will use such tuples as keys for a dictionary -> you will serve that data as a .JSON file 
-from a dictionary 
-
-^This is how APIs work basically 
-"""
-
-
-#Syntax tip for the lab
-mydict = {} #students in main
-mydict1 = {} #individual student level
-mydict2 = {"foo":10} #grades
-
-mydict["a"] = mydict1
-mydict1[1] = mydict2
-
-#in a 2D list we did double square square brackets to get an individual number
-
-print(mydict["a"])
-print(mydict["a"][1]) #this should give me mydict2
-print(mydict["a"][1]["foo"]) #this will give me the number 10
