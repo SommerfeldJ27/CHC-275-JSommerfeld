@@ -12,52 +12,16 @@ You are to implement this using functions, dictionaries, and lists
 
 
 def getStudent(directory, student):
-    """
-        Function Name: getStudent
-        Parameters:
-            Directory <dict> : Student Directory that is specified in the main() function
-            student <String> : String that corresponds to the student name
-            Return Type: Multiple returns of all values associated to the keys at directory[student] 
-        Description:
-            A Function that returns all of the values associated to the keys in the dictionary at key "student"
-    """
-    pass
+    return directory[student]["grades"], directory[student]["grade_level"], directory[student]["email"]
 
 def getStudentGrades(directory, student):
-    """
-        Function Name: getStudentGrades
-        Parameters:
-            Directory <dict> : Student Directory that is specified in the main() function
-            student <String> : String that corresponds to the student name
-            Return Type: Dictionary of Student Gradebook
-        Description:
-            A Function that returns a Dictinary of the student's gradebook at dictionary[student]
-    """
-    pass
+    return directory[student]["grades"]
 
 def getStudentGradeLevel(directory,student):
-    """
-        Function Name: getStudentGradeLevel
-        Parameters:
-            Directory <dict> : Student Directory that is specified in the main() function
-            student <String> : String that corresponds to the student name
-            Return Type:  integer corresponding to student's grade level
-        Description:
-            A Function that returns a Dictionary of the student's gradebook at dictionary[student]
-    """
-    pass
+    return directory[student]["gradelevel"]
 
 def getStudentEmail(directory,student):
-    """
-        Function Name: getStudentGradeLevel
-        Parameters:
-            Directory <dict> : Student Directory that is specified in the main() function
-            student <String> : String that corresponds to the student name
-            Return Type:  string corresponding to student's email
-        Description:
-            A Function that returns a string of the student's email at dictionary[student]
-    """
-    pass
+    return directory[student]["email"]
 
 def getStudentsByGradeLevel(directory, gradelevel):
     """
@@ -72,6 +36,11 @@ def getStudentsByGradeLevel(directory, gradelevel):
     pass
 
 def addStudent(directory):
+    name = input("Please Enter Name:")
+    grades = int("Please Enter Grades") #needs to be fixed
+    email = input("please enter email")
+    gradelevel = int("please enter grade level")
+    directory[name] = {"grades": grades, "email": email, "gradelevel": gradelevel}
     """
         Function Name: addStudent
         Parameters:
@@ -83,16 +52,7 @@ def addStudent(directory):
     pass
 
 def removeStudent(directory, student):
-    """
-        Function Name: removeStudent
-        Parameters:
-            Directory <dict> : Student Directory that is specified in the main() function
-            student <String> : String that corresponds to the student name
-            Return Type:  none
-        Description:
-            procedure that removes the student at directory[student]
-    """
-    pass
+    directory[student].pop #.pop instead of delete should be 1 liner
 
 def updateGrade(directory, student):
     """
@@ -150,7 +110,33 @@ def main():
                 "Timmy": {"grades": {"Math": 80, "Science": 88},"gradelevel": 11,"email": "timmy@email.com"},
                 "Mike": {"grades": {"Math": 95, "Science": 92},"gradelevel": 12,"email": "mike@email.com"},
                 "John": {"grades": {"Math": 75, "Science": 70},"gradelevel": 9,"email": "john@email.com"}}
-    pass
+    printMenu()
+    choice = input("Choose an option: ")
+
+    if choice == "1":
+        addStudent(Students)
+
+    elif choice == "2":
+        student = input("Student name: ")
+        removeStudent(Students, student)
+
+    elif choice == "3":
+        student = input("Student name: ")
+        print(getStudent(Students, student))
+
+    elif choice == "4":
+        student = input("Student name: ")
+        updateGrade(Students, student)
+
+    elif choice == "6":
+        grade = int(input("Grade level: "))
+        getStudentsByGradeLevel(Students, grade)
+
+    elif choice == "7":
+        return
+
+    else:
+            print("Invalid choice")
 
 if __name__ == "__main__":
     main()
