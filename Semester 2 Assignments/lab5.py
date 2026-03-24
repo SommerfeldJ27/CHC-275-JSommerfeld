@@ -146,9 +146,12 @@ def printMenu():
 
 def main():
     #TODO: Implement every function in main
-    Students = {"John,English:12, Math:12, History:12, Religion:12, 10, johne@chc.com"}
+    Students = {"Jimmy": {"grades": {"Math": 90, "Science": 85},"gradelevel": 10,"email": "jimmy@email.com"},
+                "Timmy": {"grades": {"Math": 80, "Science": 88},"gradelevel": 11,"email": "timmy@email.com"},
+                "Mike": {"grades": {"Math": 95, "Science": 92},"gradelevel": 12,"email": "mike@email.com"},
+                "John": {"grades": {"Math": 75, "Science": 70},"gradelevel": 9,"email": "john@email.com"}}
     pass
 
 if __name__ == "__main__":
     main()
-    
+
