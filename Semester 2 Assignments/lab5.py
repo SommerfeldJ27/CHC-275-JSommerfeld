@@ -134,18 +134,19 @@ def checkHonorRoll(directory,student):
     pass
 
 def printMenu():
-    """ 
-         Function Name: printMenu
-        Parameters:
-           none
-        Description:
-            prints out the menu with 7 menu options, along with an 8th one corresponding to quitting out of the function
-    """
+    print("Welcome to Calvert Hall's Student Directory!")
+    print("1. Add Student")
+    print("2. Remove Student")
+    print("3. Get Student")
+    print("4. Update Grades")
+    print("5. Calculate GPA")
+    print("6. Get Students by Grade Level")
+    print("7. Exit")
     pass
 
 def main():
     #TODO: Implement every function in main
-    Students = {}
+    Students = {"John,English:12, Math:12, History:12, Religion:12, 10, johne@chc.com"}
     pass
 
 if __name__ == "__main__":
