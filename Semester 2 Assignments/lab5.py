@@ -12,7 +12,7 @@ You are to implement this using functions, dictionaries, and lists
 
 
 def getStudent(directory, student):
-    return directory[student]["grades"], directory[student]["grade_level"], directory[student]["email"]
+    return directory[student]["grades"], directory[student]["gradelevel"], directory[student]["email"]
 
 def getStudentGrades(directory, student):
     return directory[student]["grades"]
