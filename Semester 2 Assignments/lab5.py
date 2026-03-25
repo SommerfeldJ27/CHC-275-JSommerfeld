@@ -37,13 +37,13 @@ def getStudentsByGradeLevel(directory, gradelevel):
 
 def addStudent(directory):
     name = input("Please Enter Name:")
-    enggrades = int("Please Enter English Grade:")
-    mathgrades = int("Please Enter Math Grade:")
-    histgrades = int("Please Enter History Grade:")
-    relgrades = int("Please Enter Religion Grade:")
+    enggrades = float("Please Enter English Grade:")
+    mathgrades = float("Please Enter Math Grade:")
+    histgrades = float("Please Enter History Grade:")
+    relgrades = float("Please Enter Religion Grade:")
     grades = {"English": enggrades, "Math": mathgrades, "History": histgrades, "Religion": relgrades}
     email = input("please enter email")
-    gradelevel = int("please enter grade level")
+    gradelevel = float("please enter grade level")
     directory[name] = {"grades": grades, "email": email, "gradelevel": gradelevel}
     """
         Function Name: addStudent
