@@ -37,7 +37,11 @@ def getStudentsByGradeLevel(directory, gradelevel):
 
 def addStudent(directory):
     name = input("Please Enter Name:")
-    grades = int("Please Enter Grades") #needs to be fixed
+    enggrades = int("Please Enter English Grade:")
+    mathgrades = int("Please Enter Math Grade:")
+    histgrades = int("Please Enter History Grade:")
+    relgrades = int("Please Enter Religion Grade:")
+    grades = {"English": enggrades, "Math": mathgrades, "History": histgrades, "Religion": relgrades}
     email = input("please enter email")
     gradelevel = int("please enter grade level")
     directory[name] = {"grades": grades, "email": email, "gradelevel": gradelevel}
@@ -52,7 +56,7 @@ def addStudent(directory):
     pass
 
 def removeStudent(directory, student):
-    directory[student].pop #.pop instead of delete should be 1 liner
+    directory.pop(student) #.pop instead of delete should be 1 liner
 
 def updateGrade(directory, student):
     """
@@ -106,10 +110,10 @@ def printMenu():
 
 def main():
     #TODO: Implement every function in main
-    Students = {"Jimmy": {"grades": {"Math": 90, "Science": 85},"gradelevel": 10,"email": "jimmy@email.com"},
-                "Timmy": {"grades": {"Math": 80, "Science": 88},"gradelevel": 11,"email": "timmy@email.com"},
-                "Mike": {"grades": {"Math": 95, "Science": 92},"gradelevel": 12,"email": "mike@email.com"},
-                "John": {"grades": {"Math": 75, "Science": 70},"gradelevel": 9,"email": "john@email.com"}}
+    Students = {"Jimmy": {"grades": {"English": 90, "Math": 85, "History": 75, "Religion": 89},"gradelevel": 10,"email": "jimmy@email.com"},
+                "Timmy": {"grades": {"English": 90, "Math": 85, "History": 75, "Religion": 89},"gradelevel": 11,"email": "timmy@email.com"},
+                "Mike": {"grades": {"English": 90, "Math": 85, "History": 75, "Religion": 89},"gradelevel": 12,"email": "mike@email.com"},
+                "John": {"grades": {"English": 90, "Math": 85, "History": 75, "Religion": 89},"gradelevel": 9,"email": "john@email.com"}}
     printMenu()
     choice = input("Choose an option: ")
 
