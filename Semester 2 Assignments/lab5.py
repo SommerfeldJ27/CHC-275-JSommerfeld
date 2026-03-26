@@ -24,6 +24,9 @@ def getStudentEmail(directory,student):
     return directory[student]["email"]
 
 def getStudentsByGradeLevel(directory, gradelevel):
+    for student in directory:
+        if directory[student]["gradelevel"] == gradelevel:
+            print(student)
     """
         Function Name: getStudentsbyGradeLevel
         Parameters:
@@ -111,7 +114,7 @@ def printMenu():
 
 def main():
     #TODO: Implement every function in main
-    Students = {"Jimmy": {"grades": {"English": 90, "Math": 85, "History": 75, "Religion": 89},"gradelevel": 10,"email": "jimmy@email.com"},
+    Students = {"Jimmy": {"grades": {"English": 90, "Math": 85, "History": 75, "Religion": 89},"gradelevel": 12,"email": "jimmy@email.com"},
                 "Timmy": {"grades": {"English": 90, "Math": 85, "History": 75, "Religion": 89},"gradelevel": 11,"email": "timmy@email.com"},
                 "Mike": {"grades": {"English": 90, "Math": 85, "History": 75, "Religion": 89},"gradelevel": 12,"email": "mike@email.com"},
                 "John": {"grades": {"English": 90, "Math": 85, "History": 75, "Religion": 89},"gradelevel": 9,"email": "john@email.com"}}
