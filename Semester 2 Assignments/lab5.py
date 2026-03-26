@@ -57,17 +57,12 @@ def updateGrade(directory, student):
 
 
 def calculateGPA(directory, student):
-    """
-     Function Name: calculateGPA
-        Parameters:
-            Directory <dict> : Student Directory that is specified in the main() function
-            student <String> : String that corresponds to the student name
-            Return Type:  <float> average of all grades
-        Description:
-            creates a GPA variable set equal to zero, then computes the average (mean) of all of the grades in the gradebook
-    """
     GPA = 0
-    pass
+    grades = directory[student]["grades"]
+    total = sum(grades)
+    classes = len(grades)
+    GPA = total / classes
+    return GPA
 
 
 def checkHonorRoll(directory,student): #Still needs work done
@@ -121,6 +116,10 @@ def main():
     elif choice == "4":
         student = input("Student name: ")
         updateGrade(Students, student)
+    
+    elif choice == "5":
+        student = input("Student name: ")
+        calculateGPA(Students, student)
 
     elif choice == "6":
         gradelevel = int(input("Grade level: "))
