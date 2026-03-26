@@ -37,14 +37,14 @@ def getStudentsByGradeLevel(directory, gradelevel):
 
 def addStudent(directory):
     name = input("Please Enter Name:")
-    enggrades = float("Please Enter English Grade:")
-    mathgrades = float("Please Enter Math Grade:")
-    histgrades = float("Please Enter History Grade:")
-    relgrades = float("Please Enter Religion Grade:")
+    enggrades = float(input("Please Enter English Grade:"))
+    mathgrades = float(input("Please Enter Math Grade:"))
+    histgrades = float(input("Please Enter History Grade:"))
+    relgrades = float(input("Please Enter Religion Grade:"))
     grades = {"English": enggrades, "Math": mathgrades, "History": histgrades, "Religion": relgrades}
     email = input("please enter email")
-    gradelevel = float("please enter grade level")
-    directory[name] = {"grades": grades, "email": email, "gradelevel": gradelevel}
+    gradelevel = int(input("please enter grade level"))
+    directory[name] = {"name": name, "grades": grades, "gradelevel": gradelevel, "email": email}
     """
         Function Name: addStudent
         Parameters:
@@ -56,7 +56,8 @@ def addStudent(directory):
     pass
 
 def removeStudent(directory, student):
-    directory.pop(student) #.pop instead of delete should be 1 liner
+    for student in directory:
+        directory.pop(student) #.pop instead of delete should be 1 liner
 
 def updateGrade(directory, student):
     """
