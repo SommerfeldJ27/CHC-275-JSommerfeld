@@ -27,16 +27,6 @@ def getStudentsByGradeLevel(directory, gradelevel):
     for student in directory:
         if directory[student]["gradelevel"] == gradelevel:
             print(student)
-    """
-        Function Name: getStudentsbyGradeLevel
-        Parameters:
-            Directory <dict> : Student Directory that is specified in the main() function
-            gradelevel <int> : integer corresponding to the grade level
-            Return Type:  none
-        Description:
-            procedure that prints out all of the students of a corresponding grade level.
-    """
-    pass
 
 def addStudent(directory):
     name = input("Please Enter Name:")
@@ -48,15 +38,6 @@ def addStudent(directory):
     email = input("please enter email")
     gradelevel = int(input("please enter grade level"))
     directory[name] = {"name": name, "grades": grades, "gradelevel": gradelevel, "email": email}
-    """
-        Function Name: addStudent
-        Parameters:
-            Directory <dict> : Student Directory that is specified in the main() function
-            Return Type:  none
-        Description:
-            procedure that adds a student with the following values: <dict> grades, <int> grade level, <string> email to the <dict>directory
-    """
-    pass
 
 def removeStudent(directory, student):
     for student in directory:
@@ -89,7 +70,12 @@ def calculateGPA(directory, student):
     pass
 
 
-def checkHonorRoll(directory,student):
+def checkHonorRoll(directory,student): #Still needs work done
+    GPA = 0
+    if GPA >= 88:
+        print(f"{student}, made the Honor Roll!")
+    else:
+        print(f"sorry but {student}, did not make the Honor Roll")
     """
      Function Name: checkHonorRoll
         Parameters:
@@ -137,8 +123,8 @@ def main():
         updateGrade(Students, student)
 
     elif choice == "6":
-        grade = int(input("Grade level: "))
-        getStudentsByGradeLevel(Students, grade)
+        gradelevel = int(input("Grade level: "))
+        getStudentsByGradeLevel(Students, gradelevel)
 
     elif choice == "7":
         return
