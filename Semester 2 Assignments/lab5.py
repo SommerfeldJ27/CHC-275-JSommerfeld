@@ -26,6 +26,8 @@ def getStudentsByGradeLevel(directory, gradelevel):
     for student in directory:
         if directory[student]["gradelevel"] == gradelevel:
             print(student)
+        else:
+            return KeyError
 
 def addStudent(directory):
     name = input("Please Enter Name: ").strip().lower()
@@ -43,6 +45,8 @@ def removeStudent(directory, student):
     if student in directory:
         directory.pop(student)
         print(f"{student} was removed successfully")
+    else:
+        return KeyError
 
 def updateGrade(directory, student):
     if student in directory:
@@ -52,6 +56,8 @@ def updateGrade(directory, student):
         relgrades = float(input("Please Enter Religion Grade:"))
         directory[student]["grades"] = {"English": enggrades, "Math": mathgrades, "History": histgrades, "Religion": relgrades}
         print(f"{student}'s grades were updated successfully")
+    else:
+        return KeyError
 
 def calculateGPA(directory, student):
     grades = directory[student]["grades"]
@@ -114,7 +120,8 @@ def main():
             getStudentsByGradeLevel(Students, gradelevel)
 
         elif choice == "7":
-            print(Students)
+            for name in Students:
+                print(f"{name},{Students[name]}")
             return True
 
         else:
