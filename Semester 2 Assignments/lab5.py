@@ -10,7 +10,6 @@ a student records program that can print out the transcript, grade level, and em
 You are to implement this using functions, dictionaries, and lists
 """
 
-
 def getStudent(directory, student):
     return directory[student]["grades"], directory[student]["gradelevel"], directory[student]["email"]
 
@@ -37,50 +36,34 @@ def addStudent(directory):
     grades = {"English": enggrades, "Math": mathgrades, "History": histgrades, "Religion": relgrades}
     email = input("please enter email")
     gradelevel = int(input("please enter grade level"))
-    directory[name] = {"name": name, "grades": grades, "gradelevel": gradelevel, "email": email}
+    directory[name] = {"grades": grades, "gradelevel": gradelevel, "email": email}
 
 def removeStudent(directory, student):
-    for student in directory:
-        directory.pop(student) #.pop instead of delete should be 1 liner
+    if student in directory:
+        directory.pop(student)
 
 def updateGrade(directory, student):
-    """
-     Function Name: updateGrades
-        Parameters:
-            Directory <dict> : Student Directory that is specified in the main() function
-            student <String> : String that corresponds to the student name
-            Return Type:  none
-        Description:
-            procedure that updates a student's gradebook
-    """
-    pass
-
+    if student in directory:
+        enggrades = float(input("Please Enter English Grade:"))
+        mathgrades = float(input("Please Enter Math Grade:"))
+        histgrades = float(input("Please Enter History Grade:"))
+        relgrades = float(input("Please Enter Religion Grade:"))
+        directory[student]["grades"] = {"English": enggrades, "Math": mathgrades, "History": histgrades, "Religion": relgrades}
 
 def calculateGPA(directory, student):
-    GPA = 0
     grades = directory[student]["grades"]
-    total = sum(grades)
+    total = sum(grades.values())
     classes = len(grades)
     GPA = total / classes
     return GPA
 
-
 def checkHonorRoll(directory,student): #Still needs work done
-    GPA = 0
-    if GPA >= 88:
+    grades = directory[student]["grades"]
+    GPA = calculateGPA(directory, student)
+    if GPA >= 88 and min(grades.values()) > 81:
         print(f"{student}, made the Honor Roll!")
     else:
         print(f"sorry but {student}, did not make the Honor Roll")
-    """
-     Function Name: checkHonorRoll
-        Parameters:
-            Directory <dict> : Student Directory that is specified in the main() function
-            student <String> : String that corresponds to the student name
-            Return Type:  <bool> True or False depending on a student has made the honor roll or not
-        Description:
-            Calls the calculateGPA() subroutine that gets the GPA then checks all grades in the grade book to see if they are all over 81, then returns True or False depending on if the GPA is 88 or better
-    """
-    pass
 
 def printMenu():
     print("Welcome to Calvert Hall's Student Directory!")
@@ -95,12 +78,13 @@ def printMenu():
 
 def main():
     #TODO: Implement every function in main
-    Students = {"Jimmy": {"grades": {"English": 90, "Math": 85, "History": 75, "Religion": 89},"gradelevel": 12,"email": "jimmy@email.com"},
+    Students = {"Jimmy": {"grades": {"English": 90, "Math": 95, "History": 95, "Religion": 89},"gradelevel": 12,"email": "jimmy@email.com"},
                 "Timmy": {"grades": {"English": 90, "Math": 85, "History": 75, "Religion": 89},"gradelevel": 11,"email": "timmy@email.com"},
                 "Mike": {"grades": {"English": 90, "Math": 85, "History": 75, "Religion": 89},"gradelevel": 12,"email": "mike@email.com"},
                 "John": {"grades": {"English": 90, "Math": 85, "History": 75, "Religion": 89},"gradelevel": 9,"email": "john@email.com"}}
+
     printMenu()
-    choice = input("Choose an option: ")
+    choice = input("select your option: ")
 
     if choice == "1":
         addStudent(Students)
@@ -119,7 +103,8 @@ def main():
     
     elif choice == "5":
         student = input("Student name: ")
-        calculateGPA(Students, student)
+        print(calculateGPA(Students, student))
+        print(checkHonorRoll(Students, student))
 
     elif choice == "6":
         gradelevel = int(input("Grade level: "))
@@ -133,4 +118,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
