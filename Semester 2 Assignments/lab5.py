@@ -77,44 +77,45 @@ def printMenu():
     pass
 
 def main():
-    #TODO: Implement every function in main
-    Students = {"Jimmy": {"grades": {"English": 90, "Math": 95, "History": 95, "Religion": 89},"gradelevel": 12,"email": "jimmy@email.com"},
-                "Timmy": {"grades": {"English": 90, "Math": 85, "History": 75, "Religion": 89},"gradelevel": 11,"email": "timmy@email.com"},
-                "Mike": {"grades": {"English": 90, "Math": 85, "History": 75, "Religion": 89},"gradelevel": 12,"email": "mike@email.com"},
-                "John": {"grades": {"English": 90, "Math": 85, "History": 75, "Religion": 89},"gradelevel": 9,"email": "john@email.com"}}
+    check = False
+    while check == False:
+        Students = {"Jimmy": {"grades": {"English": 90, "Math": 95, "History": 95, "Religion": 89},"gradelevel": 12,"email": "jimmy@email.com"},
+                    "Timmy": {"grades": {"English": 90, "Math": 85, "History": 75, "Religion": 89},"gradelevel": 11,"email": "timmy@email.com"},
+                    "Mike": {"grades": {"English": 90, "Math": 85, "History": 75, "Religion": 89},"gradelevel": 12,"email": "mike@email.com"},
+                    "John": {"grades": {"English": 90, "Math": 85, "History": 75, "Religion": 89},"gradelevel": 9,"email": "john@email.com"}}
 
-    printMenu()
-    choice = input("select your option: ")
+        printMenu()
+        choice = input("select your option: ")
 
-    if choice == "1":
-        addStudent(Students)
+        if choice == "1":
+            addStudent(Students)
 
-    elif choice == "2":
-        student = input("Student name: ")
-        removeStudent(Students, student)
+        elif choice == "2":
+            student = input("Student name: ")
+            removeStudent(Students, student)
 
-    elif choice == "3":
-        student = input("Student name: ")
-        print(getStudent(Students, student))
+        elif choice == "3":
+            student = input("Student name: ")
+            print(getStudent(Students, student))
 
-    elif choice == "4":
-        student = input("Student name: ")
-        updateGrade(Students, student)
-    
-    elif choice == "5":
-        student = input("Student name: ")
-        print(calculateGPA(Students, student))
-        print(checkHonorRoll(Students, student))
+        elif choice == "4":
+            student = input("Student name: ")
+            updateGrade(Students, student)
+        
+        elif choice == "5":
+            student = input("Student name: ")
+            print(calculateGPA(Students, student))
+            print(checkHonorRoll(Students, student))
 
-    elif choice == "6":
-        gradelevel = int(input("Grade level: "))
-        getStudentsByGradeLevel(Students, gradelevel)
+        elif choice == "6":
+            gradelevel = int(input("Grade level: "))
+            getStudentsByGradeLevel(Students, gradelevel)
 
-    elif choice == "7":
-        return
+        elif choice == "7":
+            return True
 
-    else:
-            print("Invalid choice")
+        else:
+                print("Invalid choice")
 
 if __name__ == "__main__":
     main()
