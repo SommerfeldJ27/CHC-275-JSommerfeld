@@ -3,7 +3,10 @@ def loadBoard(filename):
 
         
 def switchPlayer(current_player):
-    pass
+    if current_player == "W":
+         return "B"
+    elif current_player == "B":
+         return "W"
 
 def find_inside(board):
        pass
@@ -29,7 +32,10 @@ def countScore(board):
     pass
 
 def printBoard(board):
-    pass
+    for row in board: 
+        for space in row: 
+            print(space, end=" ")
+        print()
 
 def main():
    pass
