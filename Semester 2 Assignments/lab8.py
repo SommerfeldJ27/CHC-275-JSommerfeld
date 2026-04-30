@@ -1,5 +1,16 @@
 def loadBoard(filename):
-    pass
+    file = open(filename, "r")
+    buffer = file.readlines()
+    board = []
+    for line in buffer:
+        row = []
+        line = line.strip()
+        board.append(row)
+        for character in line:
+            row.append(character)
+    file.close
+    return board
+
 
         
 def switchPlayer(current_player):
@@ -41,4 +52,4 @@ def main():
    pass
     
 if __name__ == "__main__":
-    main()
+    main() 
