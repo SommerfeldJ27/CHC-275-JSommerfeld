@@ -1,15 +1,16 @@
 # student_directory.py
-# Fully working example of Object-Oriented Programming (OOP)
-# Student Directory System
 
 class Student:
+
     # Constructor
     def __init__(self, name, email, grad_year):
+
+        # Attributes
         self.name = name
         self.email = email
         self.grad_year = grad_year
 
-        # Each student has their own grades dictionary
+        # Dictionary of grades
         self.grades = {
             "Math": 0,
             "English": 0,
@@ -18,111 +19,129 @@ class Student:
 
     # Method to update grades
     def update_grades(self):
+
         print(f"\nUpdating grades for {self.name}")
 
         self.grades["Math"] = int(input("Enter Math grade: "))
         self.grades["English"] = int(input("Enter English grade: "))
         self.grades["Science"] = int(input("Enter Science grade: "))
 
-        print("Grades updated successfully!")
+        print("Grades updated!")
 
-    # Method to calculate average grade
+    # Method to calculate average
     def get_average(self):
-        total = sum(self.grades.values())
-        return total / len(self.grades)
 
-    # Method to display student information
+        total = sum(self.grades.values())
+        average = total / len(self.grades)
+
+        return average
+
+    # Method to display info
     def display_info(self):
-        print("\n---------------------------")
+
+        print("\n----------------------")
         print(f"Name: {self.name}")
         print(f"Email: {self.email}")
         print(f"Graduation Year: {self.grad_year}")
-        print("Grades:")
+
+        print("\nGrades:")
 
         for subject, grade in self.grades.items():
-            print(f"  {subject}: {grade}")
+            print(f"{subject}: {grade}")
 
-        print(f"Average Grade: {self.get_average():.2f}")
-        print("---------------------------")
+        print(f"\nAverage Grade: {self.get_average():.2f}")
+        print("----------------------")
 
 
-# Student Directory Class
 class StudentDirectory:
+
+    # Constructor
     def __init__(self):
-        # List that stores Student objects
+
+        # List of Student objects
         self.students = []
 
-    # Add student to directory
+    # Add a student
     def add_student(self):
-        print("\n=== Add New Student ===")
 
-        name = input("Enter student name: ")
-        email = input("Enter student email: ")
+        print("\n=== Add Student ===")
+
+        name = input("Enter name: ")
+        email = input("Enter email: ")
         grad_year = input("Enter graduation year: ")
 
-        # Create a Student object
-        new_student = Student(name, email, grad_year)
+        # Create Student object
+        student = Student(name, email, grad_year)
 
         # Add object to list
-        self.students.append(new_student)
+        self.students.append(student)
 
-        print(f"{name} was added successfully!")
+        print(f"\n{name} added successfully!")
 
     # View all students
     def view_students(self):
+
+        print("\n=== Students ===")
+
         if len(self.students) == 0:
-            print("\nNo students in directory.")
+            print("No students found.")
             return
 
-        print("\n=== Student Directory ===")
+        for i, student in enumerate(self.students):
+            print(f"{i + 1}. {student.name}")
 
-        for index, student in enumerate(self.students):
-            print(f"{index + 1}. {student.name}")
-
-    # Find student by name
+    # Find student object by name
     def find_student(self, name):
+
         for student in self.students:
+
             if student.name.lower() == name.lower():
                 return student
 
         return None
 
-    # Update a student's grades
+    # Update grades
     def update_student_grades(self):
+
         name = input("\nEnter student name: ")
 
         student = self.find_student(name)
 
         if student is None:
             print("Student not found.")
-        else:
-            student.update_grades()
+            return
 
-    # Display one student's information
+        student.update_grades()
+
+    # Display student info
     def display_student_info(self):
+
         name = input("\nEnter student name: ")
 
         student = self.find_student(name)
 
         if student is None:
             print("Student not found.")
-        else:
-            student.display_info()
+            return
+
+        student.display_info()
 
 
-# Main Program
+# Main program
 def main():
+
     directory = StudentDirectory()
 
     while True:
+
         print("\n====== STUDENT DIRECTORY ======")
         print("1. Add Student")
         print("2. View Students")
-        print("3. Update Student Grades")
-        print("4. Display Student Information")
+        print("3. Update Grades")
+        print("4. Display Student Info")
         print("5. Exit")
 
-        choice = input("Choose an option: ")
+        choice = input("\nChoose an option: ")
 
         if choice == "1":
             directory.add_student()
@@ -137,12 +156,13 @@ def main():
             directory.display_student_info()
 
         elif choice == "5":
-            print("Goodbye!")
+            print("\nGoodbye!")
             break
 
         else:
-            print("Invalid option.")
+            print("\nInvalid option.")
 
 
-# Runs the program
-main()
+# Runs program
+if __name__ == "__main__":
+    main()
