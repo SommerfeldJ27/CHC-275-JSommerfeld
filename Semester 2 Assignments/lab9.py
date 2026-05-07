@@ -32,3 +32,7 @@ def main():
     
 if __name__ == "__main__":
     main()
+    
+"""
+DO IN 12 LINES
+"""
