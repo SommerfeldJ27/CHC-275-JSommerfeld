@@ -48,7 +48,7 @@ You cannot do math with strings. We do something called typecasting
 
 Typecasting = Reassigning the datatype of the variable as long as its a valid target 
 
-numsix = "Jackson Sommerfeld" <- i want to typecast this into a number 
+numsix = "Jack Basmaci" <- i want to typecast this into a number 
 numsix = "10" <- I can typecast 
 
 to change a str -> int

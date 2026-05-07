@@ -107,7 +107,7 @@ print(names)
 
 print("example 4")
 
-students = ["john","zach","Paul"] #this is a little dangerous for which reason? mixed data types
+students = ["john","zach","Paul"] 
 GPAs = [88,71,85]
 
 """ 

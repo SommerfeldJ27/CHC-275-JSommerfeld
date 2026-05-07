@@ -181,5 +181,5 @@ We've covered
     2) writing to a file
     3) creating new ones from python
 
-We are done about 15 minutes early. 
+We are done about 15 minutes early. z
 """

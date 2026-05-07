@@ -112,7 +112,7 @@ Strings of text:
     - In python, strings of text are all the same data type (string)
 """
 
-name = "Jackson Sommerfeld"
+name = "Jack Basmaci"
 #<name of the variable> = <attribute>
 print(name)
 
@@ -124,5 +124,16 @@ In python, we can do this in two ways.
     - fstrings: format string and it lets specify placeholder values in strings so you can drop in variables
     
 """
+
+
 print(f"My name is {name}")
 print(f"the sum of x and y is {sum}")
+
+""" 
+wE made variables
+we added variables
+we printed variables using f-strings
+
+
+WE want to be able to have keyboard input
+"""

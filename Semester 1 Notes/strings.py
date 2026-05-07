@@ -180,6 +180,4 @@ print(lines)
 Why is a function like this useful? 
 
 but file I/O (read as file input/output) is done by parsing plaintext inside of a .txt, but each line is separated with a \n.
-
-
 """
