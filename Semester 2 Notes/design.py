@@ -39,8 +39,6 @@ def fizz(x):
 def main(): #main is a special kind of function, this only gets evaluated if the parent file is the being executed
             #i'll expound upon this later.
 
-
-
     x = 5
     functions.add5(x)
     check = True
