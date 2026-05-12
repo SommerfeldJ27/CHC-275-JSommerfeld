@@ -17,7 +17,8 @@ class complex:
     def __str__(self):
         if self.b < 0:
             return f"{self.a}{self.b}i"
-        return f"{self.a}+{self.b}i"
+        elif self.b > 0:
+            return f"{self.a}+{self.b}i"
     def conj(self):
        return complex(self.a, -self.b)
 
