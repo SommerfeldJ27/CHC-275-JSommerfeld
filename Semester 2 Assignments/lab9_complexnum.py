@@ -15,10 +15,10 @@ class complex:
                        self.a * other.b + self.b + other.a)
     
     def __str__(self):
-        if self.b < 0:
-            return f"{self.a}{self.b}i"
-        elif self.b > 0:
+        if self.b > 0:
             return f"{self.a}+{self.b}i"
+        elif self.b < 0:
+            return f"{self.a}{self.b}i"
     def conj(self):
        return complex(self.a, -self.b)
 
