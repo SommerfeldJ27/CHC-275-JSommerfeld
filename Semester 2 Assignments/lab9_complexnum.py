@@ -3,7 +3,6 @@ class complex:
         self.a = a
         self.b = b
     
-    
     def __add__(self, other):
         return complex(self.a + other.a, self.b + other.b)
     
