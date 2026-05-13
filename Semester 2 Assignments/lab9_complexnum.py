@@ -11,7 +11,7 @@ class complex:
         return complex(self.a - other.a, self.b - other.b)
     
     def __mul__(self, other):
-        return complex(self.a * other.a - self.b * other.b, self.a * other.b + self.b + other.a)
+        return complex(self.a * other.a - self.b * other.b, self.a * other.b + self.b * other.a)
     
     def __str__(self):
         if self.b > 0:
