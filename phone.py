@@ -6,7 +6,7 @@ for char in phone:
         new_phone += char
 
 if len(new_phone) != 13:
-    print("Error: Telephone number must be 13 characters long.")
+    print("Error: Phone number is not sufficient length or formatting")
 elif new_phone[0] != "(":
     print("Error: Perenthesis not in proper position")
 elif new_phone[4] != ")":
@@ -21,4 +21,4 @@ else:
     print("Area code:", area_code)
     print("Exchange:", exchange)
     print("Line number:", line_number)
-    print(new_phone)
+    print("Phone number:", new_phone)
