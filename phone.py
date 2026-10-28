@@ -2,7 +2,7 @@ phone = input("Enter phone number: ").strip()
 new_phone = ""
 
 for char in phone:
-    if char.isdigit() or char == "(" or char == ")" or char == "-":
+    if ((char >= 0 and char <= 9) or char == "(" or char == ")" or char == "-"):
         new_phone += char
 
 if len(new_phone) != 13:
